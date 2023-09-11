@@ -1,5 +1,5 @@
 data class ConteudoEducacional (val tipoConteudoEducacional: TipoConteudoEducacional, val nivelDificuldade: NivelDificuldade, val nome: String, val duracao: Int) { //Conteúdo educacional -> curso / desafio de código / desafio de projeto
-    //TODO: Função de exibição ou criar um read-only dos conteúdos. Encaminhamento para menu (ou loop para mais criações?)
+    //TODO: Função de exibição ou criar um read-only dos conteúdos. Encaminhamento para menu (ou loop para mais criações?). Classe de gerenciamento
     companion object { //Solicitando ao usuário os valores que vão preencher os argumentos dessa classe
         fun cadastrarConteudoEducacional(): ConteudoEducacional {
 
