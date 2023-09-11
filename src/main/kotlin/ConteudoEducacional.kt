@@ -31,7 +31,7 @@ data class ConteudoEducacional (val tipoConteudoEducacional: TipoConteudoEducaci
                     "1" -> NivelDificuldade.BASICO
                     "2" -> NivelDificuldade.INTERMEDIARIO
                     "3" -> NivelDificuldade.AVANCADO
-                    "" -> selecionarDificuldade()
+                    "" -> selecionarDificuldade() // Recursivo da função em caso de resposta inválida
                     else -> {
                         println("-----Seleção inválida!-----".uppercase())
                         selecionarDificuldade() // Recursivo da função em caso de resposta inválida
@@ -69,11 +69,13 @@ data class ConteudoEducacional (val tipoConteudoEducacional: TipoConteudoEducaci
 
             }
 
+            //Preenchendo os argumentos de ConteudoEducacional com os retornos das funções
             val tipoConteudoEducacional = selecionarTipoConteudoEducacional()
             val dificuldadeConteudoEducacional = selecionarDificuldade()
             val nomeConteudoEducacional = preencherNomeConteudoEducacional()
             val duracaoConteudoEducacional = informarDuracaoConteudoEducacional() ?: 1
 
+            //Retornando o preenchimento dos argumentos
             return ConteudoEducacional(tipoConteudoEducacional, dificuldadeConteudoEducacional,nomeConteudoEducacional, duracaoConteudoEducacional)
 
         }
