@@ -1,52 +1,44 @@
+var listaUsuarios : MutableSet<Usuario> = mutableSetOf()
 
-class Usuario (var idUsuario: Int, var nomeUsuario: String, var tipoUsuario: String) {
+fun cadastrarUsuario() {
 
-    var id = 0
-    var listaUsuarios : MutableSet<Usuario> = mutableSetOf()
+    var tecladoNomeUsuario : String? //Variável de nomeUsuario que será recebida
+    var tecladoTipoUsuario : String?
+
+    do { // Executa enquanto não passar por validação que impede vazio, nulo ou numérico
+        println("Insira nome completo do usuário:")
+        tecladoNomeUsuario = readlnOrNull() //Recebimento do valor pelo teclado
+
+        if (tecladoNomeUsuario.isNullOrEmpty() || tecladoNomeUsuario.any { it.isDigit() }) {
+            println("-----Nome inválido!-----".uppercase())
+        }
+    } while (tecladoNomeUsuario.isNullOrEmpty() || tecladoNomeUsuario.any { it.isDigit() })
+
+    do {
+        println("Informe o tipo de usuário")
+        tecladoTipoUsuario = readlnOrNull()
+
+        if (tecladoTipoUsuario.isNullOrEmpty()) {
+            println("-----Nome inválido!-----".uppercase())
+        }
+
+    } while (tecladoTipoUsuario.isNullOrEmpty())
+
+    var novoUsuario = Usuario() //Instância de Usuário
+
+    val id = listaUsuarios.count() + 1 //id = quantidade de usuários já inseridos em listaUsuarios + 1
+
+    novoUsuario.idUsuario = id //idUsuario da instância de Usuario (novoUsuario) = id
+    novoUsuario.nomeUsuario = tecladoNomeUsuario //nomeUsuario da instância de Usuario (novoUsuario) = tecladoNomeUsuario
+    novoUsuario.tipoUsuario = tecladoTipoUsuario //tipoUsuario da instância de Usuario (novoUsuario) = tecladoTipoUsuario
+
+    listaUsuarios.add(novoUsuario) //Adicionando novoUsuario à lista listaUsuarios
+
+
+}
+
+data class Usuario (var idUsuario: Int, var nomeUsuario: String, var tipoUsuario: String) {
 
     constructor() : this(0, "","")
-
-    fun cadastrarUsuario() {
-
-        var tecladoNomeUsuario : String?
-        var tecladoTipoUsuario : String?
-
-        do {
-            println("Insira nome completo do usuário:")
-            tecladoNomeUsuario = readlnOrNull()
-
-            if (tecladoNomeUsuario.isNullOrEmpty() || tecladoNomeUsuario.any { it.isDigit() }) {
-                println("-----Nome inválido!-----".uppercase())
-            }
-        } while (tecladoNomeUsuario.isNullOrEmpty() || tecladoNomeUsuario.any { it.isDigit() })
-
-        do {
-            println("Informe o tipo de usuário")
-            tecladoTipoUsuario = readlnOrNull()
-
-            if (tecladoTipoUsuario.isNullOrEmpty()) {
-                println("-----Nome inválido!-----".uppercase())
-            }
-
-        } while (tecladoTipoUsuario.isNullOrEmpty())
-
-
-        cadastroUsuario(nomeUsuario, tipoUsuario)
-
-    }
-
-    fun cadastroUsuario(nomeUsuario: String, tipoUsuario: String) {
-
-        var usuario = Usuario()
-
-        usuario.nomeUsuario = nomeUsuario
-        usuario.tipoUsuario = tipoUsuario
-        usuario.id++
-
-        listaUsuarios.add(usuario)
-
-        if (listaUsuarios.isNotEmpty()) println("xuxuzinho beleza")
-
-    }
 
 }
