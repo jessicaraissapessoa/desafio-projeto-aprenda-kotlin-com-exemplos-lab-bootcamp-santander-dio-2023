@@ -53,8 +53,9 @@ fun cadastrarUsuario() {
     novoUsuario.nomeUsuario = tecladoNomeUsuario //nomeUsuario da instância de Usuario (novoUsuario) = tecladoNomeUsuario
     novoUsuario.tipoUsuario = selecaoTipoUsuario //tipoUsuario da instância de Usuario (novoUsuario) = selecaoTipoUsuario
 
-    listaUsuarios.add(novoUsuario) //Adicionando novoUsuario à lista listaUsuarios
-
+    if (listaUsuarios.add(novoUsuario)) { //Adiciona/retorna feedback da adição do novoUsuario
+        println("Adição de usuário bem sucedida:\n$novoUsuario\n")
+    } else println("Adição de usuário falhou")
 
 }
 
