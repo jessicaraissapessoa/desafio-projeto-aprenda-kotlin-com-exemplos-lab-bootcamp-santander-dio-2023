@@ -12,7 +12,7 @@ fun exibirUsuarios(): String { //Função para exibir lista de usuários (listaU
     return builder.toString() //Retorna a exibição da lista em uma String
 }
 
-fun cadastrarUsuario() {
+fun cadastrarUsuario() { //Função para cadastrar usuário
 
     var tecladoNomeUsuario : String? //Variável de nomeUsuario que será recebida
     var tecladoTipoUsuario : String?
@@ -56,6 +56,38 @@ fun cadastrarUsuario() {
     if (listaUsuarios.add(novoUsuario)) { //Adiciona/retorna feedback da adição do novoUsuario
         println("Adição de usuário bem sucedida:\n$novoUsuario\n")
     } else println("Adição de usuário falhou")
+
+}
+
+fun excluirUsuario() { //Função para remover usuário
+
+    println("----- Lista de usuários cadastrados\n".uppercase()  + exibirUsuarios())
+
+    //Variável opcoes recebe os valores de cada id de usuário de listaUsuarios
+    var opcoes = mutableListOf<String>()
+    for (usuario in listaUsuarios) {
+        var opcao = usuario.idUsuario
+        opcoes.add(opcao.toString())
+    }
+
+    var selecaoRemocaoUsuario : String? //Variável que receberá opção informada por teclado em do/while seguinte
+
+    do {  //Repete execução enquanto não recebe um valor correspondente a algum dos valores da variável opcoes
+
+        println("Informe o ID do usuário que deseja exlcuir:")
+        selecaoRemocaoUsuario = readlnOrNull()
+
+        if (!opcoes.contains(selecaoRemocaoUsuario)) {
+            println("-----Seleção inválida!-----".uppercase()) //Imprime em caso de não passar na validação
+        }
+
+    } while (!opcoes.contains(selecaoRemocaoUsuario))
+
+
+
+    val usuarioremovido = listaUsuarios.removeAt(index = (selecaoRemocaoUsuario?.toInt()!! - 1)) //Remoção do usuário
+
+    println("Remoção de usuário bem sucedida:\n$usuarioremovido\n") //Mensagem de feedback da remoção
 
 }
 
