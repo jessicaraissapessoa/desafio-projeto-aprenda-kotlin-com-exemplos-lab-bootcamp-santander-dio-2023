@@ -1,3 +1,14 @@
+data class Usuario (var idUsuario: Int, var nomeUsuario: String, var tipoUsuario: String) { //Classe Usuario
+
+    constructor() : this(0, "","") //Contrutor vazio da classe
+
+    override fun toString(): String { //Customização da exibição do Usuario instanciado
+
+        return "ID: $idUsuario | NOME: $nomeUsuario | TIPO: $tipoUsuario"
+    }
+
+}
+
 var listaUsuarios : MutableList<Usuario> = mutableListOf() //Lista de usuários
 
 
@@ -186,16 +197,4 @@ fun editarUsuario() {
     } while (respostaEditarTipoUsuario.isNullOrEmpty() || ((respostaEditarTipoUsuario != "s") && (respostaEditarTipoUsuario != "n")))
 
     println("Edição do usuário de ID $selecaoEdicaoUsuario concluída") //Feedback da conclusão da edição do usuário
-}
-
-
-data class Usuario (var idUsuario: Int, var nomeUsuario: String, var tipoUsuario: String) { //Classe Usuario
-
-    constructor() : this(0, "","") //Contrutor vazio da classe
-
-    override fun toString(): String { //Customização da exibição do Usuario instanciado
-
-        return "ID: $idUsuario | NOME: $nomeUsuario | TIPO: $tipoUsuario"
-    }
-
 }
