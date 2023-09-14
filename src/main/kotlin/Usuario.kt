@@ -96,6 +96,8 @@ fun cadastrarUsuario() { //Função para cadastrar usuário
 
 fun excluirUsuario() { //Função para remover usuário
 
+    if (listaUsuarios.isEmpty()) exibirListaUsuariosVazia() //Caso a lista de usuários esteja vazia, executar função exibirListaUsuariosVazia()
+
     println("----- Lista de usuários cadastrados\n".uppercase()  + exibirUsuarios())
 
     //Variável opcoesValidas recebe os valores de cada id de usuário de listaUsuarios
@@ -125,6 +127,8 @@ fun excluirUsuario() { //Função para remover usuário
 
 
 fun editarUsuario() {
+
+    if (listaUsuarios.isEmpty()) exibirListaUsuariosVazia() //Caso a lista de usuários esteja vazia, executar função exibirListaUsuariosVazia()
 
     println("----- Lista de usuários cadastrados\n".uppercase()  + exibirUsuarios())
 
