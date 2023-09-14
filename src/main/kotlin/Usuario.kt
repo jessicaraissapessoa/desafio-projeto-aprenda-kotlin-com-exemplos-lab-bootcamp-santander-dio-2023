@@ -126,7 +126,7 @@ fun excluirUsuario() { //Função para remover usuário
 }
 
 
-fun editarUsuario() {
+fun editarUsuario() { //Função para editar usuário
 
     if (listaUsuarios.isEmpty()) exibirListaUsuariosVazia() //Caso a lista de usuários esteja vazia, executar função exibirListaUsuariosVazia()
 
