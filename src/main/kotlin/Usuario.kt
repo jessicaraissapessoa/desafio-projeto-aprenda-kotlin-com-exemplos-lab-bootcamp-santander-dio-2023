@@ -58,7 +58,6 @@ fun cadastrarUsuario() { //Função para cadastrar usuário
     if (listaUsuarios.add(novoUsuario)) { //Adiciona/retorna feedback da adição do novoUsuario
         println("Adição de usuário bem sucedida:\n$novoUsuario\n")
     } else println("Adição de usuário falhou")
-
 }
 
 
@@ -89,7 +88,6 @@ fun excluirUsuario() { //Função para remover usuário
     val usuarioRemovido = listaUsuarios.removeAt(index = (selecaoRemocaoUsuario?.toInt()!! - 1)) //Remoção do usuário
 
     println("Remoção de usuário bem sucedida:\n$usuarioRemovido\n") //Mensagem de feedback da remoção
-
 }
 
 
