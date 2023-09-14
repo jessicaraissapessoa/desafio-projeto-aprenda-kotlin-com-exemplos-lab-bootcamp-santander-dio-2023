@@ -6,14 +6,29 @@
 
 fun main() {
 
+    cadastrarUsuario()
+    cadastrarUsuario()
+    println(exibirUsuarios())
+    //excluirUsuario()
 
+    //println("---")
+    //println(exibirUsuarios())
+
+    println("---")
+    editarUsuario()
+    println("---")
+    println(exibirUsuarios())
+
+    /*
+    val gerenciador = Usuario.GerenciamentoUsuarios()
     val usuario = Usuario.GerenciamentoUsuarios.cadastrarUsuario()
-    println(Usuario.GerenciamentoUsuarios)
-    println(Usuario.GerenciamentoUsuarios)
-    val conteudo = ConteudoEducacional.cadastrarConteudoEducacional()
-    println(conteudo)
+    println(usuario.toString())
 
+    val conteudo = ConteudoEducacional.cadastrarConteudoEducacional()
+    println(conteudo.toString())
 
     //para imprimir enum -> NivelDificuldade.valueOf("INTERMEDIARIO")
+
+     */
 
 }
