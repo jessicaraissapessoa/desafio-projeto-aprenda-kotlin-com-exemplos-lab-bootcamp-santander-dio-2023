@@ -14,13 +14,13 @@ var listaUsuarios : MutableList<Usuario> = mutableListOf() //Lista de usuários
 
 fun exibirListaUsuariosVazia() {
 
-    do {
+    do { //Repete execução enquanto desejaAdicionarUsuarioTeclado não receber um valor que não seja nulo, vazio, sem letras ou diferente de "s" e "n"
 
         println("Sua lista de usuários está vazia. Deseja adicionar um usuário? Digite 's' para sim ou 'n' para não")
-        val desejaAdicionarUsuarioTeclado = readlnOrNull()
+        val desejaAdicionarUsuarioTeclado = readlnOrNull() //Recebimento do valor pelo teclado
 
         when(desejaAdicionarUsuarioTeclado) {
-            "s" -> cadastrarUsuario()
+            "s" -> cadastrarUsuario() //Segue para função cadastrarUsuario()
             "n" -> println("")
         }
 
@@ -34,7 +34,7 @@ fun exibirListaUsuariosVazia() {
 
 fun exibirUsuarios(): String { //Função para exibir lista de usuários (listaUsuarios)
 
-    if (listaUsuarios.isEmpty()) exibirListaUsuariosVazia()
+    if (listaUsuarios.isEmpty()) exibirListaUsuariosVazia() //Caso a lista de usuários esteja vazia, executar função exibirListaUsuariosVazia()
 
     val builder = StringBuilder() //Usando StringBuilder para construir a string
 
