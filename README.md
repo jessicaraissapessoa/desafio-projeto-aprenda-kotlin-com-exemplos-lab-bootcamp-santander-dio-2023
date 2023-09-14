@@ -17,7 +17,8 @@ Segue o esquema dos arquivos (com suas classes e métodos):
 | Data class Usuario | var idUsuario, var nomeUsuario, var tipoUsuario, contrutor vazio, toString() | Classe relativa à estrutura de construção do usuário e de sua exibição |
 | var listaUsuarios | MutableList<Usuario> | lista iterável composta de Usuario |
 | exibirUsuarios() | val builder = StringBuilder() | Função para exibição de listaUsuario. A exibição de cada Usuario (toString) é iterada em uma String única de listaUsuarios por meio do StringBuilder |
-| cadastrarUsuario() | 
+| cadastrarUsuario() | val id, val tecladoNomeUsuario, val selecaoTipoUsuario | Função para cadastrar novo Usuario, inserindo-os na lista de usuários (listaUsuarios) por meio da passagem respectiva dos valores das variáveis descritas para as variáveis do Usuario. Cada etapa do cadastro possui validações (para não receber nulo ou vazio, para não receber número no nome etc.) |
+| excluirUsuario() | val opcoes, var selecaoRemocaoUsuario, val usuarioRemovido |  
 
  
   - 
