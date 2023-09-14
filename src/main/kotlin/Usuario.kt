@@ -12,7 +12,29 @@ data class Usuario (var idUsuario: Int, var nomeUsuario: String, var tipoUsuario
 var listaUsuarios : MutableList<Usuario> = mutableListOf() //Lista de usuários
 
 
+fun exibirListaUsuariosVazia() {
+
+    do {
+
+        println("Sua lista de usuários está vazia. Deseja adicionar um usuário? Digite 's' para sim ou 'n' para não")
+        val desejaAdicionarUsuarioTeclado = readlnOrNull()
+
+        when(desejaAdicionarUsuarioTeclado) {
+            "s" -> cadastrarUsuario()
+            "n" -> println("")
+        }
+
+        if (desejaAdicionarUsuarioTeclado.isNullOrEmpty() || !desejaAdicionarUsuarioTeclado.any { it.isLetter() } || (!desejaAdicionarUsuarioTeclado.equals("s") && !desejaAdicionarUsuarioTeclado.equals("n"))) {
+            println("-----Seleção inválida!-----".uppercase())
+        }
+
+    } while (desejaAdicionarUsuarioTeclado.isNullOrEmpty() || !desejaAdicionarUsuarioTeclado.any { it.isLetter() } || (!desejaAdicionarUsuarioTeclado.equals("s") && !desejaAdicionarUsuarioTeclado.equals("n")))
+
+}
+
 fun exibirUsuarios(): String { //Função para exibir lista de usuários (listaUsuarios)
+
+    if (listaUsuarios.isEmpty()) exibirListaUsuariosVazia()
 
     val builder = StringBuilder() //Usando StringBuilder para construir a string
 
