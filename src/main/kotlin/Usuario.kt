@@ -100,7 +100,7 @@ fun excluirUsuario() { //Função para remover usuário
 
     println("----- Lista de usuários cadastrados\n".uppercase()  + exibirUsuarios())
 
-    //Variável opcoesValidas recebe os valores de cada id de usuário de listaUsuarios
+    //Variável opcoes recebe os valores de cada id de usuário de listaUsuarios
     val opcoes = mutableListOf<String>()
     for (usuario in listaUsuarios) {
         val opcao = usuario.idUsuario
