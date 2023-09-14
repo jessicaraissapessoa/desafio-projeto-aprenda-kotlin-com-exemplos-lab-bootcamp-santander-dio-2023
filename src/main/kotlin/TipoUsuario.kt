@@ -7,7 +7,6 @@ enum class TipoUsuario() {
         return when (this) {
             INSTRUTOR -> "Instrutor(a)"
             ALUNO -> "Aluno(a)"
-
         }
     }
 
