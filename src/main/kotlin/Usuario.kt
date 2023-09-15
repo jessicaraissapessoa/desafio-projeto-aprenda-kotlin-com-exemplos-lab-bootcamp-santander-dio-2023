@@ -192,7 +192,7 @@ fun editarUsuario() { //Função para editar usuário
         if (respostaEditarTipoUsuario.isNullOrEmpty() || ((respostaEditarTipoUsuario != "s") && (respostaEditarTipoUsuario != "n"))) {
             println("-----Seleção inválida!-----".uppercase()) //Imprime em caso de não passar na validação
         } else {
-            var selecaoNovoTipoUsuario : String //Variável de novoNomeUsuario que preencherá nomeUsuario após ediçao
+            var selecaoNovoTipoUsuario : String //Variável de novoNomeUsuario que preencherá nomeUsuario após edição
 
             if (respostaEditarTipoUsuario == "s") { //Se recebeu "s", segue para alteração do tipo do usuário
                 var selecaoNovoTipoUsuario : String?
