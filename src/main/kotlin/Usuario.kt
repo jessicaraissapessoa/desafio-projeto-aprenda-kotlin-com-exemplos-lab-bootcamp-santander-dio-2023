@@ -3,7 +3,6 @@ data class Usuario (var idUsuario: Int, var nomeUsuario: String, var tipoUsuario
     constructor() : this(0, "","") //Contrutor vazio da classe
 
     override fun toString(): String { //Customização da exibição do Usuario instanciado
-
         return "ID: $idUsuario | NOME: $nomeUsuario | TIPO: $tipoUsuario"
     }
 
