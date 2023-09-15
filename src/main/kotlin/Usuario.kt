@@ -195,7 +195,6 @@ fun editarUsuario() { //Função para editar usuário
             var selecaoNovoTipoUsuario : String //Variável de novoTipoUsuario que preencherá nomeUsuario após edição
 
             if (respostaEditarTipoUsuario == "s") { //Se recebeu "s", segue para alteração do tipo do usuário
-                var selecaoNovoTipoUsuario : String?
 
                 do { //Repete execução enquanto não recebe 1 ou 2
                     println("Selecione o novo tipo do usuário informando o número correspondente:" +
