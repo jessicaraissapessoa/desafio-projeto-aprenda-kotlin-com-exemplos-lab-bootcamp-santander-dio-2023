@@ -26,7 +26,8 @@ fun exibirListaUsuariosVazia() {
 
         if (desejaAdicionarUsuarioTeclado.isNullOrEmpty() || !desejaAdicionarUsuarioTeclado.any { it.isLetter() } || (!desejaAdicionarUsuarioTeclado.equals("s") && !desejaAdicionarUsuarioTeclado.equals("n"))) {
             println("-----Seleção inválida!-----".uppercase())
-        }
+        } else if (desejaAdicionarUsuarioTeclado == "s") cadastrarUsuario() //Segue para o cadastro de usuário
+        else println("Lista de conteúdos educacionais vazia")
 
     } while (desejaAdicionarUsuarioTeclado.isNullOrEmpty() || !desejaAdicionarUsuarioTeclado.any { it.isLetter() } || (!desejaAdicionarUsuarioTeclado.equals("s") && !desejaAdicionarUsuarioTeclado.equals("n")))
 
