@@ -140,7 +140,7 @@ fun editarUsuario() { //Função para editar usuário
     }
 
     var selecaoEdicaoUsuario : String? //Variável que receberá opção informada por teclado em do/while seguinte
-    var usuarioParaEdicao : Usuario? = null
+    var usuarioParaEdicao : Usuario?
 
     do { //Repete execução enquanto não recebe um valor correspondente a algum dos valores da variável opcoes
 
