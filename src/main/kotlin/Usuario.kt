@@ -214,7 +214,7 @@ fun editarUsuario() { //Função para editar usuário
 
                 } while (tecladoNovoTipoUsuario.isNullOrEmpty() || (!tecladoNovoTipoUsuario.equals("1") && !tecladoNovoTipoUsuario.equals("2")))
 
-                usuarioParaEdicao.tipoUsuario = selecaoNovoTipoUsuario!! //Alteração do tipo do usuário do ID informado
+                usuarioParaEdicao.tipoUsuario = selecaoNovoTipoUsuario //Alteração do tipo do usuário do ID informado
 
                 println("Alteração do tipo do usuário bem sucedida:\n$usuarioParaEdicao\n") //Mensagem de feedback da edição do tipo do usuário
             }
