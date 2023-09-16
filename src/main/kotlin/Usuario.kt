@@ -32,7 +32,7 @@ fun exibirListaUsuariosVazia() {
 
 }
 
-fun toStringListaUsuarios(): String { //Função para exibir lista de usuários (listaUsuarios)
+fun toStringListaUsuarios() : String { //Função para exibir lista de usuários (listaUsuarios)
 
     if (listaUsuarios.isEmpty()) exibirListaUsuariosVazia() //Caso a lista de usuários esteja vazia, executar função exibirListaUsuariosVazia()
 
@@ -48,7 +48,7 @@ fun toStringListaUsuarios(): String { //Função para exibir lista de usuários 
 
 
 fun exibirUsuarios() : String {
-    return toStringListaUsuarios()
+    return toStringListaUsuarios() //Impressão do toString da lista
 }
 
 
