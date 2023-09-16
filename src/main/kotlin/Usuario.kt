@@ -46,6 +46,7 @@ fun toStringListaUsuarios(): String { //Função para exibir lista de usuários 
     return builder.toString() //Retorna a lista em uma única String customizada
 }
 
+
 fun exibirUsuarios() : String {
     return toStringListaUsuarios()
 }
