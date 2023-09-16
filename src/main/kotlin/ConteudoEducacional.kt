@@ -177,6 +177,28 @@ fun excluirConteudoEducacional() { //Função para remover conteúdo educacional
     val conteudoEducacionalRemovido = listaConteudosEducacionais.removeAt(index = (selecaoRemocaoConteudoEducacional?.toInt()!! - 1)) //Remoção do conteúdo educacional
 
     println("Remoção de usuário bem sucedida:\n$conteudoEducacionalRemovido\n") //Mensagem de feedback da remoção
+
+    if (listaConteudosEducacionais.isNotEmpty()) {
+
+        //"Loop" de excluirConteudoEducacional()
+        do { //Repete execução enquanto desejaExcluirOutroUsuario não receber um valor que não seja nulo, vazio, sem letras ou diferente de "s" e "n"
+
+            println("Gostaria de excluir outro usuário? Digite 's' para sim ou 'n' para não")
+            val desejaExcluirOutroUsuario = readlnOrNull() //Recebimento do valor pelo teclado
+
+            when(desejaExcluirOutroUsuario) {
+                "s" -> exibirConteudosEducacionais() //Segue para função exibirConteudosEducacionais()
+                "n" -> println("")
+            }
+
+            if (desejaExcluirOutroUsuario.isNullOrEmpty() || !desejaExcluirOutroUsuario.any { it.isLetter() } || (!desejaExcluirOutroUsuario.equals("s") && !desejaExcluirOutroUsuario.equals("n"))) {
+                println("-----Seleção inválida!-----".uppercase())
+            } else println("")
+
+        } while (desejaExcluirOutroUsuario.isNullOrEmpty() || !desejaExcluirOutroUsuario.any { it.isLetter() } || (!desejaExcluirOutroUsuario.equals("s") && !desejaExcluirOutroUsuario.equals("n")))
+
+    }
+
 }
 
 
@@ -345,6 +367,28 @@ fun editarConteudoEducacional() {
     } while (respostaEditarDuracaoConteudoEducacional.isNullOrEmpty() || ((respostaEditarDuracaoConteudoEducacional != "s") && (respostaEditarDuracaoConteudoEducacional != "n")))
 
     println("Edição do conteúdo educacional de ID $selecaoEdicaoConteudoEducacional concluída") //Feedback da conclusão da edição do conteúdo educacional
+
+    if (listaConteudosEducacionais.isNotEmpty()) {
+
+        //"Loop" de editarConteudoEducacional()
+        do { //Repete execução enquanto editarOutroConteudoEducacional não receber um valor que não seja nulo, vazio, sem letras ou diferente de "s" e "n"
+
+            println("Gostaria de editar outro usuário? Digite 's' para sim ou 'n' para não")
+            val editarOutroConteudoEducacional = readlnOrNull() //Recebimento do valor pelo teclado
+
+            when(editarOutroConteudoEducacional) {
+                "s" -> exibirConteudosEducacionais() //Segue para função exibirConteudosEducacionais()
+                "n" -> println("")
+            }
+
+            if (editarOutroConteudoEducacional.isNullOrEmpty() || !editarOutroConteudoEducacional.any { it.isLetter() } || (!editarOutroConteudoEducacional.equals("s") && !editarOutroConteudoEducacional.equals("n"))) {
+                println("-----Seleção inválida!-----".uppercase())
+            } else println("")
+
+        } while (editarOutroConteudoEducacional.isNullOrEmpty() || !editarOutroConteudoEducacional.any { it.isLetter() } || (!editarOutroConteudoEducacional.equals("s") && !editarOutroConteudoEducacional.equals("n")))
+
+    }
+
 }
 
 
