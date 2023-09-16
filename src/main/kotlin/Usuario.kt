@@ -32,7 +32,7 @@ fun exibirListaUsuariosVazia() {
 
 }
 
-fun exibirUsuarios(): String { //Função para exibir lista de usuários (listaUsuarios)
+fun toStringListaUsuarios(): String { //Função para exibir lista de usuários (listaUsuarios)
 
     if (listaUsuarios.isEmpty()) exibirListaUsuariosVazia() //Caso a lista de usuários esteja vazia, executar função exibirListaUsuariosVazia()
 
@@ -43,7 +43,11 @@ fun exibirUsuarios(): String { //Função para exibir lista de usuários (listaU
         builder.append("\n") //Adicionar uma quebra de linha entre cada usuário
     }
 
-    return builder.toString() //Retorna a exibição da lista em uma String
+    return builder.toString() //Retorna a lista em uma única String customizada
+}
+
+fun exibirUsuarios() : String {
+    return toStringListaUsuarios()
 }
 
 
@@ -98,7 +102,7 @@ fun excluirUsuario() { //Função para remover usuário
 
     if (listaUsuarios.isEmpty()) exibirListaUsuariosVazia() //Caso a lista de usuários esteja vazia, executar função exibirListaUsuariosVazia()
 
-    println("----- Lista de usuários cadastrados\n".uppercase()  + exibirUsuarios())
+    println("----- Lista de usuários cadastrados -----\n".uppercase()  + exibirUsuarios())
 
     //Variável opcoes recebe os valores de cada id de usuário de listaUsuarios
     val opcoes = mutableListOf<String>()
@@ -130,7 +134,7 @@ fun editarUsuario() { //Função para editar usuário
 
     if (listaUsuarios.isEmpty()) exibirListaUsuariosVazia() //Caso a lista de usuários esteja vazia, executar função exibirListaUsuariosVazia()
 
-    println("----- Lista de usuários cadastrados\n".uppercase()  + exibirUsuarios())
+    println("----- Lista de usuários cadastrados -----\n".uppercase()  + exibirUsuarios())
 
     //Variável opcoes recebe os valores de cada id de usuário de listaUsuarios
     val opcoes = mutableListOf<String>()
