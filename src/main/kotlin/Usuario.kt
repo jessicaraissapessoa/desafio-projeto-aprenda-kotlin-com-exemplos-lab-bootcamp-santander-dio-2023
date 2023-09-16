@@ -96,6 +96,26 @@ fun cadastrarUsuario() { //Função para cadastrar usuário
     if (listaUsuarios.add(novoUsuario)) { //Adiciona/retorna feedback da adição do novoUsuario
         println("Adição de usuário bem sucedida:\n$novoUsuario\n")
     } else println("Adição de usuário falhou")
+
+
+    //"Loop" de cadastrarUsuario()
+    do { //Repete execução enquanto desejaAdicionarOutroUsuario não receber um valor que não seja nulo, vazio, sem letras ou diferente de "s" e "n"
+
+        println("Gostaria de cadastrar outro usuário? Digite 's' para sim ou 'n' para não")
+        val desejaAdicionarOutroUsuario = readlnOrNull() //Recebimento do valor pelo teclado
+
+        when(desejaAdicionarOutroUsuario) {
+            "s" -> cadastrarUsuario() //Segue para função cadastrarUsuario()
+            "n" -> println("")
+        }
+
+        if (desejaAdicionarOutroUsuario.isNullOrEmpty() || !desejaAdicionarOutroUsuario.any { it.isLetter() } || (!desejaAdicionarOutroUsuario.equals("s") && !desejaAdicionarOutroUsuario.equals("n"))) {
+            println("-----Seleção inválida!-----".uppercase())
+        } else if (desejaAdicionarOutroUsuario == "s") cadastrarUsuario() //Segue para o cadastro de usuário
+        else println("")
+
+    } while (desejaAdicionarOutroUsuario.isNullOrEmpty() || !desejaAdicionarOutroUsuario.any { it.isLetter() } || (!desejaAdicionarOutroUsuario.equals("s") && !desejaAdicionarOutroUsuario.equals("n")))
+
 }
 
 
