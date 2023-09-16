@@ -147,7 +147,26 @@ fun excluirUsuario() { //Função para remover usuário
 
     println("Remoção de usuário bem sucedida:\n$usuarioRemovido\n") //Mensagem de feedback da remoção
 
+    if (listaUsuarios.isNotEmpty()) {
 
+        //"Loop" de excluirUsuario()
+        do { //Repete execução enquanto excluirOutroUsuario não receber um valor que não seja nulo, vazio, sem letras ou diferente de "s" e "n"
+
+            println("Gostaria de excluir outro usuário? Digite 's' para sim ou 'n' para não")
+            val excluirOutroUsuario = readlnOrNull() //Recebimento do valor pelo teclado
+
+            when(excluirOutroUsuario) {
+                "s" -> excluirUsuario() //Segue para função excluirUsuario()
+                "n" -> println("")
+            }
+
+            if (excluirOutroUsuario.isNullOrEmpty() || !excluirOutroUsuario.any { it.isLetter() } || (!excluirOutroUsuario.equals("s") && !excluirOutroUsuario.equals("n"))) {
+                println("-----Seleção inválida!-----".uppercase())
+            } else println("")
+
+        } while (excluirOutroUsuario.isNullOrEmpty() || !excluirOutroUsuario.any { it.isLetter() } || (!excluirOutroUsuario.equals("s") && !excluirOutroUsuario.equals("n")))
+
+    }
 
 }
 
@@ -248,4 +267,26 @@ fun editarUsuario() { //Função para editar usuário
     } while (respostaEditarTipoUsuario.isNullOrEmpty() || ((respostaEditarTipoUsuario != "s") && (respostaEditarTipoUsuario != "n")))
 
     println("Edição do usuário de ID $selecaoEdicaoUsuario concluída") //Feedback da conclusão da edição do usuário
+
+    if (listaUsuarios.isNotEmpty()) {
+
+        //"Loop" de editarUsuario()
+        do { //Repete execução enquanto editarOutroUsuario não receber um valor que não seja nulo, vazio, sem letras ou diferente de "s" e "n"
+
+            println("Gostaria de editar outro usuário? Digite 's' para sim ou 'n' para não")
+            val editarOutroUsuario = readlnOrNull() //Recebimento do valor pelo teclado
+
+            when(editarOutroUsuario) {
+                "s" -> editarUsuario() //Segue para função editarUsuario()
+                "n" -> println("")
+            }
+
+            if (editarOutroUsuario.isNullOrEmpty() || !editarOutroUsuario.any { it.isLetter() } || (!editarOutroUsuario.equals("s") && !editarOutroUsuario.equals("n"))) {
+                println("-----Seleção inválida!-----".uppercase())
+            } else println("")
+
+        } while (editarOutroUsuario.isNullOrEmpty() || !editarOutroUsuario.any { it.isLetter() } || (!editarOutroUsuario.equals("s") && !editarOutroUsuario.equals("n")))
+
+    }
+
 }
