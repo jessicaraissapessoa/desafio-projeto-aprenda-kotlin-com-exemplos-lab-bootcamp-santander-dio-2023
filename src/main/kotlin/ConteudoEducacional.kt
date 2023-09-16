@@ -187,7 +187,7 @@ fun excluirConteudoEducacional() { //Função para remover conteúdo educacional
             val desejaExcluirOutroConteudoEducacional = readlnOrNull() //Recebimento do valor pelo teclado
 
             when(desejaExcluirOutroConteudoEducacional) {
-                "s" -> excluirUsuario() //Segue para função excluirUsuario()
+                "s" -> excluirConteudoEducacional() //Segue para função excluirConteudoEducacional()
                 "n" -> println("")
             }
 
