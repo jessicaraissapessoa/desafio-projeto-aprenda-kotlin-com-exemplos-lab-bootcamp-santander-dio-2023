@@ -127,6 +127,24 @@ fun cadastrarConteudoEducacional() {
     if (listaConteudosEducacionais.add(novoConteudoEducacional)) { //Adiciona/retorna feedback da adição do novoConteudoEducacional
         println("Adição de conteúdo educacional bem sucedida:\n$novoConteudoEducacional\n")
     } else println("Adição de conteúdo educacional falhou")
+
+    //"Loop" de cadastrarConteudoEducacional()
+    do { //Repete execução enquanto desejaAdicionarOutroConteudoEducacional não receber um valor que não seja nulo, vazio, sem letras ou diferente de "s" e "n"
+
+        println("Gostaria de cadastrar outro conteúdo educacional? Digite 's' para sim ou 'n' para não")
+        val desejaAdicionarOutroConteudoEducacional = readlnOrNull() //Recebimento do valor pelo teclado
+
+        when(desejaAdicionarOutroConteudoEducacional) {
+            "s" -> cadastrarConteudoEducacional() //Segue para função cadastrarConteudoEducacional()
+            "n" -> println("")
+        }
+
+        if (desejaAdicionarOutroConteudoEducacional.isNullOrEmpty() || !desejaAdicionarOutroConteudoEducacional.any { it.isLetter() } || (!desejaAdicionarOutroConteudoEducacional.equals("s") && !desejaAdicionarOutroConteudoEducacional.equals("n"))) {
+            println("-----Seleção inválida!-----".uppercase())
+        } else println("")
+
+    } while (desejaAdicionarOutroConteudoEducacional.isNullOrEmpty() || !desejaAdicionarOutroConteudoEducacional.any { it.isLetter() } || (!desejaAdicionarOutroConteudoEducacional.equals("s") && !desejaAdicionarOutroConteudoEducacional.equals("n")))
+
 }
 
 
