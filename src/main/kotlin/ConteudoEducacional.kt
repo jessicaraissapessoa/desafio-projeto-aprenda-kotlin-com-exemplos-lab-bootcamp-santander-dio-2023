@@ -1,6 +1,6 @@
 data class ConteudoEducacional(var idConteudoEducacional: Int, var nomeConteudoEducacional: String, var tipoConteudoEducacional: String, var nivelDificuldadeConteudoEducacional: String, var duracaoConteudoEducacional: Int) { //Classe ConteudoEducacional
 
-    constructor() : this(0, "", "", "", 1)
+    constructor() : this(0, "", "", "", 1) //Contrutor vazio da classe
 
     override fun toString(): String { //Customização da exibição do ConteudoEducacional instanciado
         return "ID: $idConteudoEducacional | NOME: $nomeConteudoEducacional\n\t↳ TIPO: $tipoConteudoEducacional | NÍVEL: $nivelDificuldadeConteudoEducacional | DURAÇÃO: $duracaoConteudoEducacional" + "h"
@@ -20,24 +20,30 @@ fun exibirListaConteudosEducacionaisVazia() {
 
         if (desejaAdicionarConteudoEducacionalTeclado.isNullOrEmpty() || !desejaAdicionarConteudoEducacionalTeclado.any { it.isLetter() } || (!desejaAdicionarConteudoEducacionalTeclado.equals("s") && !desejaAdicionarConteudoEducacionalTeclado.equals("n"))) {
             println("-----Seleção inválida!-----".uppercase())
-        }
+        } else if (desejaAdicionarConteudoEducacionalTeclado == "s") cadastrarConteudoEducacional() //Segue para o cadastro de conteúdo educacional
+        else println("Lista de conteúdos educacionais vazia")
 
     } while (desejaAdicionarConteudoEducacionalTeclado.isNullOrEmpty() || !desejaAdicionarConteudoEducacionalTeclado.any { it.isLetter() } || (!desejaAdicionarConteudoEducacionalTeclado.equals("s") && !desejaAdicionarConteudoEducacionalTeclado.equals("n")))
 }
 
 
-fun exibirConteudosEducacionais() : String { //Função para exibir lista de conteúdos educacionais (listaConteudosEducacionais)
+fun toStringConteudosEducacionais() : String { //Função para exibir lista de conteúdos educacionais (listaConteudosEducacionais)
 
     if (listaConteudosEducacionais.isEmpty()) exibirListaConteudosEducacionaisVazia()  //Caso a lista de conteúdos educacionais esteja vazia, executar função exibirListaConteudosEducacionaisVazia()
 
-    val builder = StringBuilder()
+    val builder = StringBuilder()  //Usando StringBuilder para construir a string
 
     for (conteudoEducacional in listaConteudosEducacionais) {
         builder.append(conteudoEducacional.toString())  //Adiciona o toString() de cada conteúdo educacional
         builder.append("\n") //Adicionar uma quebra de linha entre cada conteúdo educacional
     }
 
-    return builder.toString() //Retorna a exibição da lista em uma String
+    return builder.toString() //Retorna a lista em uma única String customizada
+}
+
+
+fun exibirConteudosEducacionais() : String {
+    return toStringConteudosEducacionais() //Impressão do toString da lista
 }
 
 
@@ -99,7 +105,7 @@ fun cadastrarConteudoEducacional() {
 
     do {  //Repete execução enquanto tecladoDuracaoConteudoEducacional não receber um valor que não seja nulo, vazio ou nao composto inteiramente por números
 
-        println("Informe a duração em horas do conteúdo educacional:")
+        println("Informe a duração em horas inteiras do conteúdo educacional:")
         tecladoDuracaoConteudoEducacional = readlnOrNull() //Recebimento do valor pelo teclado
 
         if (tecladoDuracaoConteudoEducacional.isNullOrEmpty() || !tecladoDuracaoConteudoEducacional.all { it.isDigit() }) {
@@ -128,7 +134,7 @@ fun excluirConteudoEducacional() { //Função para remover conteúdo educacional
 
     if (listaConteudosEducacionais.isEmpty()) exibirListaConteudosEducacionaisVazia()  //Caso a lista de conteúdos educacionais esteja vazia, executar função exibirListaConteudosEducacionaisVazia()
 
-    println("\"----- Lista de conteúdos educacionais cadastrados\\n\".uppercase()"  + exibirConteudosEducacionais())
+    println("----- Lista de conteúdos educacionais cadastrados -----\n".uppercase()  + exibirConteudosEducacionais())
 
     //Variável opcoes recebe os valores de cada id de conteúdo educacional de listaConteudosEducacionais
     val opcoes = mutableListOf<String>()
@@ -150,9 +156,9 @@ fun excluirConteudoEducacional() { //Função para remover conteúdo educacional
 
     } while (!opcoes.contains(selecaoRemocaoConteudoEducacional))
 
-    val conteudoEducacionalRemovvido = listaConteudosEducacionais.removeAt(index = (selecaoRemocaoConteudoEducacional?.toInt()!! - 1)) //Remoção do conteúdo educacional
+    val conteudoEducacionalRemovido = listaConteudosEducacionais.removeAt(index = (selecaoRemocaoConteudoEducacional?.toInt()!! - 1)) //Remoção do conteúdo educacional
 
-    println("Remoção de usuário bem sucedida:\n$conteudoEducacionalRemovvido\n") //Mensagem de feedback da remoção
+    println("Remoção de usuário bem sucedida:\n$conteudoEducacionalRemovido\n") //Mensagem de feedback da remoção
 }
 
 
@@ -160,7 +166,7 @@ fun editarConteudoEducacional() {
 
     if (listaConteudosEducacionais.isEmpty()) exibirListaConteudosEducacionaisVazia()  //Caso a lista de conteúdos educacionais esteja vazia, executar função exibirListaConteudosEducacionaisVazia()
 
-    println("\"----- Lista de conteúdos educacionais cadastrados\\n\".uppercase()"  + exibirConteudosEducacionais())
+    println("----- Lista de conteúdos educacionais cadastrados -----\n".uppercase()  + exibirConteudosEducacionais())
 
     //Variável opcoes recebe os valores de cada id de conteúdo educacional de listaConteudosEducacionais
     val opcoes = mutableListOf<String>()
@@ -268,7 +274,7 @@ fun editarConteudoEducacional() {
 
                 do { //Repete execução enquanto não recebe 1, 2 ou 3
                     println("\"Selecione o novo nível de dificuldade do conteúdo educacional informando o número correspondente:" +
-                            "\nn1 - Básico\nn2 - Intermediário\nn3 - Avançado")
+                            "\n1 - Básico\n2 - Intermediário\n3 - Avançado")
                     var tecladoNivelDificuldadeEducacional = readlnOrNull() //Recebe escolha do usuário entre as opções
                     selecaoNovoNivelDificuldadeConteudoEducacional = tecladoNivelDificuldadeEducacional.toString() //recebe o valor de tecladoNovoTipoConteudoEducacional
 
@@ -295,7 +301,7 @@ fun editarConteudoEducacional() {
 
     //Edição da duração em horas do conteúdo educacional
     do { //Repete execução enquanto não recebe um valor correspondente a "s" ou "n"
-        println("Deseja editar a duração em horas do conteúdo educacional? Digite 's' para sim ou 'n' para não")
+        println("Deseja editar a duração em horas inteiras do conteúdo educacional? Digite 's' para sim ou 'n' para não")
         val respostaEditarDuracaoConteudoEducacional = readlnOrNull() //Recebimento do valor pelo teclado
 
         if (respostaEditarDuracaoConteudoEducacional.isNullOrEmpty() || ((respostaEditarDuracaoConteudoEducacional != "s") && (respostaEditarDuracaoConteudoEducacional != "n"))) {
@@ -305,7 +311,7 @@ fun editarConteudoEducacional() {
 
             if (respostaEditarDuracaoConteudoEducacional == "s") { //Se recebeu "s", segue para alteração da duração do conteúdo educacional
                 do { //Repete execução enquanto tecladoNovaDuracaoConteudoEducacional não receber um valor que não seja nulo, vazio ou que não seja inteiramente composto por números
-                    println("Insira novo título do conteúdo educacional:")
+                    println("Insira a nova duração em horas do conteúdo educacional:")
                     tecladoNovaDuracaoConteudoEducacional = readlnOrNull() //Recebimento do valor pelo teclado
 
                     if (tecladoNovaDuracaoConteudoEducacional.isNullOrEmpty() || !tecladoNovaDuracaoConteudoEducacional.all { it.isDigit() }) {
