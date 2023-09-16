@@ -25,8 +25,7 @@ fun exibirListaUsuariosVazia() {
 
         if (desejaAdicionarUsuarioTeclado.isNullOrEmpty() || !desejaAdicionarUsuarioTeclado.any { it.isLetter() } || (!desejaAdicionarUsuarioTeclado.equals("s") && !desejaAdicionarUsuarioTeclado.equals("n"))) {
             println("-----Seleção inválida!-----".uppercase())
-        } else if (desejaAdicionarUsuarioTeclado == "s") cadastrarUsuario() //Segue para o cadastro de usuário
-        else println("Lista de conteúdos educacionais vazia")
+        } else println("Lista de conteúdos educacionais vazia")
 
     } while (desejaAdicionarUsuarioTeclado.isNullOrEmpty() || !desejaAdicionarUsuarioTeclado.any { it.isLetter() } || (!desejaAdicionarUsuarioTeclado.equals("s") && !desejaAdicionarUsuarioTeclado.equals("n")))
 
@@ -111,8 +110,7 @@ fun cadastrarUsuario() { //Função para cadastrar usuário
 
         if (desejaAdicionarOutroUsuario.isNullOrEmpty() || !desejaAdicionarOutroUsuario.any { it.isLetter() } || (!desejaAdicionarOutroUsuario.equals("s") && !desejaAdicionarOutroUsuario.equals("n"))) {
             println("-----Seleção inválida!-----".uppercase())
-        } else if (desejaAdicionarOutroUsuario == "s") cadastrarUsuario() //Segue para o cadastro de usuário
-        else println("")
+        } else println("")
 
     } while (desejaAdicionarOutroUsuario.isNullOrEmpty() || !desejaAdicionarOutroUsuario.any { it.isLetter() } || (!desejaAdicionarOutroUsuario.equals("s") && !desejaAdicionarOutroUsuario.equals("n")))
 
@@ -148,6 +146,9 @@ fun excluirUsuario() { //Função para remover usuário
     val usuarioRemovido = listaUsuarios.removeAt(index = (selecaoRemocaoUsuario?.toInt()!! - 1)) //Remoção do usuário
 
     println("Remoção de usuário bem sucedida:\n$usuarioRemovido\n") //Mensagem de feedback da remoção
+
+
+
 }
 
 
