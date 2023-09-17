@@ -1,34 +1,21 @@
-data class Formacao(var idFormacao: Int, var nomeFormacao: String, var nivelDificuldadeFormacao: String, var duracaoFormacao: Int) { //Classe Formacao
+data class Formacao(var idFormacao: Int, var nomeFormacao: String) {
 
-    val inscritosFormacao = mutableListOf<Usuario>()
-    val conteudosFormacao = mutableListOf<ConteudoEducacional>()
+    constructor() : this(0, "")
 
-    constructor() : this(0, "", "", 0) //Construtor vazio da classe
+    var inscritosFormacao = mutableListOf<Usuario>()
+    var conteudosFormacao = mutableListOf<ConteudoEducacional>()
+    var dificuldadeFormacao : String = ""
+    var duracaoFormacao : String? = ""
 
-    override fun toString(): String { //Customização da exibição do
-        return "ID: $idFormacao | NOME: $nomeFormacao | NÍVEL: $nivelDificuldadeFormacao | DURAÇÃO: $duracaoFormacao" +
-                "\n\t↳" //TODO: mostrar n de inscritos e de conteúdos
+    override fun toString(): String {
+        return "ID: $idFormacao | NOME: $nomeFormacao | NÍVEL: $dificuldadeFormacao | DURAÇÃO: $duracaoFormacao" + "h\n\n" +
+                "LISTA DE CONTEÚDOS:\n$conteudosFormacao\n\n" +
+                "LISTA DE INSCRITOS:\n$inscritosFormacao"
     }
 
 }
 
-var listaFormacoes : MutableList<Formacao> = mutableListOf() //Lista de formações
-
-
-fun exibirListaFormacoesVazia() {
-
-    do { //Repete execução enquanto desejaAdicionarFormacaoTeclado não receber um valor que não seja nulo, vazio, sem letras ou diferente de "s" e "n"
-
-        println("Sua lista de formações está vazia. Deseja adicionar uma formação? Digite 's' para sim ou 'n' para não")
-        val desejaAdicionarFormacaoTeclado = readlnOrNull() //Recebimento do valor pelo teclado
-
-        if (desejaAdicionarFormacaoTeclado.isNullOrEmpty() || !desejaAdicionarFormacaoTeclado.any { it.isLetter() } || (!desejaAdicionarFormacaoTeclado.equals("s") && !desejaAdicionarFormacaoTeclado.equals("n"))) {
-            println("-----Seleção inválida!-----".uppercase())
-        } else if (desejaAdicionarFormacaoTeclado == "s") cadastrarFormacao() //Segue para o cadastro de formacao
-        else println("Lista de formações vazia")
-
-    } while (desejaAdicionarFormacaoTeclado.isNullOrEmpty() || !desejaAdicionarFormacaoTeclado.any { it.isLetter() } || (!desejaAdicionarFormacaoTeclado.equals("s") && !desejaAdicionarFormacaoTeclado.equals("n")))
-}
+var listaFormacoes : MutableList<Formacao> = mutableListOf()
 
 
 fun toStringFormacoes() : String {
@@ -50,60 +37,37 @@ fun exibirFormacoes() : String {
     return toStringFormacoes() //Impressão do toString da lista
 }
 
+fun exibirListaFormacoesVazia() {
+
+    do { //Repete execução enquanto desejaAdicionarFormacaoTeclado não receber um valor que não seja nulo, vazio, sem letras ou diferente de "s" e "n"
+
+        println("Sua lista de formações está vazia. Deseja adicionar uma formação? Digite 's' para sim ou 'n' para não")
+        val desejaAdicionarFormacaoTeclado = readlnOrNull() //Recebimento do valor pelo teclado
+
+        if (desejaAdicionarFormacaoTeclado.isNullOrEmpty() || !desejaAdicionarFormacaoTeclado.any { it.isLetter() } || (!desejaAdicionarFormacaoTeclado.equals("s") && !desejaAdicionarFormacaoTeclado.equals("n"))) {
+            println("-----Seleção inválida!-----".uppercase())
+        } else if (desejaAdicionarFormacaoTeclado == "s") cadastrarFormacao() //Segue para o cadastro de formacao
+        else println("Lista de formações vazia")
+
+    } while (desejaAdicionarFormacaoTeclado.isNullOrEmpty() || !desejaAdicionarFormacaoTeclado.any { it.isLetter() } || (!desejaAdicionarFormacaoTeclado.equals("s") && !desejaAdicionarFormacaoTeclado.equals("n")))
+}
+
 
 fun cadastrarFormacao() {
 
-    //"ID: $idFormacao | NOME: $nomeFormacao | NÍVEL: $nivelDificuldadeFormacao | DURAÇÃO: $duracaoFormacao"
+    println("nome formação:")
+    val nome = readln()
 
-    var tecladoNomeFormacao : String? //Variável de nome da formação que será recebido
-    var tecladoRelacionarConteudosEducacionais : String? //Variável de seleção para opções sobre conteúdos educacionais na formação
+    val id = listaFormacoes.count() + 1
 
-    do { //Repete execução enquanto tecladoNomeFormacao não receber um valor que não seja nulo, vazio, sem letras ou com números
-        println("Insira título da formação:")
-        tecladoNomeFormacao = readlnOrNull() //Recebimento do valor pelo teclado
+    val novaFormacao = Formacao()
 
-        if (tecladoNomeFormacao.isNullOrEmpty() || !tecladoNomeFormacao.any { it.isLetter() } || tecladoNomeFormacao.any { it.isDigit() }) {
-            println("-----Nome inválido!-----".uppercase())
-        }
-    } while (tecladoNomeFormacao.isNullOrEmpty() || !tecladoNomeFormacao.any { it.isLetter() }|| tecladoNomeFormacao.any { it.isDigit() })
+    novaFormacao.idFormacao = id
+    novaFormacao.nomeFormacao = nome
 
-    do { //Repete execução enquanto não recebe 1 ou 2 ou 3
-
-        println("Selecione entre as opções informando o número correspondente:" +
-                "\n1 - Selecionar conteúdos educacionais para a formação dentre os já cadastrados" +
-                "\n2 - Cadastrar novos conteúdos educacionais para essa formação" +
-                "\n3 - Cadastrar formação sem conteúdos educacionais")
-        tecladoRelacionarConteudosEducacionais = readlnOrNull() //Recebimento do valor pelo teclado
-
-        when (tecladoRelacionarConteudosEducacionais) {
-            "1" -> {
-                //TODO
-            }
-            "2" -> {
-                //TODO
-            }
-            "3" -> println()
-        }
-
-        if (tecladoRelacionarConteudosEducacionais.isNullOrEmpty() || (!tecladoRelacionarConteudosEducacionais.equals("1") && !tecladoRelacionarConteudosEducacionais.equals("2")  && !tecladoRelacionarConteudosEducacionais.equals("3"))) {
-            println("-----Seleção inválida!-----".uppercase()) //Imprime em caso de não passar na validação
-        }
-
-    } while (tecladoRelacionarConteudosEducacionais.isNullOrEmpty() || (!tecladoRelacionarConteudosEducacionais.equals("1") && !tecladoRelacionarConteudosEducacionais.equals("2")  && !tecladoRelacionarConteudosEducacionais.equals("3")))
-
-
-    TODO("dificuldade")
-
-    TODO("duracao")
-
-    var novaFormacao = Formacao() //Instância de Formacao
-
-    val id = listaFormacoes.count() + 1 //id = quantidade de formações já inseridos em listaFormacoes + 1
-    novaFormacao.idFormacao = id //idFormacao da instância de Formacao (novaFormacao) = id
-
-    novaFormacao.nomeFormacao = tecladoNomeFormacao //nomeFormacao da instância de Formacao (novaFormacao) = tecladoNomeFormacao
-
-    TODO("Recebimento das outras variáveis")
+    if (listaFormacoes.add(novaFormacao)) {
+        println("Formação adicionada: $novaFormacao")
+    }
 
 }
 
@@ -160,3 +124,4 @@ fun excluirFormacao() { //Função para remover formação
     }
 
 }
+
