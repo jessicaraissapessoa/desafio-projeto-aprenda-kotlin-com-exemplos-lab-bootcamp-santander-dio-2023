@@ -117,7 +117,8 @@ fun excluirUsuario() { //Função para remover usuário
 
     if (listaUsuarios.isEmpty()) exibirListaUsuariosVazia() //Caso a lista de usuários esteja vazia, executar função exibirListaUsuariosVazia()
 
-    println("----- Lista de usuários cadastrados -----\n".uppercase()  + exibirUsuarios())
+    println("----- Lista de usuários cadastrados -----\n".uppercase())
+    exibirUsuarios()
 
     //Variável opcoes recebe os valores de cada id de usuário de listaUsuarios
     val opcoes = mutableListOf<String>()
@@ -171,7 +172,8 @@ fun editarUsuario() { //Função para editar usuário
 
     if (listaUsuarios.isEmpty()) exibirListaUsuariosVazia() //Caso a lista de usuários esteja vazia, executar função exibirListaUsuariosVazia()
 
-    println("----- Lista de usuários cadastrados -----\n".uppercase()  + exibirUsuarios())
+    println("----- Lista de usuários cadastrados -----\n".uppercase())
+    exibirUsuarios()
 
     //Variável opcoes recebe os valores de cada id de usuário de listaUsuarios
     val opcoes = mutableListOf<String>()
