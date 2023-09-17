@@ -149,7 +149,8 @@ fun excluirConteudoEducacional() { //Função para remover conteúdo educacional
 
     if (listaConteudosEducacionais.isEmpty()) exibirListaConteudosEducacionaisVazia()  //Caso a lista de conteúdos educacionais esteja vazia, executar função exibirListaConteudosEducacionaisVazia()
 
-    println("----- Lista de conteúdos educacionais cadastrados -----\n".uppercase()  + exibirConteudosEducacionais())
+    println("----- Lista de conteúdos educacionais cadastrados -----\n".uppercase())
+    exibirConteudosEducacionais()
 
     //Variável opcoes recebe os valores de cada id de conteúdo educacional de listaConteudosEducacionais
     val opcoes = mutableListOf<String>()
@@ -203,7 +204,8 @@ fun editarConteudoEducacional() {
 
     if (listaConteudosEducacionais.isEmpty()) exibirListaConteudosEducacionaisVazia()  //Caso a lista de conteúdos educacionais esteja vazia, executar função exibirListaConteudosEducacionaisVazia()
 
-    println("----- Lista de conteúdos educacionais cadastrados -----\n".uppercase()  + exibirConteudosEducacionais())
+    println("----- Lista de conteúdos educacionais cadastrados -----\n".uppercase())
+    exibirConteudosEducacionais()
 
     //Variável opcoes recebe os valores de cada id de conteúdo educacional de listaConteudosEducacionais
     val opcoes = mutableListOf<String>()
