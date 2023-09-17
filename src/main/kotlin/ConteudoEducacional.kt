@@ -29,7 +29,7 @@ fun exibirListaConteudosEducacionaisVazia() {
 }
 
 
-fun toStringConteudosEducacionais() : String { //Função para exibir lista de conteúdos educacionais (listaConteudosEducacionais)
+fun exibirConteudosEducacionais() { //Impressão de listaConteudosEducacionais
 
     if (listaConteudosEducacionais.isEmpty()) exibirListaConteudosEducacionaisVazia()  //Caso a lista de conteúdos educacionais esteja vazia, executar função exibirListaConteudosEducacionaisVazia()
 
@@ -40,12 +40,7 @@ fun toStringConteudosEducacionais() : String { //Função para exibir lista de c
         builder.append("\n") //Adicionar uma quebra de linha entre cada conteúdo educacional
     }
 
-    return builder.toString() //Retorna a lista em uma única String customizada
-}
-
-
-fun exibirConteudosEducacionais() : String {
-    return toStringConteudosEducacionais() //Impressão do toString da lista
+    println(builder.toString())
 }
 
 
