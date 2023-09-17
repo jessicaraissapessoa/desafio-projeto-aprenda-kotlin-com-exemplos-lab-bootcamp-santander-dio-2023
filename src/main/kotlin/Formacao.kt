@@ -1,16 +1,27 @@
-data class Formacao(var idFormacao: Int, var nomeFormacao: String) {
+data class Formacao(var idFormacao: Int, var nomeFormacao: String, var dificuldadeFormacao : String) {
 
-    constructor() : this(0, "")
+    constructor() : this(0, "", "")
 
     var inscritosFormacao = mutableListOf<Usuario>()
     var conteudosFormacao = mutableListOf<ConteudoEducacional>()
-    var dificuldadeFormacao : String = ""
-    var duracaoFormacao : String? = ""
+    var duracaoFormacao : Int = 1
 
-    override fun toString(): String {
-        return "ID: $idFormacao | NOME: $nomeFormacao | NÍVEL: $dificuldadeFormacao | DURAÇÃO: $duracaoFormacao" + "h\n\n" +
-                "LISTA DE CONTEÚDOS:\n$conteudosFormacao\n\n" +
-                "LISTA DE INSCRITOS:\n$inscritosFormacao"
+    override fun toString(): String { //Customização da exibição da formação pelo método toString()
+
+        val builder = StringBuilder()
+
+
+        builder.append("--------------------------------------------------\n")
+        builder.append("ID: $idFormacao | NOME: $nomeFormacao\n↳ NÍVEL: $dificuldadeFormacao | DURAÇÃO: $duracaoFormacao")
+        builder.append("\n")
+        builder.append("\nLISTA DE CONTEÚDOS:\n")
+        conteudosFormacao.forEach { conteudoEducacional -> builder.append("\t$conteudoEducacional\n") }
+        builder.append("\nLISTA DE INSCRITOS:\n")
+        inscritosFormacao.forEach { usuario -> builder.append("\t$usuario\n") }
+        builder.append("--------------------------------------------------")
+
+
+        return builder.toString()
     }
 
 }
@@ -18,26 +29,22 @@ data class Formacao(var idFormacao: Int, var nomeFormacao: String) {
 var listaFormacoes : MutableList<Formacao> = mutableListOf()
 
 
-fun toStringFormacoes() : String {
+fun exibirListaFormacoes() { //Impressão de listaFormações
 
     if (listaFormacoes.isEmpty()) exibirListaFormacoesVazia() //Caso a lista de formações esteja vazia, executar função exibirListaFormacoesVazia()
 
     val builder = StringBuilder()
 
     for (formacao in listaFormacoes) {
-        builder.append(formacao.toString()) //Adiciona o toString() de cada formação
+        builder.append("ID: ${formacao.idFormacao} | NOME: $formacao.nomeFormacao\n↳ NÍVEL: $formacao.dificuldadeFormacao | DURAÇÃO: $formacao.duracaoFormacao")
         builder.append("\n") //Adicionar uma quebra de linha entre cada formação
     }
 
-    return builder.toString()
+    println(builder.toString())
 }
 
 
-fun exibirFormacoes() : String {
-    return toStringFormacoes() //Impressão do toString da lista
-}
-
-fun exibirListaFormacoesVazia() {
+fun exibirListaFormacoesVazia() { //Exibição em caso de listaFormações estar vazia
 
     do { //Repete execução enquanto desejaAdicionarFormacaoTeclado não receber um valor que não seja nulo, vazio, sem letras ou diferente de "s" e "n"
 
@@ -55,19 +62,66 @@ fun exibirListaFormacoesVazia() {
 
 fun cadastrarFormacao() {
 
-    println("nome formação:")
-    val nome = readln()
+    var tecladoNomeFormacao : String? //Variável de nome da formação que será recebido
+
+    var tecladoNivelDificuldadeFormacao : String? //Variável de seleção para opções na definição do nível de dificuldade que será recebida
+    var selecaoNivelDificuldadeFormacao : String //Variável de nivelDificuldade que será definido
+
+    do { //Repete execução enquanto tecladoNomeFormacao não receber um valor que não seja nulo, vazio, sem letras ou com números
+        println("Insira título da formação:")
+        tecladoNomeFormacao = readlnOrNull() //Recebimento do valor pelo teclado
+
+        if (tecladoNomeFormacao.isNullOrEmpty() || !tecladoNomeFormacao.any { it.isLetter() } || tecladoNomeFormacao.any { it.isDigit() }) {
+            println("-----Nome inválido!-----".uppercase())
+        }
+    } while (tecladoNomeFormacao.isNullOrEmpty() || !tecladoNomeFormacao.any { it.isLetter() }|| tecladoNomeFormacao.any { it.isDigit() })
+
+    do { //Repete execução enquanto não recebe 1 ou 2 ou 3
+        println("Selecione o nível de dificuldade da formação informando o número correspondente:" +
+                "\n1 - Básico\n2 - Intermediário\n3 - Avançado")
+        tecladoNivelDificuldadeFormacao = readlnOrNull() //Recebe escolha do usuário entre as opções
+        selecaoNivelDificuldadeFormacao = tecladoNivelDificuldadeFormacao.toString() //recebe o valor de tecladoNivelDificuldadeFormacao
+
+        when (tecladoNivelDificuldadeFormacao) {
+            "1" -> selecaoNivelDificuldadeFormacao = NivelDificuldade.BASICO.toString() //muda o valor de selecaoNivelDificuldadeFormacaoselecaoNivelDificuldadeFormacao para o valor do enum NivelDificuldade
+            "2" -> selecaoNivelDificuldadeFormacao = NivelDificuldade.INTERMEDIARIO.toString() //muda o valor de selecaoNivelDificuldadeFormacao para o valor do enum NivelDificuldade
+            "3" -> selecaoNivelDificuldadeFormacao = NivelDificuldade.AVANCADO.toString() //muda o valor de selecaoNivelDificuldadeFormacao para o valor do enum NivelDificuldade
+        }
+
+        if (tecladoNivelDificuldadeFormacao.isNullOrEmpty() || (!tecladoNivelDificuldadeFormacao.equals("1") && !tecladoNivelDificuldadeFormacao.equals("2")  && !tecladoNivelDificuldadeFormacao.equals("3"))) {
+            println("-----Seleção inválida!-----".uppercase()) //Imprime em caso de não passar na validação
+        }
+
+    } while (tecladoNivelDificuldadeFormacao.isNullOrEmpty() || (!tecladoNivelDificuldadeFormacao.equals("1") && !tecladoNivelDificuldadeFormacao.equals("2") && !tecladoNivelDificuldadeFormacao.equals("3")))
 
     val id = listaFormacoes.count() + 1
 
     val novaFormacao = Formacao()
 
     novaFormacao.idFormacao = id
-    novaFormacao.nomeFormacao = nome
+    novaFormacao.nomeFormacao = tecladoNomeFormacao
+    novaFormacao.dificuldadeFormacao = selecaoNivelDificuldadeFormacao
 
     if (listaFormacoes.add(novaFormacao)) {
-        println("Formação adicionada: $novaFormacao")
+        println("ADIÇÃO DE FORMAÇÃO BEM SUCEDIDA!\n" + listaFormacoes[id - 1])
     }
+
+    //"Loop" de cadastrarFormacao()
+    do { //Repete execução enquanto desejaAdicionarOutraFormacao não receber um valor que não seja nulo, vazio, sem letras ou diferente de "s" e "n"
+
+        println("Gostaria de cadastrar outra formação? Digite 's' para sim ou 'n' para não")
+        val desejaAdicionarOutraFormacao = readlnOrNull() //Recebimento do valor pelo teclado
+
+        when(desejaAdicionarOutraFormacao) {
+            "s" -> cadastrarFormacao() //Segue para função cadastrarFormacao()
+            "n" -> println("")
+        }
+
+        if (desejaAdicionarOutraFormacao.isNullOrEmpty() || !desejaAdicionarOutraFormacao.any { it.isLetter() } || (!desejaAdicionarOutraFormacao.equals("s") && !desejaAdicionarOutraFormacao.equals("n"))) {
+            println("-----Seleção inválida!-----".uppercase())
+        } else println("")
+
+    } while (desejaAdicionarOutraFormacao.isNullOrEmpty() || !desejaAdicionarOutraFormacao.any { it.isLetter() } || (!desejaAdicionarOutraFormacao.equals("s") && !desejaAdicionarOutraFormacao.equals("n")))
 
 }
 
@@ -76,7 +130,8 @@ fun excluirFormacao() { //Função para remover formação
 
     if (listaFormacoes.isEmpty()) exibirListaFormacoesVazia() //Caso a lista de formações esteja vazia, executar função exibirListaFormacoesVazia()
 
-    println("----- Lista de formações cadastradas -----\n".uppercase()  + exibirFormacoes())
+    println("----- Lista de formações cadastradas -----\n".uppercase())
+    exibirListaFormacoes()
 
     //Variável opcoes recebe os valores de cada id de formação de listaFormacoes
     val opcoes = mutableListOf<String>()
