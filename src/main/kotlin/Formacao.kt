@@ -153,9 +153,9 @@ fun excluirFormacao() { //Função para remover formação
 
     } while (!opcoes.contains(selecaoRemocaoFormacao))
 
-    val conteudoEducacionalRemovido = listaFormacoes.removeAt(index = (selecaoRemocaoFormacao?.toInt()!! - 1)) //Remoção da formação
+    val formacaoRemovida = listaFormacoes.removeAt(index = (selecaoRemocaoFormacao?.toInt()!! - 1)) //Remoção da formação
 
-    println("Remoção de formação bem sucedida:\n$conteudoEducacionalRemovido\n") //Mensagem de feedback da remoção
+    println("Remoção de formação bem sucedida:\n$formacaoRemovida\n") //Mensagem de feedback da remoção
 
     if (listaFormacoes.isNotEmpty()) {
 
@@ -177,6 +177,82 @@ fun excluirFormacao() { //Função para remover formação
         } while (desejaExcluirOutraFormacao.isNullOrEmpty() || !desejaExcluirOutraFormacao.any { it.isLetter() } || (!desejaExcluirOutraFormacao.equals("s") && !desejaExcluirOutraFormacao.equals("n")))
 
     }
+
+}
+
+
+fun cadastrarUsuarioFormacao() {
+
+    if (listaUsuarios.isEmpty()) exibirListaUsuariosVazia() //Caso a lista de usuários esteja vazia, executar função exibirListaUsuariosVazia()
+
+    if (listaFormacoes.isEmpty()) exibirListaFormacoesVazia() //Caso a lista de formações esteja vazia, executar função exibirListaFormacoesVazia()
+    println("----- Lista de formações cadastrados -----\n".uppercase()  + exibirListaFormacoes())
+    val opcoesFormacao = mutableListOf<String>() //Variável opcoes recebe os valores de cada id de formação de listaFormacoes
+    for (formacao in listaFormacoes) {
+        val opcao = formacao.idFormacao
+        opcoesFormacao.add(opcao.toString())
+    }
+
+    var selecaoFormacao : String?
+
+    do { //Repete execução enquanto não recebe um valor correspondente a algum dos valores da variável opcoes
+
+        println("Informe o ID da formação na qual deseja cadastrar usuário(s):")
+        selecaoFormacao = readlnOrNull() //Recebimento do valor do ID informado pelo usuário
+
+        if (!opcoesFormacao.contains(selecaoFormacao)) {
+            println("-----Seleção inválida!-----".uppercase()) //Imprime em caso de não passar na validação
+        }
+
+    } while (!opcoesFormacao.contains(selecaoFormacao))
+
+    val indexFormacao = selecaoFormacao!!.toInt() - 1
+    val formacaoSelecionada = listaFormacoes[indexFormacao]
+
+    var outroUsuarioParaFormacao : String?
+
+    do {
+
+        println("----- Lista de usuários cadastrados -----\n".uppercase()  + exibirUsuarios())
+        val opcoesUsuario = mutableListOf<String>() //Variável opcoes recebe os valores de cada id de usuário de listaUsuarios
+        for (usuario in listaUsuarios) {
+            val opcao = usuario.idUsuario
+            opcoesUsuario.add(opcao.toString())
+        }
+
+        var usuarioParaFormacao : String?
+
+        do { //Repete execução enquanto não recebe um valor correspondente a algum dos valores da variável opcoes
+
+            println("Informe o ID do usuário que deseja inscrever na formação:")
+            usuarioParaFormacao = readlnOrNull() //Recebimento do valor do ID informado pelo usuário
+
+            if (!opcoesUsuario.contains(usuarioParaFormacao)) {
+                println("-----Seleção inválida!-----".uppercase()) //Imprime em caso de não passar na validação
+            }
+
+        } while (!opcoesUsuario.contains(usuarioParaFormacao))
+
+        val indexUsuario = usuarioParaFormacao!!.toInt() - 1 //Índice do usuário selecionado em listaUsuarios
+
+        if (formacaoSelecionada.inscritosFormacao.add(listaUsuarios[indexUsuario])) { //Feedback da inscrição
+            println("ADIÇÃO DE FORMAÇÃO BEM SUCEDIDA DO USUÁRIO DE ID " + listaUsuarios[indexUsuario].idUsuario + " A FORMAÇÃO DE ID " + formacaoSelecionada.idFormacao)
+            println("LISTA ATUAIS DE INSCRITOS EM ${formacaoSelecionada.nomeFormacao}:\n${formacaoSelecionada.inscritosFormacao}")
+        } else println("Inscrição falhou")
+
+        println("Deseja inscrever outro usuário nessa formação?")
+        outroUsuarioParaFormacao = readlnOrNull()
+
+        when(outroUsuarioParaFormacao) {
+            "s" -> cadastrarUsuarioFormacao()
+            "n" -> println("")
+        }
+
+        if (outroUsuarioParaFormacao.isNullOrEmpty() || !outroUsuarioParaFormacao.any { it.isLetter() } || (!outroUsuarioParaFormacao.equals("s") && !outroUsuarioParaFormacao.equals("n"))) {
+            println("-----Seleção inválida!-----".uppercase())
+        } else println("")
+
+    } while (outroUsuarioParaFormacao.isNullOrEmpty() || !outroUsuarioParaFormacao.any { it.isLetter() } || (!outroUsuarioParaFormacao.equals("s") && !outroUsuarioParaFormacao.equals("n")))
 
 }
 
