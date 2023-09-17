@@ -298,7 +298,7 @@ fun editarConteudoEducacional() {
         }
     } while (respostaEditarTipoConteudoEducacional.isNullOrEmpty() || ((respostaEditarTipoConteudoEducacional != "s") && (respostaEditarTipoConteudoEducacional != "n")))
 
-    //Edição do nível de dificuldade do conteúdo educacional
+    // Edição do nível de dificuldade do conteúdo educacional
     do {  //Repete execução enquanto não recebe um valor correspondente a "s" ou "n"
 
         println("Deseja editar o nível de dificuldade do conteúdo educacional? Digite 's' para sim ou 'n' para não")
