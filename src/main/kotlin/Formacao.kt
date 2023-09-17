@@ -36,7 +36,7 @@ fun exibirListaFormacoes() { //Impressão de listaFormações
     val builder = StringBuilder()
 
     for (formacao in listaFormacoes) {
-        builder.append("ID: ${formacao.idFormacao} | NOME: $formacao.nomeFormacao\n↳ NÍVEL: $formacao.dificuldadeFormacao | DURAÇÃO: $formacao.duracaoFormacao")
+        builder.append("ID: ${formacao.idFormacao} | NOME: ${formacao.nomeFormacao}\n\t↳ NÍVEL: ${formacao.dificuldadeFormacao} | DURAÇÃO: ${formacao.duracaoFormacao}")
         builder.append("\n") //Adicionar uma quebra de linha entre cada formação
     }
 
@@ -184,9 +184,10 @@ fun excluirFormacao() { //Função para remover formação
 fun cadastrarUsuarioFormacao() {
 
     if (listaUsuarios.isEmpty()) exibirListaUsuariosVazia() //Caso a lista de usuários esteja vazia, executar função exibirListaUsuariosVazia()
-
     if (listaFormacoes.isEmpty()) exibirListaFormacoesVazia() //Caso a lista de formações esteja vazia, executar função exibirListaFormacoesVazia()
-    println("----- Lista de formações cadastrados -----\n".uppercase()  + exibirListaFormacoes())
+
+    println("----- Lista de formações cadastrados -----\n".uppercase())
+    exibirListaFormacoes()
     val opcoesFormacao = mutableListOf<String>() //Variável opcoes recebe os valores de cada id de formação de listaFormacoes
     for (formacao in listaFormacoes) {
         val opcao = formacao.idFormacao
@@ -244,7 +245,7 @@ fun cadastrarUsuarioFormacao() {
         outroUsuarioParaFormacao = readlnOrNull()
 
         when(outroUsuarioParaFormacao) {
-            "s" -> cadastrarUsuarioFormacao()
+            "s" -> cadastrarUsuarioFormacao() //"Loop" que permite seguir cadastrando mais usuários à formação selecionada
             "n" -> println("")
         }
 
@@ -255,4 +256,12 @@ fun cadastrarUsuarioFormacao() {
     } while (outroUsuarioParaFormacao.isNullOrEmpty() || !outroUsuarioParaFormacao.any { it.isLetter() } || (!outroUsuarioParaFormacao.equals("s") && !outroUsuarioParaFormacao.equals("n")))
 
 }
+
+fun cadastrarConteudoFormacao() {
+
+
+
+}
+
+
 
