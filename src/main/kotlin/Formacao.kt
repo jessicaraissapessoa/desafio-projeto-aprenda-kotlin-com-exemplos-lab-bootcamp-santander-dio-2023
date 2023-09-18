@@ -1,10 +1,12 @@
-data class Formacao(var idFormacao: Int, var nomeFormacao: String, var dificuldadeFormacao : String) {
+import javax.print.attribute.standard.MediaSize.Other
+
+data class Formacao(var idFormacao: Int, var nomeFormacao: String, var nivelDificuldadeFormacao : String) {
 
     constructor() : this(0, "", "")
 
     var inscritosFormacao = mutableListOf<Usuario>()
     var conteudosFormacao = mutableListOf<ConteudoEducacional>()
-    var duracaoFormacao : Int = 1
+    var duracaoFormacao : Int = 0
 
     override fun toString(): String { //Customização da exibição da formação pelo método toString()
 
@@ -12,7 +14,7 @@ data class Formacao(var idFormacao: Int, var nomeFormacao: String, var dificulda
 
 
         builder.append("--------------------------------------------------\n")
-        builder.append("ID: $idFormacao | NOME: $nomeFormacao\n↳ NÍVEL: $dificuldadeFormacao | DURAÇÃO: $duracaoFormacao")
+        builder.append("ID: $idFormacao | NOME: $nomeFormacao\n↳ NÍVEL: $nivelDificuldadeFormacao | DURAÇÃO: $duracaoFormacao")
         builder.append("\n")
         builder.append("\nLISTA DE CONTEÚDOS:\n")
         conteudosFormacao.forEach { conteudoEducacional -> builder.append("\t$conteudoEducacional\n") }
@@ -36,7 +38,7 @@ fun exibirListaFormacoes() { //Impressão de listaFormações
     val builder = StringBuilder()
 
     for (formacao in listaFormacoes) {
-        builder.append("ID: ${formacao.idFormacao} | NOME: ${formacao.nomeFormacao}\n\t↳ NÍVEL: ${formacao.dificuldadeFormacao} | DURAÇÃO: ${formacao.duracaoFormacao}")
+        builder.append("ID: ${formacao.idFormacao} | NOME: ${formacao.nomeFormacao}\n\t↳ NÍVEL: ${formacao.nivelDificuldadeFormacao} | DURAÇÃO: ${formacao.duracaoFormacao}h")
         builder.append("\n") //Adicionar uma quebra de linha entre cada formação
     }
 
@@ -57,6 +59,58 @@ fun exibirListaFormacoesVazia() { //Exibição em caso de listaFormações estar
         else println("Lista de formações vazia")
 
     } while (desejaAdicionarFormacaoTeclado.isNullOrEmpty() || !desejaAdicionarFormacaoTeclado.any { it.isLetter() } || (!desejaAdicionarFormacaoTeclado.equals("s") && !desejaAdicionarFormacaoTeclado.equals("n")))
+}
+
+fun exibirFormacaoDetalhada() {
+
+    println("----- Lista de formações cadastradas -----\n".uppercase())
+    exibirListaFormacoes()
+
+    //Variável opcoes recebe os valores de cada id de formação de listaFormacoes
+    val opcoes = mutableListOf<String>()
+    for (formacao in listaFormacoes) {
+        val opcao = formacao.idFormacao
+        opcoes.add(opcao.toString())
+    }
+
+    var selecaoExibirFormacao : String? //Variável que receberá opção informada por teclado em do/while seguinte
+
+    do { //Repete execução enquanto não recebe um valor correspondente a algum dos valores da variável opcoes
+
+        println("Informe o id da formação acerca da qual quer visualizar mais detalhes:")
+        selecaoExibirFormacao = readlnOrNull() //Recebimento do valor pelo teclado
+
+        if (!opcoes.contains(selecaoExibirFormacao)) {
+            println("-----Seleção inválida!-----".uppercase()) //Imprime em caso de não passar na validação
+        }
+
+    } while (!opcoes.contains(selecaoExibirFormacao))
+
+    val index = selecaoExibirFormacao!!.toInt() - 1
+    println(listaFormacoes[index])
+
+    //"Loop" de exibirFormacaoDetalhada()
+    do { //Repete execução enquanto excluirOutroUsuario não receber um valor que não seja nulo, vazio, sem letras ou diferente de "s" e "n"
+
+        println("Gostaria de visualizar outra formação com mais detalhes? Digite 's' para sim ou 'n' para não")
+        val exibirOutraFormacaoDetalhada = readlnOrNull() //Recebimento do valor pelo teclado
+
+        when(exibirOutraFormacaoDetalhada) {
+            "s" -> exibirFormacaoDetalhada() //Repete exibirFormacaoDetalhada()
+            "n" -> println("")
+        }
+
+        if (exibirOutraFormacaoDetalhada.isNullOrEmpty() || !exibirOutraFormacaoDetalhada.any { it.isLetter() } || (!exibirOutraFormacaoDetalhada.equals("s") && !exibirOutraFormacaoDetalhada.equals("n"))) {
+            println("-----Seleção inválida!-----".uppercase())
+        } else println("")
+
+    } while (exibirOutraFormacaoDetalhada.isNullOrEmpty() || !exibirOutraFormacaoDetalhada.any { it.isLetter() } || (!exibirOutraFormacaoDetalhada.equals("s") && !exibirOutraFormacaoDetalhada.equals("n")))
+
+}
+
+
+fun Formacao.equalsIgnoringID(other: Formacao) : Boolean {
+    return nomeFormacao == other.nomeFormacao && nivelDificuldadeFormacao == other.nivelDificuldadeFormacao
 }
 
 
@@ -100,10 +154,14 @@ fun cadastrarFormacao() {
 
     novaFormacao.idFormacao = id
     novaFormacao.nomeFormacao = tecladoNomeFormacao
-    novaFormacao.dificuldadeFormacao = selecaoNivelDificuldadeFormacao
+    novaFormacao.nivelDificuldadeFormacao = selecaoNivelDificuldadeFormacao
 
-    if (listaFormacoes.add(novaFormacao)) {
-        println("ADIÇÃO DE FORMAÇÃO BEM SUCEDIDA!\n" + listaFormacoes[id - 1])
+    //Verificação se a formação já não está cadastrado no sistema. Se não estiver cadastrado, é feito cadastro:
+    if (listaFormacoes.any { it.equalsIgnoringID(novaFormacao) }) {
+        println("Cadastro de formação falhou: formação já está cadastrada no sistema")
+    } else {
+        listaFormacoes.add(novaFormacao) //Cadastro/Adição de formação
+        println("Adição de formação bem sucedida:\n" + listaFormacoes[id - 1]) //Feedback da adição
     }
 
     //"Loop" de cadastrarFormacao()
@@ -188,18 +246,19 @@ fun cadastrarUsuarioFormacao() {
 
     println("----- Lista de formações cadastrados -----\n".uppercase())
     exibirListaFormacoes()
+
     val opcoesFormacao = mutableListOf<String>() //Variável opcoes recebe os valores de cada id de formação de listaFormacoes
     for (formacao in listaFormacoes) {
         val opcao = formacao.idFormacao
         opcoesFormacao.add(opcao.toString())
     }
 
-    var selecaoFormacao : String?
+    var selecaoFormacao : String? //Variável que vai receber escolha de formação dentre as opções acima
 
     do { //Repete execução enquanto não recebe um valor correspondente a algum dos valores da variável opcoes
 
         println("Informe o ID da formação na qual deseja cadastrar usuário(s):")
-        selecaoFormacao = readlnOrNull() //Recebimento do valor do ID informado pelo usuário
+        selecaoFormacao = readlnOrNull() //Recebimento do valor do ID da formação selecionada pelo usuário
 
         if (!opcoesFormacao.contains(selecaoFormacao)) {
             println("-----Seleção inválida!-----".uppercase()) //Imprime em caso de não passar na validação
@@ -207,61 +266,199 @@ fun cadastrarUsuarioFormacao() {
 
     } while (!opcoesFormacao.contains(selecaoFormacao))
 
-    val indexFormacao = selecaoFormacao!!.toInt() - 1
-    val formacaoSelecionada = listaFormacoes[indexFormacao]
+    val indexFormacao = selecaoFormacao!!.toInt() - 1 //índice da formação na mutableList listaFormacoes
+    val formacaoSelecionada = listaFormacoes[indexFormacao] //formaçãoSelecionada recebe a Formacao equivalente de listaFormações
 
-    var outroUsuarioParaFormacao : String?
-
-    do {
-
-        println("----- Lista de usuários cadastrados -----\n".uppercase()  + exibirUsuarios())
-        val opcoesUsuario = mutableListOf<String>() //Variável opcoes recebe os valores de cada id de usuário de listaUsuarios
-        for (usuario in listaUsuarios) {
-            val opcao = usuario.idUsuario
-            opcoesUsuario.add(opcao.toString())
-        }
-
-        var usuarioParaFormacao : String?
-
-        do { //Repete execução enquanto não recebe um valor correspondente a algum dos valores da variável opcoes
-
-            println("Informe o ID do usuário que deseja inscrever na formação:")
-            usuarioParaFormacao = readlnOrNull() //Recebimento do valor do ID informado pelo usuário
-
-            if (!opcoesUsuario.contains(usuarioParaFormacao)) {
-                println("-----Seleção inválida!-----".uppercase()) //Imprime em caso de não passar na validação
-            }
-
-        } while (!opcoesUsuario.contains(usuarioParaFormacao))
-
-        val indexUsuario = usuarioParaFormacao!!.toInt() - 1 //Índice do usuário selecionado em listaUsuarios
-
-        if (formacaoSelecionada.inscritosFormacao.add(listaUsuarios[indexUsuario])) { //Feedback da inscrição
-            println("ADIÇÃO DE FORMAÇÃO BEM SUCEDIDA DO USUÁRIO DE ID " + listaUsuarios[indexUsuario].idUsuario + " A FORMAÇÃO DE ID " + formacaoSelecionada.idFormacao)
-            println("LISTA ATUAIS DE INSCRITOS EM ${formacaoSelecionada.nomeFormacao}:\n${formacaoSelecionada.inscritosFormacao}")
-        } else println("Inscrição falhou")
-
-        println("Deseja inscrever outro usuário nessa formação?")
-        outroUsuarioParaFormacao = readlnOrNull()
-
-        when(outroUsuarioParaFormacao) {
-            "s" -> cadastrarUsuarioFormacao() //"Loop" que permite seguir cadastrando mais usuários à formação selecionada
-            "n" -> println("")
-        }
-
-        if (outroUsuarioParaFormacao.isNullOrEmpty() || !outroUsuarioParaFormacao.any { it.isLetter() } || (!outroUsuarioParaFormacao.equals("s") && !outroUsuarioParaFormacao.equals("n"))) {
-            println("-----Seleção inválida!-----".uppercase())
-        } else println("")
-
-    } while (outroUsuarioParaFormacao.isNullOrEmpty() || !outroUsuarioParaFormacao.any { it.isLetter() } || (!outroUsuarioParaFormacao.equals("s") && !outroUsuarioParaFormacao.equals("n")))
+    selecionarUsuariosFormacao(formacaoSelecionada)
 
 }
+
+
+fun selecionarUsuariosFormacao(formacaoSelecionada: Formacao) {
+
+    println("----- Lista de usuários no sistema -----\n".uppercase())
+    exibirUsuarios()
+
+    val opcoesUsuario = mutableListOf<String>() //Variável opcoes recebe os valores de cada id de usuário de listaUsuarios
+    for (usuario in listaUsuarios) {
+        val opcao = usuario.idUsuario
+        opcoesUsuario.add(opcao.toString())
+    }
+
+    var selecaoUsuario : String? //Variável que vai receber escolha de usuário dentre as opções acima
+
+    do { //Repete execução enquanto não recebe um valor correspondente a algum dos valores da variável opcoes
+
+        println("Informe o ID do usuário que deseja inscrever na formação:")
+        selecaoUsuario = readlnOrNull() //Recebimento do valor do ID do usuário selecionado
+
+        if (!opcoesUsuario.contains(selecaoUsuario)) {
+            println("-----Seleção inválida!-----".uppercase()) //Imprime em caso de não passar na validação
+        }
+
+    } while (!opcoesUsuario.contains(selecaoUsuario))
+
+    val indexUsuario = selecaoUsuario!!.toInt() - 1 //índice de Usuário na mutableList listaUsuarios
+    val usuarioSelecionado = listaUsuarios[indexUsuario] //usuarioSelecionado recebe o Usuário equivalente de listaUsuarios
+
+    //Verificação se o usuário já não está inscrito na formação. Se não estiver inscrito, é feita inscrição:
+    if (formacaoSelecionada.inscritosFormacao.any { it.idUsuario == usuarioSelecionado.idUsuario }) {
+        println("Inscrição falhou: usuário já está inscrito na formação selecionada")
+    } else {
+        formacaoSelecionada.inscritosFormacao.add(listaUsuarios[indexUsuario])
+        println("Adição bem sucedida: usuário de ID " + listaUsuarios[indexUsuario].idUsuario + " inscrito em formação de ID " + formacaoSelecionada.idFormacao)
+    }
+
+    do { //Repete execução enquanto não receber valor válido: "s" ou "n"
+
+        println("Deseja inscrever outro usuário nessa formação? Digite 's' para sim ou 'n' para não")
+        val adicionarOutroUsuarioFormacao = readlnOrNull()
+
+        if (adicionarOutroUsuarioFormacao.isNullOrEmpty() || !adicionarOutroUsuarioFormacao.any { it.isLetter() } || (!adicionarOutroUsuarioFormacao.equals("s") && !adicionarOutroUsuarioFormacao.equals("n"))) {
+            println("-----Seleção inválida!-----".uppercase())
+        }
+
+        when(adicionarOutroUsuarioFormacao) {
+            "s" -> selecionarUsuariosFormacao(formacaoSelecionada) //"Loop" de selecionarUsuariosFormacao() -> Segue cadastrando usuários na mesma formação
+            "n" -> {
+                println("Inscrição de usuários em formação de ID ${formacaoSelecionada.idFormacao} concluída\n")
+                println(formacaoSelecionada)
+
+
+                do { //Repete execução enquanto não receber valor válido: "s" ou "n"
+
+                    println("Deseja inscrever usuários em outra formação? Digite 's' para sim ou 'n' para não")
+                    val adicionarUsuariosEmOutraFormacao = readlnOrNull()
+
+                    if (adicionarUsuariosEmOutraFormacao.isNullOrEmpty() || !adicionarUsuariosEmOutraFormacao.any { it.isLetter() } || (!adicionarUsuariosEmOutraFormacao.equals("s") && !adicionarUsuariosEmOutraFormacao.equals("n"))) {
+                        println("-----Seleção inválida!-----".uppercase())
+                    }
+
+                    when (adicionarUsuariosEmOutraFormacao) {
+                        "s" -> cadastrarUsuarioFormacao() //"Loop" de cadastrarUsuarioFormacao() -> Segue cadastrando usuários, mas em outra formação
+                        "n" -> println()
+                    }
+
+                } while (adicionarUsuariosEmOutraFormacao.isNullOrEmpty() || !adicionarUsuariosEmOutraFormacao.any { it.isLetter() } || (!adicionarUsuariosEmOutraFormacao.equals("s") && !adicionarUsuariosEmOutraFormacao.equals("n")))
+
+            }
+        }
+
+    } while (adicionarOutroUsuarioFormacao.isNullOrEmpty() || !adicionarOutroUsuarioFormacao.any { it.isLetter() } || (!adicionarOutroUsuarioFormacao.equals("s") && !adicionarOutroUsuarioFormacao.equals("n")))
+
+}
+
 
 fun cadastrarConteudoFormacao() {
 
+    if (listaConteudosEducacionais.isEmpty()) exibirListaConteudosEducacionaisVazia() //Caso a lista de conteúdos educacionais esteja vazia, executar função exibirListaConteudosEducacionaisVazia()
+    if (listaFormacoes.isEmpty()) exibirListaFormacoesVazia() //Caso a lista de formações esteja vazia, executar função exibirListaFormacoesVazia()
 
+    println("----- Lista de formações cadastrados -----\n".uppercase())
+    exibirListaFormacoes()
+
+    val opcoesFormacao = mutableListOf<String>() //Variável opcoes recebe os valores de cada id de formação de listaFormacoes
+    for (formacao in listaFormacoes) {
+        val opcao = formacao.idFormacao
+        opcoesFormacao.add(opcao.toString())
+    }
+
+    var selecaoFormacao : String? //Variável que vai receber escolha de formação dentre as opções acima
+
+    do { //Repete execução enquanto não recebe um valor correspondente a algum dos valores da variável opcoes
+
+        println("Informe o ID da formação na qual deseja cadastrar conteúdo(s) educacional(is):")
+        selecaoFormacao = readlnOrNull() //Recebimento do valor do ID da formação selecionada pelo usuário
+
+        if (!opcoesFormacao.contains(selecaoFormacao)) {
+            println("-----Seleção inválida!-----".uppercase()) //Imprime em caso de não passar na validação
+        }
+
+    } while (!opcoesFormacao.contains(selecaoFormacao))
+
+    val indexFormacao = selecaoFormacao!!.toInt() - 1 //índice da formação na mutableList listaFormacoes
+    val formacaoSelecionada = listaFormacoes[indexFormacao] //formaçãoSelecionada recebe a Formacao equivalente de listaFormações
+
+    selecionarConteudosFormacao(formacaoSelecionada) //Passando formação selecionada para selecionarConteudosFormacao()
 
 }
 
 
+fun selecionarConteudosFormacao(formacaoSelecionada: Formacao) { //Recebe formação selecionada ao final de cadastrarConteudoFormacao()
 
+    println("----- Lista de conteúdos educacionais cadastrados -----\n".uppercase())
+    exibirConteudosEducacionais()
+
+    val opcoesConteudo = mutableListOf<String>() //Variável opcoes recebe os valores de cada id de conteúdo educacional de listaConteudosEducacionais
+    for (conteudo in listaConteudosEducacionais) {
+        val opcao = conteudo.idConteudoEducacional
+        opcoesConteudo.add(opcao.toString())
+    }
+
+    var selecaoConteudo : String? //Variável que vai receber escolha de conteúdo educacional dentre as opções acima
+
+    do { //Repete execução enquanto não recebe um valor correspondente a algum dos valores da variável opcoes
+
+        println("Informe o ID do conteúdo educacional que deseja cadastrar na formação:")
+        selecaoConteudo = readlnOrNull() //Recebimento do valor do ID do conteúdo educacional selecionado
+
+        if (!opcoesConteudo.contains(selecaoConteudo)) {
+            println("-----Seleção inválida!-----".uppercase()) //Imprime em caso de não passar na validação
+        }
+
+    } while (!opcoesConteudo.contains(selecaoConteudo))
+
+    val indexConteudo = selecaoConteudo!!.toInt() - 1 //índice de ConteudoEducacional na mutableList listaConteudosEducacionais
+    val conteudoSelecionado = listaConteudosEducacionais[indexConteudo] //conteudoSelecionado recebe o Usuário equivalente de listaConteudosEducacionais
+
+    //Verificação se o conteúdo já não está cadastrado na formação. Se não estiver cadastrado, é feito cadastro:
+    if (formacaoSelecionada.conteudosFormacao.any { it.idConteudoEducacional == conteudoSelecionado.idConteudoEducacional }) {
+        println("Inscrição falhou: conteúdo educacional já está cadastrado na formação selecionada")
+    } else {
+
+        //Adição do conteúdo à formação:
+        formacaoSelecionada.conteudosFormacao.add(listaConteudosEducacionais[indexConteudo])
+
+        //Acrescenta a duração do conteúdo educacional à duração da formação:
+        formacaoSelecionada.duracaoFormacao += listaConteudosEducacionais[indexConteudo].duracaoConteudoEducacional
+
+        println("Adição bem sucedida: conteúdo de ID " + listaConteudosEducacionais[indexConteudo].idConteudoEducacional + " cadastrada em formação de ID " + formacaoSelecionada.idFormacao)
+    }
+
+    do { //Repete execução enquanto não receber valor válido: "s" ou "n"
+
+        println("Deseja cadastrar outro conteúdo educacional nessa formação? Digite 's' para sim ou 'n' para não")
+        val adicionarOutroConteudoFormacao = readlnOrNull()
+
+        if (adicionarOutroConteudoFormacao.isNullOrEmpty() || !adicionarOutroConteudoFormacao.any { it.isLetter() } || (!adicionarOutroConteudoFormacao.equals("s") && !adicionarOutroConteudoFormacao.equals("n"))) {
+            println("-----Seleção inválida!-----".uppercase())
+        }
+
+        when(adicionarOutroConteudoFormacao) {
+            "s" -> selecionarConteudosFormacao(formacaoSelecionada) //"Loop" de selecionarConteudosFormacao() -> Segue cadastrando conteúdos na mesma formação
+            "n" -> {
+                println("Cadastro de conteúdos educacionais em formação de ID ${formacaoSelecionada.idFormacao} concluída\n")
+                println(formacaoSelecionada)
+
+                do { //Repete execução enquanto não receber valor válido: "s" ou "n"
+
+                    println("Deseja cadastrar conteúdos educacionais em outra formação? Digite 's' para sim ou 'n' para não")
+                    val adicionarConteudosEmOutraFormacao = readlnOrNull()
+
+                    if (adicionarConteudosEmOutraFormacao.isNullOrEmpty() || !adicionarConteudosEmOutraFormacao.any { it.isLetter() } || (!adicionarConteudosEmOutraFormacao.equals("s") && !adicionarConteudosEmOutraFormacao.equals("n"))) {
+                        println("-----Seleção inválida!-----".uppercase())
+                    }
+
+                    when (adicionarConteudosEmOutraFormacao) {
+                        "s" -> cadastrarConteudoFormacao() //"Loop" de cadastrarConteudoFormacao() -> Segue cadastrando conteúdos, mas em outra formação
+                        "n" -> println()
+                    }
+
+                } while (adicionarConteudosEmOutraFormacao.isNullOrEmpty() || !adicionarConteudosEmOutraFormacao.any { it.isLetter() } || (!adicionarConteudosEmOutraFormacao.equals("s") && !adicionarConteudosEmOutraFormacao.equals("n")))
+
+            }
+        }
+
+    } while (adicionarOutroConteudoFormacao.isNullOrEmpty() || !adicionarOutroConteudoFormacao.any { it.isLetter() } || (!adicionarOutroConteudoFormacao.equals("s") && !adicionarOutroConteudoFormacao.equals("n")))
+
+}
