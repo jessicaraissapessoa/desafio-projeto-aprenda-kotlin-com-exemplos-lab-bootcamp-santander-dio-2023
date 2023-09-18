@@ -478,3 +478,137 @@ fun selecionarConteudosFormacao(formacaoSelecionada: Formacao) { //Recebe forma�
     } while (adicionarOutroConteudoFormacao.isNullOrEmpty() || !adicionarOutroConteudoFormacao.any { it.isLetter() } || (!adicionarOutroConteudoFormacao.equals("s") && !adicionarOutroConteudoFormacao.equals("n")))
 
 }
+
+
+fun editarFormacao() {
+
+    if (listaFormacoes.isEmpty()) exibirListaFormacoesVazia() //Caso a lista de formações esteja vazia, executar função exibirListaFormacoesVazia()
+
+    println("----- Lista de formações cadastrados -----\n".uppercase())
+    exibirListaFormacoes()
+
+    do { //Repete execução enquanto não receber valor válido: "s" ou "n"
+
+        println("Deseja visualizar os detalhes de alguma formação antes de seguir? Digite 's' para sim ou 'n' para não.")
+        val visualizarDetalhesFormacao = readlnOrNull()
+
+        if (visualizarDetalhesFormacao.isNullOrEmpty() || !visualizarDetalhesFormacao.any { it.isLetter() } || (!visualizarDetalhesFormacao.equals("s") && !visualizarDetalhesFormacao.equals("n"))) {
+            println("-----Seleção inválida!-----".uppercase())
+        }
+
+        when(visualizarDetalhesFormacao) {
+            "s" -> exibirFormacaoDetalhada()
+            "n" -> println()
+        }
+
+        println("Seguindo edição de formações...")
+
+    } while (visualizarDetalhesFormacao.isNullOrEmpty() || !visualizarDetalhesFormacao.any { it.isLetter() } || (!visualizarDetalhesFormacao.equals("s") && !visualizarDetalhesFormacao.equals("n")))
+
+
+    val opcoesFormacao = mutableListOf<String>() //Variável opcoes recebe os valores de cada id de formação de listaFormacoes
+    for (formacao in listaFormacoes) {
+        val opcao = formacao.idFormacao
+        opcoesFormacao.add(opcao.toString())
+    }
+
+    var selecaoFormacao : String? //Variável que vai receber escolha de formação dentre as opções acima
+
+    do { //Repete execução enquanto não recebe um valor correspondente a algum dos valores da variável opcoes
+
+        println("Informe o ID da formação que deseja editar:")
+        selecaoFormacao = readlnOrNull() //Recebimento do valor do ID da formação selecionada pelo usuário
+
+        if (!opcoesFormacao.contains(selecaoFormacao)) {
+            println("-----Seleção inválida!-----".uppercase()) //Imprime em caso de não passar na validação
+        }
+
+    } while (!opcoesFormacao.contains(selecaoFormacao))
+
+    val indexFormacao = selecaoFormacao!!.toInt() - 1 //índice da formação na mutableList listaFormacoes
+    val formacaoSelecionada = listaFormacoes[indexFormacao] //formaçãoSelecionada recebe a Formacao equivalente de listaFormações
+
+    //Edição de dados (nome/dificuldade)
+    do { //Repete execução enquanto não receber valor válido: "s" ou "n"
+
+        println("Deseja editar nome e/ou nível de dificuldade da formação? Digite 's' para sim ou 'n' para não.")
+        val editarNomeNivelFormacao = readlnOrNull()
+
+        if (editarNomeNivelFormacao.isNullOrEmpty() || !editarNomeNivelFormacao.any { it.isLetter() } || (!editarNomeNivelFormacao.equals("s") && !editarNomeNivelFormacao.equals("n"))) {
+            println("-----Seleção inválida!-----".uppercase())
+        }
+
+        when(editarNomeNivelFormacao) {
+            "s" -> editarDadosFormacao(formacaoSelecionada) //Segue para editarDadosFormacao() passando formacaoSelecionada
+            "n" -> println()
+        }
+
+    } while (editarNomeNivelFormacao.isNullOrEmpty() || !editarNomeNivelFormacao.any { it.isLetter() } || (!editarNomeNivelFormacao.equals("s") && !editarNomeNivelFormacao.equals("n")))
+
+    //Edição de usuários
+    do { //Repete execução enquanto não receber valor válido: "s" ou "n"
+
+        println("Deseja editar usuário(s) cadastrado(s) na formação? Digite 's' para sim ou 'n' para não.")
+        val editarUsuariosFormacao = readlnOrNull()
+
+        if (editarUsuariosFormacao.isNullOrEmpty() || !editarUsuariosFormacao.any { it.isLetter() } || (!editarUsuariosFormacao.equals("s") && !editarUsuariosFormacao.equals("n"))) {
+            println("-----Seleção inválida!-----".uppercase())
+        }
+
+        when(editarUsuariosFormacao) {
+            "s" -> editarUsuariosFormacao(formacaoSelecionada) //Segue para editarUsuariosFormacao() passando formacaoSelecionada
+            "n" -> println()
+        }
+
+    } while (editarUsuariosFormacao.isNullOrEmpty() || !editarUsuariosFormacao.any { it.isLetter() } || (!editarUsuariosFormacao.equals("s") && !editarUsuariosFormacao.equals("n")))
+
+    //Edição de conteúdos educacionais
+    do { //Repete execução enquanto não receber valor válido: "s" ou "n"
+
+        println("Deseja editar conteúdo(s) educacional(is) cadastrado(s) na formação? Digite 's' para sim ou 'n' para não.")
+        val editarConteudosFormacao = readlnOrNull()
+
+        if (editarConteudosFormacao.isNullOrEmpty() || !editarConteudosFormacao.any { it.isLetter() } || (!editarConteudosFormacao.equals("s") && !editarConteudosFormacao.equals("n"))) {
+            println("-----Seleção inválida!-----".uppercase())
+        }
+
+        when(editarConteudosFormacao) {
+            "s" -> editarConteudosFormacao(formacaoSelecionada) //Segue para editarConteudosFormacao() passando formacaoSelecionada
+            "n" -> println()
+        }
+
+    } while (editarConteudosFormacao.isNullOrEmpty() || !editarConteudosFormacao.any { it.isLetter() } || (!editarConteudosFormacao.equals("s") && !editarConteudosFormacao.equals("n")))
+
+    //"Loop" para editar outras formações. Recursivo de editarFormacao()
+    do { //Repete execução enquanto não receber valor válido: "s" ou "n"
+
+        println("Deseja editar outra formação? Digite 's' para sim ou 'n' para não.")
+        val editarOutraFormacao = readlnOrNull()
+
+        if (editarOutraFormacao.isNullOrEmpty() || !editarOutraFormacao.any { it.isLetter() } || (!editarOutraFormacao.equals("s") && !editarOutraFormacao.equals("n"))) {
+            println("-----Seleção inválida!-----".uppercase())
+        }
+
+        when(editarOutraFormacao) {
+            "s" -> editarFormacao() //Função recursiva: repete editarFormacao() para poder editar outra formação
+            "n" -> println()
+        }
+
+    } while (editarOutraFormacao.isNullOrEmpty() || !editarOutraFormacao.any { it.isLetter() } || (!editarOutraFormacao.equals("s") && !editarOutraFormacao.equals("n")))
+
+}
+
+
+fun editarDadosFormacao(formacaoSelecionada: Formacao) {
+
+}
+
+
+fun editarUsuariosFormacao(formacaoSelecionada: Formacao) {
+
+}
+
+
+fun editarConteudosFormacao(formacaoSelecionada: Formacao) {
+
+}
