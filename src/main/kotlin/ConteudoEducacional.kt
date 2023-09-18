@@ -1,6 +1,6 @@
+import javax.print.attribute.standard.MediaSize.Other
+
 data class ConteudoEducacional(var idConteudoEducacional: Int, var nomeConteudoEducacional: String, var tipoConteudoEducacional: String, var nivelDificuldadeConteudoEducacional: String, var duracaoConteudoEducacional: Int) { //Classe ConteudoEducacional
-
-
 
     constructor() : this(0, "", "", "", 1) //Construtor vazio da classe
 
@@ -41,6 +41,16 @@ fun exibirConteudosEducacionais() { //Impressão de listaConteudosEducacionais
     }
 
     println(builder.toString())
+}
+
+
+fun ConteudoEducacional.equalsIgnoringID(other: ConteudoEducacional) : Boolean { //Função para comparar qualquer conteúdo educacional novo aos já cadastrados
+
+    return nomeConteudoEducacional == other.nomeConteudoEducacional &&
+            tipoConteudoEducacional == other.tipoConteudoEducacional &&
+            nivelDificuldadeConteudoEducacional == other.nivelDificuldadeConteudoEducacional &&
+            duracaoConteudoEducacional == other.duracaoConteudoEducacional
+
 }
 
 
@@ -121,9 +131,13 @@ fun cadastrarConteudoEducacional() {
     novoConteudoEducacional.nivelDificuldadeConteudoEducacional = selecaoNivelDificuldadeConteudoEducacional //nivelDificuldadeConteudoEducacional da instância de ConteudoEducacional (novoConteudoEducacional) = tecladoNivelDificuldadeConteudoEducacional
     novoConteudoEducacional.duracaoConteudoEducacional = tecladoDuracaoConteudoEducacional.toInt() //duracaoConteudoEducacional da instância de ConteudoEducacional (novoConteudoEducacional) = tecladoDuracaoConteudoEducacional
 
-    if (listaConteudosEducacionais.add(novoConteudoEducacional)) { //Adiciona/retorna feedback da adição do novoConteudoEducacional
-        println("Adição de conteúdo educacional bem sucedida:\n$novoConteudoEducacional\n")
-    } else println("Adição de conteúdo educacional falhou")
+    //Verificação se o conteúdo educacional já não está cadastrado no sistema. Se não estiver cadastrado, é feito cadastro:
+    if (listaConteudosEducacionais.any { it.equalsIgnoringID(novoConteudoEducacional) }) {
+        println("Cadastro de conteúdo educacional falhou: conteúdo educacional já está cadastrado no sistema")
+    } else {
+        listaConteudosEducacionais.add(novoConteudoEducacional) //Cadastro/Adição de conteúdo educacional
+        println("Adição de conteúdo educacional bem sucedida:\n$novoConteudoEducacional\n") //Feedback da adição
+    }
 
     //"Loop" de cadastrarConteudoEducacional()
     do { //Repete execução enquanto desejaAdicionarOutroConteudoEducacional não receber um valor que não seja nulo, vazio, sem letras ou diferente de "s" e "n"
