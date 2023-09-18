@@ -27,7 +27,7 @@ fun exibirListaUsuariosVazia() {
 
         if (desejaAdicionarUsuarioTeclado.isNullOrEmpty() || !desejaAdicionarUsuarioTeclado.any { it.isLetter() } || (!desejaAdicionarUsuarioTeclado.equals("s") && !desejaAdicionarUsuarioTeclado.equals("n"))) {
             println("-----Seleção inválida!-----".uppercase())
-        } else println("Lista de conteúdos educacionais vazia")
+        }
 
     } while (desejaAdicionarUsuarioTeclado.isNullOrEmpty() || !desejaAdicionarUsuarioTeclado.any { it.isLetter() } || (!desejaAdicionarUsuarioTeclado.equals("s") && !desejaAdicionarUsuarioTeclado.equals("n")))
 
