@@ -279,6 +279,14 @@ fun selecionarUsuariosFormacao(formacaoSelecionada: Formacao) {
     println("----- Lista de usuários no sistema -----\n".uppercase())
     exibirUsuarios()
 
+    //Se quiser inscrever usuário que não está ainda no sistema
+    println("Para adicionar usuário(s) novo(s) antes de seguir, digite 'add'. Senão, digite qualquer outra coisa.")
+    val addUsuarioAntes = readlnOrNull()
+    if (addUsuarioAntes == "add") {
+        cadastrarUsuario()
+        exibirUsuarios()
+    } else println()
+
     val opcoesUsuario = mutableListOf<String>() //Variável opcoes recebe os valores de cada id de usuário de listaUsuarios
     for (usuario in listaUsuarios) {
         val opcao = usuario.idUsuario
@@ -388,6 +396,14 @@ fun selecionarConteudosFormacao(formacaoSelecionada: Formacao) { //Recebe forma�
 
     println("----- Lista de conteúdos educacionais cadastrados -----\n".uppercase())
     exibirConteudosEducacionais()
+
+    //Se quiser cadastrar conteúdo que não está ainda no sistema
+    println("Para adicionar conteúdo(s) educacional(is) novo(s) antes de seguir, digite 'add'. Senão, digite qualquer outra coisa.")
+    val addConteudoAntes = readlnOrNull()
+    if (addConteudoAntes == "add") {
+        cadastrarConteudoEducacional()
+        exibirConteudosEducacionais()
+    } else println()
 
     val opcoesConteudo = mutableListOf<String>() //Variável opcoes recebe os valores de cada id de conteúdo educacional de listaConteudosEducacionais
     for (conteudo in listaConteudosEducacionais) {
