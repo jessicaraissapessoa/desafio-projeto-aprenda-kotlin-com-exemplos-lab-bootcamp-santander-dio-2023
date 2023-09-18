@@ -1,3 +1,5 @@
+import javax.print.attribute.standard.MediaSize.Other
+
 data class Usuario (var idUsuario: Int, var nomeUsuario: String, var tipoUsuario: String) { //Classe Usuario
 
     constructor() : this(0, "","") //Construtor vazio da classe
@@ -47,6 +49,11 @@ fun exibirUsuarios() {
 }
 
 
+fun Usuario.equalsIgnoringID(other: Usuario) : Boolean { //Função para comparar qualquer usuário novo aos já cadastrados
+    return nomeUsuario == other.nomeUsuario && tipoUsuario == other.tipoUsuario
+}
+
+
 fun cadastrarUsuario() { //Função para cadastrar usuário
 
     var tecladoNomeUsuario : String? //Variável de nomeUsuario que será recebida
@@ -88,10 +95,14 @@ fun cadastrarUsuario() { //Função para cadastrar usuário
     novoUsuario.nomeUsuario = tecladoNomeUsuario //nomeUsuario da instância de Usuario (novoUsuario) = tecladoNomeUsuario
     novoUsuario.tipoUsuario = selecaoTipoUsuario //tipoUsuario da instância de Usuario (novoUsuario) = selecaoTipoUsuario
 
-    if (listaUsuarios.add(novoUsuario)) { //Adiciona/retorna feedback da adição do novoUsuario
-        println("Adição de usuário bem sucedida:\n$novoUsuario\n")
-    } else println("Adição de usuário falhou")
 
+    //Verificação se o usuário já não está cadastrado no sistema. Se não estiver cadastrado, é feito cadastro:
+    if (listaUsuarios.any { it.equalsIgnoringID(novoUsuario) }) {
+        println("Cadastro de usuário falhou: usuário já está cadastrado no sistema")
+    } else {
+        listaUsuarios.add(novoUsuario) //Cadastro/Adição de usuário
+        println("Adição de usuário bem sucedida:\n$novoUsuario\n") //Feedback da adição
+    }
 
     //"Loop" de cadastrarUsuario()
     do { //Repete execução enquanto desejaAdicionarOutroUsuario não receber um valor que não seja nulo, vazio, sem letras ou diferente de "s" e "n"
