@@ -1,5 +1,7 @@
 package conteudoEducacional
 
+import aplicacao.menuConteudoEducacional
+
 fun excluirConteudoEducacional() { //Função para remover conteúdo educacional
 
     if (listaConteudosEducacionais.isEmpty()) exibirListaConteudosEducacionaisVazia()  //Caso a lista de conteúdos educacionais esteja vazia, executar função exibirListaConteudosEducacionaisVazia()
@@ -52,4 +54,5 @@ fun excluirConteudoEducacional() { //Função para remover conteúdo educacional
 
     }
 
+    menuConteudoEducacional()
 }

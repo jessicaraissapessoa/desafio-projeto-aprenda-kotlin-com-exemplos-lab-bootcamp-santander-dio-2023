@@ -1,5 +1,6 @@
 package conteudoEducacional
 
+import aplicacao.menuConteudoEducacional
 import enums.NivelDificuldade
 import enums.TipoConteudoEducacional
 
@@ -115,4 +116,5 @@ fun cadastrarConteudoEducacional() {
 
     } while (desejaAdicionarOutroConteudoEducacional.isNullOrEmpty() || !desejaAdicionarOutroConteudoEducacional.any { it.isLetter() } || (!desejaAdicionarOutroConteudoEducacional.equals("s") && !desejaAdicionarOutroConteudoEducacional.equals("n")))
 
+    menuConteudoEducacional()
 }

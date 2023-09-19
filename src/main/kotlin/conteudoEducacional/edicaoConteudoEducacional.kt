@@ -1,5 +1,6 @@
 package conteudoEducacional
 
+import aplicacao.menuConteudoEducacional
 import enums.NivelDificuldade
 import enums.TipoConteudoEducacional
 
@@ -191,4 +192,5 @@ fun editarConteudoEducacional() {
 
     }
 
+    menuConteudoEducacional()
 }
