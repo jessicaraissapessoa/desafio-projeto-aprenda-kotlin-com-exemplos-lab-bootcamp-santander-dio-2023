@@ -10,5 +10,3 @@ data class Usuario (var idUsuario: Int, var nomeUsuario: String, var tipoUsuario
 
 }
 
-var listaUsuarios : MutableList<Usuario> = mutableListOf() //Lista de usuários
-
