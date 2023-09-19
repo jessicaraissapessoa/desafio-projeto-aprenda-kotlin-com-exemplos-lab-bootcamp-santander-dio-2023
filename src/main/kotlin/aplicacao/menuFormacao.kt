@@ -1,9 +1,5 @@
 package aplicacao
 
-import conteudoEducacional.cadastrarConteudoEducacional
-import conteudoEducacional.editarConteudoEducacional
-import conteudoEducacional.excluirConteudoEducacional
-import conteudoEducacional.exibirConteudosEducacionais
 import formacao.*
 
 fun menuFormacao() {
