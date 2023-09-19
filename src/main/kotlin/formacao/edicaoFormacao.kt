@@ -1,12 +1,7 @@
 package formacao
 
-import aplicacao.telaInicial
+import aplicacao.menuFormacao
 import enums.NivelDificuldade
-import formacao.ConteudoEmFormacao.editarConteudosFormacao
-import formacao.UsuarioEmFormacao.editarUsuariosFormacao
-import usuario.exibirListaUsuariosVazia
-import usuario.listaUsuarios
-
 
 fun editarFormacao() {
 
@@ -26,11 +21,10 @@ fun editarFormacao() {
 
         when (opcao) {
             "1" -> editarDadosFormacao()
-            "2" -> exibirFormacaoDetalhada()
-            "3" -> cadastrarFormacao()
-            "4" -> editarFormacao()
-            "5" -> excluirFormacao()
-            "6" -> telaInicial()
+            "2" -> editarUsuariosFormacao()
+            "3" -> editarConteudosFormacao()
+            "4" -> excluirFormacao()
+            "5" -> menuFormacao()
         }
 
         if (opcao.isNullOrEmpty() || (!opcao.equals("1") && !opcao.equals("2")  && !opcao.equals("3") && !opcao.equals("4") && !opcao.equals("5"))) {
