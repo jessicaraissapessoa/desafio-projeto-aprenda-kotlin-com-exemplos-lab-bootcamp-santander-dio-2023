@@ -301,6 +301,8 @@ fun cadastrarUsuarioFormacao() {
 
 fun selecionarUsuariosFormacao(formacaoSelecionada: Formacao) {
 
+    if (listaUsuarios.isEmpty()) exibirListaUsuariosVazia() //Caso a lista de usuários esteja vazia, executar função exibirListaUsuariosVazia()
+
     println("----- Lista de usuários no sistema -----\n".uppercase())
     exibirUsuarios()
 
@@ -369,7 +371,7 @@ fun selecionarUsuariosFormacao(formacaoSelecionada: Formacao) {
 
                     when (adicionarUsuariosEmOutraFormacao) {
                         "s" -> cadastrarUsuarioFormacao() //"Loop" de cadastrarUsuarioFormacao() -> Segue cadastrando usuários, mas em outra formação
-                        "n" -> println()
+                        "n" -> exibirInscritosFormacao(formacaoSelecionada)
                     }
 
                 } while (adicionarUsuariosEmOutraFormacao.isNullOrEmpty() || !adicionarUsuariosEmOutraFormacao.any { it.isLetter() } || (!adicionarUsuariosEmOutraFormacao.equals("s") && !adicionarUsuariosEmOutraFormacao.equals("n")))
@@ -378,6 +380,23 @@ fun selecionarUsuariosFormacao(formacaoSelecionada: Formacao) {
         }
 
     } while (adicionarOutroUsuarioFormacao.isNullOrEmpty() || !adicionarOutroUsuarioFormacao.any { it.isLetter() } || (!adicionarOutroUsuarioFormacao.equals("s") && !adicionarOutroUsuarioFormacao.equals("n")))
+
+    //Se deseja remover usuários
+    do { //Repete execução enquanto não receber valor válido: "s" ou "n"
+
+        println("Deseja remover usuários dessa formação? Digite 's' para sim ou 'n' para não")
+        val removerUsuarioDaFormacao = readlnOrNull()
+
+        if (removerUsuarioDaFormacao.isNullOrEmpty() || !removerUsuarioDaFormacao.any { it.isLetter() } || (!removerUsuarioDaFormacao.equals("s") && !removerUsuarioDaFormacao.equals("n"))) {
+            println("-----Seleção inválida!-----".uppercase())
+        }
+
+        when(removerUsuarioDaFormacao) {
+            "s" -> excluirUsuarioFormacao(formacaoSelecionada) //Direciona para função de remoção de usuários da formação
+            "n" -> exibirInscritosFormacao(formacaoSelecionada) //Exibe inscritos da formação
+        }
+
+    } while (removerUsuarioDaFormacao.isNullOrEmpty() || !removerUsuarioDaFormacao.any { it.isLetter() } || (!removerUsuarioDaFormacao.equals("s") && !removerUsuarioDaFormacao.equals("n")))
 
 }
 
@@ -418,6 +437,8 @@ fun cadastrarConteudoFormacao() {
 
 
 fun selecionarConteudosFormacao(formacaoSelecionada: Formacao) { //Recebe formação selecionada ao final de cadastrarConteudoFormacao()
+
+    if (listaFormacoes.isEmpty()) exibirListaFormacoesVazia() //Caso a lista de formações esteja vazia, executar função exibirListaFormacoesVazia()
 
     println("----- Lista de conteúdos educacionais cadastrados -----\n".uppercase())
     exibirConteudosEducacionais()
@@ -502,6 +523,23 @@ fun selecionarConteudosFormacao(formacaoSelecionada: Formacao) { //Recebe forma�
 
     } while (adicionarOutroConteudoFormacao.isNullOrEmpty() || !adicionarOutroConteudoFormacao.any { it.isLetter() } || (!adicionarOutroConteudoFormacao.equals("s") && !adicionarOutroConteudoFormacao.equals("n")))
 
+    //Se deseja remover conteúdos
+    do { //Repete execução enquanto não receber valor válido: "s" ou "n"
+
+        println("Deseja remover conteúdos dessa formação? Digite 's' para sim ou 'n' para não")
+        val removerConteudoDaFormacao = readlnOrNull()
+
+        if (removerConteudoDaFormacao.isNullOrEmpty() || !removerConteudoDaFormacao.any { it.isLetter() } || (!removerConteudoDaFormacao.equals("s") && !removerConteudoDaFormacao.equals("n"))) {
+            println("-----Seleção inválida!-----".uppercase())
+        }
+
+        when(removerConteudoDaFormacao) {
+            "s" -> excluirConteudosFormacao(formacaoSelecionada) //Direciona para função de remoção de conteúdos da formação
+            "n" -> exibirConteudosFormacao(formacaoSelecionada) //Exibe conteúdos da formação
+        }
+
+    } while (removerConteudoDaFormacao.isNullOrEmpty() || !removerConteudoDaFormacao.any { it.isLetter() } || (!removerConteudoDaFormacao.equals("s") && !removerConteudoDaFormacao.equals("n")))
+
 }
 
 
@@ -573,6 +611,8 @@ fun editarFormacao() {
     //Edição de usuários
     do { //Repete execução enquanto não receber valor válido: "s" ou "n"
 
+        if (listaUsuarios.isEmpty()) exibirListaUsuariosVazia() //Caso a lista de usuários esteja vazia, executar função exibirListaUsuariosVazia()
+
         println("Deseja editar usuário(s) cadastrado(s) na formação? Digite 's' para sim ou 'n' para não.")
         val editarUsuariosFormacao = readlnOrNull()
 
@@ -589,6 +629,8 @@ fun editarFormacao() {
 
     //Edição de conteúdos educacionais
     do { //Repete execução enquanto não receber valor válido: "s" ou "n"
+
+        if (listaFormacoes.isEmpty()) exibirListaFormacoesVazia() //Caso a lista de formações esteja vazia, executar função exibirListaFormacoesVazia()
 
         println("Deseja editar conteúdo(s) educacional(is) cadastrado(s) na formação? Digite 's' para sim ou 'n' para não.")
         val editarConteudosFormacao = readlnOrNull()
@@ -704,14 +746,197 @@ fun editarDadosFormacao(formacaoSelecionada: Formacao) {
 
 fun editarUsuariosFormacao(formacaoSelecionada: Formacao) {
 
+    if (listaUsuarios.isEmpty()) exibirListaUsuariosVazia() //Caso a lista de usuários esteja vazia, executar função exibirListaUsuariosVazia()
+
+    println("ID: ${formacaoSelecionada.idFormacao} | NOME: ${formacaoSelecionada.nomeFormacao}\n\t↳ NÍVEL: ${formacaoSelecionada.nivelDificuldadeFormacao}\n")
     exibirInscritosFormacao(formacaoSelecionada)
-    println("fim")
+
+
+    do { //Repete execução enquanto não recebe 1, 2 ou 3
+        println("Selecione ação que deseja fazer informando o número correspondente:" +
+                "\n1 - Adicionar usuário à formação\n2 - Excluir usuário da formação\n3 - Nenhum dos dois")
+        var tecladoEditarUsuariosFormacao = readlnOrNull() //Recebe escolha do usuário entre as opções
+
+
+        when (tecladoEditarUsuariosFormacao) {
+            "1" -> selecionarUsuariosFormacao(formacaoSelecionada) //Segue para seleção de usuário que passa parâmetro
+            "2" -> excluirUsuarioFormacao(formacaoSelecionada) //Segue para seleção de usuários para remoção passando parâmetro
+            "3" -> println() //Encerra editarUsuariosFormacao(formacaoSelecionada: Formacao)
+
+        }
+
+        if (tecladoEditarUsuariosFormacao.isNullOrEmpty() || (!tecladoEditarUsuariosFormacao.equals("1") && !tecladoEditarUsuariosFormacao.equals("2") && !tecladoEditarUsuariosFormacao.equals("3"))) {
+            println("-----Seleção inválida!-----".uppercase()) //Imprime em caso de não passar na validação
+        }
+
+    } while (tecladoEditarUsuariosFormacao.isNullOrEmpty() || (!tecladoEditarUsuariosFormacao.equals("1") && !tecladoEditarUsuariosFormacao.equals("2") && !tecladoEditarUsuariosFormacao.equals("3")))
+
+}
+
+
+fun excluirUsuarioFormacao(formacaoSelecionada: Formacao) {
+
+    if (listaUsuarios.isEmpty()) exibirListaUsuariosVazia() //Caso a lista de usuários esteja vazia, executar função exibirListaUsuariosVazia()
+
+    println("ID: ${formacaoSelecionada.idFormacao} | NOME: ${formacaoSelecionada.nomeFormacao}\n\t↳ NÍVEL: ${formacaoSelecionada.nivelDificuldadeFormacao}\n")
+    exibirInscritosFormacao(formacaoSelecionada)
+
+    val opcoesUsuario = mutableListOf<String>() //Variável opcoes recebe os valores de cada id de usuário cadastrado na formação
+    for (usuario in formacaoSelecionada.inscritosFormacao) {
+        val opcao = usuario.idUsuario
+        opcoesUsuario.add(opcao.toString())
+    }
+
+    var selecaoRemocaoUsuarioFormacao : String? //Variável que vai receber escolha de usuário dentre as opções acima
+
+    do { //Repete execução enquanto não recebe um valor correspondente a algum dos valores da variável opcoes
+
+        println("Informe o ID do usuário que deseja remover da formação:")
+        selecaoRemocaoUsuarioFormacao = readlnOrNull() //Recebimento do valor do ID do usuário selecionado
+
+        if (!opcoesUsuario.contains(selecaoRemocaoUsuarioFormacao)) {
+            println("-----Seleção inválida!-----".uppercase()) //Imprime em caso de não passar na validação
+        }
+
+    } while (!opcoesUsuario.contains(selecaoRemocaoUsuarioFormacao))
+
+    val indexUsuario = selecaoRemocaoUsuarioFormacao!!.toInt() - 1 //índice de Usuário na mutableList listaUsuarios
+    val usuarioSelecionado = listaUsuarios[indexUsuario] //usuarioSelecionado recebe o Usuário equivalente de listaUsuarios
+
+    if (formacaoSelecionada.inscritosFormacao.remove(usuarioSelecionado)) {
+        println("Remoção bem sucedida de:\n$usuarioSelecionado!\n")
+        println("ID: ${formacaoSelecionada.idFormacao} | NOME: ${formacaoSelecionada.nomeFormacao}\n\t↳ NÍVEL: ${formacaoSelecionada.nivelDificuldadeFormacao}\n")
+        exibirInscritosFormacao(formacaoSelecionada)
+    } else println("Remoção falhou")
+
+    do { //Repete execução enquanto não receber valor válido: "s" ou "n"
+
+        println("Deseja remover outro usuário dessa formação? Digite 's' para sim ou 'n' para não")
+        val excluirOutroUsuarioFormacao = readlnOrNull()
+
+        if (excluirOutroUsuarioFormacao.isNullOrEmpty() || !excluirOutroUsuarioFormacao.any { it.isLetter() } || (!excluirOutroUsuarioFormacao.equals("s") && !excluirOutroUsuarioFormacao.equals("n"))) {
+            println("-----Seleção inválida!-----".uppercase())
+        }
+
+        when(excluirOutroUsuarioFormacao) {
+            "s" -> excluirUsuarioFormacao(formacaoSelecionada) //"Loop" de excluirUsuarioFormacao() -> Segue excluindo usuários na mesma formação
+            "n" -> exibirInscritosFormacao(formacaoSelecionada)
+        }
+
+    } while (excluirOutroUsuarioFormacao.isNullOrEmpty() || !excluirOutroUsuarioFormacao.any { it.isLetter() } || (!excluirOutroUsuarioFormacao.equals("s") && !excluirOutroUsuarioFormacao.equals("n")))
+
+    do { //Repete execução enquanto não receber valor válido: "s" ou "n"
+
+        println("Deseja adicionar usuários nessa formação? Digite 's' para sim ou 'n' para não")
+        val adicionarUsuarioFormacao = readlnOrNull()
+
+        if (adicionarUsuarioFormacao.isNullOrEmpty() || !adicionarUsuarioFormacao.any { it.isLetter() } || (!adicionarUsuarioFormacao.equals("s") && !adicionarUsuarioFormacao.equals("n"))) {
+            println("-----Seleção inválida!-----".uppercase())
+        }
+
+        when(adicionarUsuarioFormacao) {
+            "s" -> selecionarUsuariosFormacao(formacaoSelecionada) //Direciona para função que adiciona usuários
+            "n" -> exibirInscritosFormacao(formacaoSelecionada)
+        }
+
+    } while (adicionarUsuarioFormacao.isNullOrEmpty() || !adicionarUsuarioFormacao.any { it.isLetter() } || (!adicionarUsuarioFormacao.equals("s") && !adicionarUsuarioFormacao.equals("n")))
 
 }
 
 
 fun editarConteudosFormacao(formacaoSelecionada: Formacao) {
 
+    if (listaFormacoes.isEmpty()) exibirListaFormacoesVazia() //Caso a lista de formações esteja vazia, executar função exibirListaFormacoesVazia()
 
+    println("ID: ${formacaoSelecionada.idFormacao} | NOME: ${formacaoSelecionada.nomeFormacao}\n\t↳ NÍVEL: ${formacaoSelecionada.nivelDificuldadeFormacao}\n")
+    exibirConteudosFormacao(formacaoSelecionada)
+
+    do { //Repete execução enquanto não recebe 1, 2 ou 3
+        println("Selecione ação que deseja fazer informando o número correspondente:" +
+                "\n1 - Adicionar conteúdo à formação\n2 - Excluir conteúdo da formação\n3 - Nenhum dos dois")
+        var tecladoEditarConteudosFormacao = readlnOrNull() //Recebe escolha do usuário entre as opções
+
+
+        when (tecladoEditarConteudosFormacao) {
+            "1" -> selecionarConteudosFormacao(formacaoSelecionada) //Segue para seleção de conteúdos que passa parâmetro
+            "2" -> excluirConteudosFormacao(formacaoSelecionada) //Segue para seleção de usuários para remoção passando parâmetro
+            "3" -> println() //Encerra editarConteudosFormacao(formacaoSelecionada: Formacao)
+
+        }
+
+        if (tecladoEditarConteudosFormacao.isNullOrEmpty() || (!tecladoEditarConteudosFormacao.equals("1") && !tecladoEditarConteudosFormacao.equals("2") && !tecladoEditarConteudosFormacao.equals("3"))) {
+            println("-----Seleção inválida!-----".uppercase()) //Imprime em caso de não passar na validação
+        }
+
+    } while (tecladoEditarConteudosFormacao.isNullOrEmpty() || (!tecladoEditarConteudosFormacao.equals("1") && !tecladoEditarConteudosFormacao.equals("2") && !tecladoEditarConteudosFormacao.equals("3")))
+
+}
+
+fun excluirConteudosFormacao(formacaoSelecionada: Formacao) {
+
+    if (listaConteudosEducacionais.isEmpty()) exibirListaConteudosEducacionaisVazia() //Caso a lista de conteúdos educacionais esteja vazia, executar função exibirListaConteudosEducacionaisVazia()
+
+    println("ID: ${formacaoSelecionada.idFormacao} | NOME: ${formacaoSelecionada.nomeFormacao}\n\t↳ NÍVEL: ${formacaoSelecionada.nivelDificuldadeFormacao}\n")
+    exibirInscritosFormacao(formacaoSelecionada)
+
+    val opcoesConteudo = mutableListOf<String>() //Variável opcoes recebe os valores de cada id de conteúdo cadastrado na formação
+    for (conteudo in formacaoSelecionada.conteudosFormacao) {
+        val opcao = conteudo.idConteudoEducacional
+        opcoesConteudo.add(opcao.toString())
+    }
+
+    var selecaoRemocaoConteudoFormacao : String? //Variável que vai receber escolha de conteúdo dentre as opções acima
+
+    do { //Repete execução enquanto não recebe um valor correspondente a algum dos valores da variável opcoesConteudo
+
+        println("Informe o ID do conteúdo educacional que deseja remover da formação:")
+        selecaoRemocaoConteudoFormacao = readlnOrNull() //Recebimento do valor do ID do conteúdo selecionado
+
+        if (!opcoesConteudo.contains(selecaoRemocaoConteudoFormacao)) {
+            println("-----Seleção inválida!-----".uppercase()) //Imprime em caso de não passar na validação
+        }
+
+    } while (!opcoesConteudo.contains(selecaoRemocaoConteudoFormacao))
+
+    val indexConteudo = selecaoRemocaoConteudoFormacao!!.toInt() - 1 //índice de Conteudo na mutableList listaConteudosEducacionais
+    val conteudoSelecionado = listaConteudosEducacionais[indexConteudo] //usuarioSelecionado recebe o Conteudo equivalente de listaConteudosEducacionais
+
+    if (formacaoSelecionada.inscritosFormacao.remove(conteudoSelecionado)) {
+        println("Remoção bem sucedida de:\n$conteudoSelecionado!\n")
+        println("ID: ${formacaoSelecionada.idFormacao} | NOME: ${formacaoSelecionada.nomeFormacao}\n\t↳ NÍVEL: ${formacaoSelecionada.nivelDificuldadeFormacao}\n")
+        exibirConteudosFormacao(formacaoSelecionada)
+    } else println("Remoção falhou")
+
+    do { //Repete execução enquanto não receber valor válido: "s" ou "n"
+
+        println("Deseja remover outro conteúdo educacional dessa formação? Digite 's' para sim ou 'n' para não")
+        val excluirOutroConteudoFormacao = readlnOrNull()
+
+        if (excluirOutroConteudoFormacao.isNullOrEmpty() || !excluirOutroConteudoFormacao.any { it.isLetter() } || (!excluirOutroConteudoFormacao.equals("s") && !excluirOutroConteudoFormacao.equals("n"))) {
+            println("-----Seleção inválida!-----".uppercase())
+        }
+
+        when(excluirOutroConteudoFormacao) {
+            "s" -> excluirConteudosFormacao(formacaoSelecionada) //"Loop" de excluirConteudosFormacao() -> Segue excluindo conteúdos na mesma formação
+            "n" -> exibirConteudosFormacao(formacaoSelecionada)
+        }
+
+    } while (excluirOutroConteudoFormacao.isNullOrEmpty() || !excluirOutroConteudoFormacao.any { it.isLetter() } || (!excluirOutroConteudoFormacao.equals("s") && !excluirOutroConteudoFormacao.equals("n")))
+
+    do { //Repete execução enquanto não receber valor válido: "s" ou "n"
+
+        println("Deseja adicionar conteúdos nessa formação? Digite 's' para sim ou 'n' para não")
+        val adicionarConteudoFormacao = readlnOrNull()
+
+        if (adicionarConteudoFormacao.isNullOrEmpty() || !adicionarConteudoFormacao.any { it.isLetter() } || (!adicionarConteudoFormacao.equals("s") && !adicionarConteudoFormacao.equals("n"))) {
+            println("-----Seleção inválida!-----".uppercase())
+        }
+
+        when(adicionarConteudoFormacao) {
+            "s" -> selecionarConteudosFormacao(formacaoSelecionada) //Direciona para função que adiciona conteúdos
+            "n" -> exibirConteudosFormacao(formacaoSelecionada)
+        }
+
+    } while (adicionarConteudoFormacao.isNullOrEmpty() || !adicionarConteudoFormacao.any { it.isLetter() } || (!adicionarConteudoFormacao.equals("s") && !adicionarConteudoFormacao.equals("n")))
 
 }
