@@ -3,7 +3,7 @@ package aplicacao
 import usuario.cadastrarUsuario
 import usuario.editarUsuario
 import usuario.excluirUsuario
-import usuario.exibirUsuarios
+import usuario.exibirUsuariosOpcaoMenu
 
 fun menuUsuario() {
 
@@ -20,7 +20,7 @@ fun menuUsuario() {
         val opcao = readlnOrNull()
 
         when (opcao) {
-            "1" -> exibirUsuarios()
+            "1" -> exibirUsuariosOpcaoMenu()
             "2" -> cadastrarUsuario()
             "3" -> editarUsuario()
             "4" -> excluirUsuario()
