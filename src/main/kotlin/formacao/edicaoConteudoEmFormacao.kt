@@ -222,9 +222,6 @@ fun excluirConteudoFormacaoSelecionada(formacaoSelecionada: Formacao) {
         println("----- Lista de conteúdos educacionais cadastrados na formação -----\n".uppercase())
         exibirConteudosFormacao(formacaoSelecionada)
 
-        println("----- Lista de conteúdos educacionais no sistema -----\n".uppercase())
-        exibirConteudosEducacionais()
-
         val opcoesConteudo = mutableListOf<String>() //Variável opcoes recebe os valores de cada id de conteúdo educacional de listaConteudosEducacionais
         for (conteudo in listaConteudosEducacionais) {
             val opcao = conteudo.idConteudoEducacional
