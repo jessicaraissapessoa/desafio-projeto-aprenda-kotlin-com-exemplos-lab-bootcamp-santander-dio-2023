@@ -1,6 +1,6 @@
 package enums
 
-enum class TipoConteudoEducacional() { //Tipos de conteúdo educacional
+enum class TipoConteudoEducacional { //Tipos de conteúdo educacional
     CURSO,
     DESAFIOCODIGO,
     DESAFIOPROJETO;

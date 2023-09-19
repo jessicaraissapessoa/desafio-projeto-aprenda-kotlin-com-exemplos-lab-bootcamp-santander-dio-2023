@@ -1,6 +1,6 @@
 package enums
 
-enum class TipoUsuario() {
+enum class TipoUsuario {
 
     INSTRUTOR,
     ALUNO;
