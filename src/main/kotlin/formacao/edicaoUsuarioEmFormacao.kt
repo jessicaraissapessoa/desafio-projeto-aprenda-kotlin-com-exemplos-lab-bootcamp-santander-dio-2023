@@ -27,11 +27,11 @@ fun editarUsuariosFormacao() {
             "3" -> menuFormacao()
         }
 
-        if (opcao.isNullOrEmpty() || (!opcao.equals("1") && !opcao.equals("2")  && !opcao.equals("3") && !opcao.equals("4") && !opcao.equals("5"))) {
+        if (opcao.isNullOrEmpty() || (!opcao.equals("1") && !opcao.equals("2")  && !opcao.equals("3"))) {
             println("-----Seleção inválida!-----".uppercase()) //Imprime em caso de não passar na validação
         }
 
-    } while (opcao.isNullOrEmpty() || (!opcao.equals("1") && !opcao.equals("2") && !opcao.equals("3") && !opcao.equals("4") && !opcao.equals("5")))
+    } while (opcao.isNullOrEmpty() || (!opcao.equals("1") && !opcao.equals("2") && !opcao.equals("3")))
 
 }
 
