@@ -18,7 +18,7 @@ fun menuFormacao() {
         val opcao = readlnOrNull()
 
         when (opcao) {
-            "1" -> exibirListaFormacoes()
+            "1" -> exibirListaFormacoesOpcaoMenu()
             "2" -> exibirFormacaoDetalhada()
             "3" -> cadastrarFormacao()
             "4" -> editarFormacao()

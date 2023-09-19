@@ -1,5 +1,8 @@
 package formacao
 
+import aplicacao.menuFormacao
+import aplicacao.menuUsuario
+
 fun exibirListaFormacoes() { //Impressão de listaFormações -> Exibição enxuta que exclui inscritos e conteúdos das formações
 
     if (listaFormacoes.isEmpty()) exibirListaFormacoesVazia() //Caso a lista de formações esteja vazia, executar função exibirListaFormacoesVazia()
@@ -12,6 +15,34 @@ fun exibirListaFormacoes() { //Impressão de listaFormações -> Exibição enxu
     }
 
     println(builder.toString())
+}
+
+
+fun exibirListaFormacoesOpcaoMenu() { //Versão de exibirListaFormacoes() para encaminhamento de menuFormacao()
+
+    if (listaFormacoes.isEmpty()) exibirListaFormacoesVazia() //Caso a lista de formações esteja vazia, executar função exibirListaFormacoesVazia()
+
+    val builder = StringBuilder()
+
+    for (formacao in listaFormacoes) {
+        builder.append("ID: ${formacao.idFormacao} | NOME: ${formacao.nomeFormacao}\n\t↳ NÍVEL: ${formacao.nivelDificuldadeFormacao} | DURAÇÃO: ${formacao.duracaoFormacao}h")
+        builder.append("\n") //Adicionar uma quebra de linha entre cada formação
+    }
+
+    println(builder.toString())
+
+    do {
+
+        println("Digite 's' para voltar ao menu de FORMAÇÃO")
+        val voltarParaMenuFormacao = readlnOrNull() //Recebimento do valor pelo teclado
+
+        when(voltarParaMenuFormacao) {
+            "s" -> menuFormacao() //Segue para função menuFormacao()
+            "n" -> print("")
+        }
+
+    } while (voltarParaMenuFormacao.isNullOrEmpty() || !voltarParaMenuFormacao.any { it.isLetter() } || (!voltarParaMenuFormacao.equals("s")))
+
 }
 
 
