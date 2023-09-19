@@ -142,7 +142,7 @@ fun adicionarUsuarioFormacaoSelecionada(formacaoSelecionada: Formacao) {
         }
 
         when(adicionarOutroUsuarioFormacao) {
-            "s" -> adicionarUsuarioFormacaoSelecionada(formacaoSelecionada) //"Loop" de adicionarUsuariosFormacao() -> Segue cadastrando usuários na mesma formação
+            "s" -> adicionarUsuarioFormacaoSelecionada(formacaoSelecionada) //"Loop" de adicionarUsuarioFormacaoSelecionada() -> Segue cadastrando usuários na mesma formação
             "n" -> {
                 println("Inscrição de usuários em formação de ID ${formacaoSelecionada.idFormacao} concluída\n")
                 println(formacaoSelecionada)
