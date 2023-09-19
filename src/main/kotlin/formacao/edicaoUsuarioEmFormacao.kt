@@ -22,7 +22,7 @@ fun editarUsuariosFormacao() {
         val opcao = readlnOrNull()
 
         when (opcao) {
-            "1" -> adicionarUsuariosFormacao()
+            "1" -> adicionarUsuarioFormacao()
             "2" -> excluirUsuarioFormacao()
             "3" -> menuFormacao()
         }
@@ -35,7 +35,7 @@ fun editarUsuariosFormacao() {
 
 }
 
-fun adicionarUsuariosFormacao() {
+fun adicionarUsuarioFormacao() {
 
     if (listaUsuarios.isEmpty()) exibirListaUsuariosVazia() //Caso a lista de usuários esteja vazia, executar função exibirListaUsuariosVazia()
     if (listaFormacoes.isEmpty()) exibirListaFormacoesVazia() //Caso a lista de formações esteja vazia, executar função exibirListaFormacoesVazia()
@@ -136,7 +136,7 @@ fun adicionarUsuariosFormacao() {
         }
 
         when(adicionarOutroUsuarioFormacao) {
-            "s" -> adicionarUsuariosFormacao() //"Loop" de adicionarUsuariosFormacao() -> Segue cadastrando usuários na mesma formação
+            "s" -> adicionarUsuarioFormacao() //"Loop" de adicionarUsuariosFormacao() -> Segue cadastrando usuários na mesma formação
             "n" -> {
                 println("Inscrição de usuários em formação de ID ${formacaoSelecionada.idFormacao} concluída\n")
                 println(formacaoSelecionada)
