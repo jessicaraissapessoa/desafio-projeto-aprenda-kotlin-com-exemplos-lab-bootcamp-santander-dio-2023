@@ -3,7 +3,7 @@ package aplicacao
 import conteudoEducacional.cadastrarConteudoEducacional
 import conteudoEducacional.editarConteudoEducacional
 import conteudoEducacional.excluirConteudoEducacional
-import conteudoEducacional.exibirConteudosEducacionais
+import conteudoEducacional.exibirConteudosEducacionaisOpcaoMenu
 
 fun menuConteudoEducacional() {
 
@@ -20,7 +20,7 @@ fun menuConteudoEducacional() {
         val opcao = readlnOrNull()
 
         when (opcao) {
-            "1" -> exibirConteudosEducacionais()
+            "1" -> exibirConteudosEducacionaisOpcaoMenu()
             "2" -> cadastrarConteudoEducacional()
             "3" -> editarConteudoEducacional()
             "4" -> excluirConteudoEducacional()
