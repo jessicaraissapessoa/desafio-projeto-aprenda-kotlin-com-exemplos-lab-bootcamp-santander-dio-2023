@@ -216,7 +216,7 @@ fun excluirUsuarioFormacaoSelecionada(formacaoSelecionada: Formacao) {
         println("----- Lista de usuários cadastrados na formação -----\n".uppercase())
         exibirInscritosFormacao(formacaoSelecionada)
 
-        println("----- Lista de usuários no sistema -----\n".uppercase())
+        println("\n----- Lista de usuários no sistema -----\n".uppercase())
         exibirUsuarios()
 
         val opcoesUsuario = mutableListOf<String>() //Variável opcoes recebe os valores de cada id de usuário de listaUsuarios

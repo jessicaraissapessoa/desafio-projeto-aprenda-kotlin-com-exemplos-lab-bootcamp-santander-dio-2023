@@ -91,7 +91,7 @@ fun adicionarConteudoFormacaoSelecionada(formacaoSelecionada: Formacao) {
     println("----- Lista de conteúdos educacionais cadastrados na formação -----\n".uppercase())
     exibirConteudosFormacao(formacaoSelecionada)
 
-    println("----- Lista de conteúdos educacionais no sistema -----\n".uppercase())
+    println("\n----- Lista de conteúdos educacionais no sistema -----\n".uppercase())
     exibirConteudosEducacionais()
 
     //Se quiser cadastrar conteúdo que não está ainda no sistema
@@ -212,8 +212,8 @@ fun excluirConteudoFormacao() {
 
 fun excluirConteudoFormacaoSelecionada(formacaoSelecionada: Formacao) {
 
-    if (formacaoSelecionada.inscritosFormacao.isEmpty()) {
-        println("Não há usuários para excluir da formação.")
+    if (formacaoSelecionada.conteudosFormacao.isEmpty()) {
+        println("Não há conteúdos educacionais para excluir da formação.")
         editarFormacao()
     } else {
 
