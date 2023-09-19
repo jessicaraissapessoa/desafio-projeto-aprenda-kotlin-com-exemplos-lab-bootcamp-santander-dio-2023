@@ -6,7 +6,7 @@ import conteudoEducacional.exibirConteudosEducacionais
 import conteudoEducacional.exibirListaConteudosEducacionaisVazia
 import conteudoEducacional.listaConteudosEducacionais
 
-fun editarConteudosFormacao(formacaoSelecionada: Formacao) {
+fun editarConteudosFormacao() {
 
     if (listaConteudosEducacionais.isEmpty()) exibirListaConteudosEducacionaisVazia()  //Caso a lista de conteúdos educacionais esteja vazia, executar função exibirListaConteudosEducacionaisVazia()
     if (listaFormacoes.isEmpty()) exibirListaFormacoesVazia() //Caso a lista de formações esteja vazia, executar função exibirListaFormacoesVazia()
