@@ -2,7 +2,7 @@ package aplicacao
 
 fun telaInicial() {
 
-    do { //Repete execução enquanto não receber 1, 2 ou 3
+    do { //Repete execução enquanto não receber 1, 2, 3 ou 5
 
         println("----------------------------------------------------------------------------------------" +
                 "\nSelecione o que deseja acessar informando número correspondente:" +
