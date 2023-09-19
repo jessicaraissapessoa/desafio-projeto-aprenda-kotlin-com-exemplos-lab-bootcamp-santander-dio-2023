@@ -1,3 +1,13 @@
+package aplicacao
+
+import conteudoEducacional.*
+import formacao.*
+import formacao.ConteudoEmFormacao.cadastrarConteudoFormacao
+import formacao.UsuarioEmFormacao.cadastrarUsuarioFormacao
+import usuario.cadastrarUsuario
+import usuario.editarUsuario
+import usuario.exibirUsuarios
+
 /**
  * @author Jéssica Raissa Pessoa
  * Desafio de projeto - Bootcamp Santander 2023 - Mobile Android com Kotlin
@@ -149,7 +159,7 @@ fun main() {
     val conteudo = ConteudoEducacional.cadastrarConteudoEducacional()
     println(conteudo.toString())
 
-    //para imprimir enum -> NivelDificuldade.valueOf("INTERMEDIARIO")
+    //para imprimir enum -> enums.NivelDificuldade.valueOf("INTERMEDIARIO")
 
      */
 
