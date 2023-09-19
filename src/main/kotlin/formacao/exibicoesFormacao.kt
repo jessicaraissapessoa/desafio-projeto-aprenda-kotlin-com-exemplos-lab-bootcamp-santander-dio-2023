@@ -1,7 +1,6 @@
 package formacao
 
 import aplicacao.menuFormacao
-import aplicacao.menuUsuario
 
 fun exibirListaFormacoes() { //Impressão de listaFormações -> Exibição enxuta que exclui inscritos e conteúdos das formações
 

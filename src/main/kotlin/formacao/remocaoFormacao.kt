@@ -1,5 +1,7 @@
 package formacao
 
+import aplicacao.menuFormacao
+
 fun excluirFormacao() { //Função para remover formação
 
     if (listaFormacoes.isEmpty()) exibirListaFormacoesVazia() //Caso a lista de formações esteja vazia, executar função exibirListaFormacoesVazia()
@@ -41,12 +43,12 @@ fun excluirFormacao() { //Função para remover formação
 
             when(desejaExcluirOutraFormacao) {
                 "s" -> excluirFormacao() //Segue para função excluirConteudoEducacional()
-                "n" -> println("")
+                "n" -> menuFormacao()
             }
 
             if (desejaExcluirOutraFormacao.isNullOrEmpty() || !desejaExcluirOutraFormacao.any { it.isLetter() } || (!desejaExcluirOutraFormacao.equals("s") && !desejaExcluirOutraFormacao.equals("n"))) {
                 println("-----Seleção inválida!-----".uppercase())
-            } else println("")
+            }
 
         } while (desejaExcluirOutraFormacao.isNullOrEmpty() || !desejaExcluirOutraFormacao.any { it.isLetter() } || (!desejaExcluirOutraFormacao.equals("s") && !desejaExcluirOutraFormacao.equals("n")))
 

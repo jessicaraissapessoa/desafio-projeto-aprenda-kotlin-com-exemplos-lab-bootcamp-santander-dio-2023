@@ -1,5 +1,6 @@
 package formacao
 
+import aplicacao.menuFormacao
 import enums.NivelDificuldade
 
 fun Formacao.equalsIgnoringID(other: Formacao) : Boolean {
@@ -65,12 +66,12 @@ fun cadastrarFormacao() {
 
         when(desejaAdicionarOutraFormacao) {
             "s" -> cadastrarFormacao() //Segue para função cadastrarFormacao()
-            "n" -> println("")
+            "n" -> menuFormacao()
         }
 
         if (desejaAdicionarOutraFormacao.isNullOrEmpty() || !desejaAdicionarOutraFormacao.any { it.isLetter() } || (!desejaAdicionarOutraFormacao.equals("s") && !desejaAdicionarOutraFormacao.equals("n"))) {
             println("-----Seleção inválida!-----".uppercase())
-        } else println("")
+        }
 
     } while (desejaAdicionarOutraFormacao.isNullOrEmpty() || !desejaAdicionarOutraFormacao.any { it.isLetter() } || (!desejaAdicionarOutraFormacao.equals("s") && !desejaAdicionarOutraFormacao.equals("n")))
 
