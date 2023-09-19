@@ -1,7 +1,5 @@
 package aplicacao
 
-import enums.TipoConteudoEducacional
-
 fun telaInicial() {
 
     do { //Repete execução enquanto não receber 1, 2 ou 3
