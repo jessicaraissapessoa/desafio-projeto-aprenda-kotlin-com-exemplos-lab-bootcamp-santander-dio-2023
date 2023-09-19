@@ -51,7 +51,7 @@ fun exibirUsuariosOpcaoMenu() { //Versão de exibirUsuarios() para encaminhament
 
     println(builder.toString())
 
-    do { //Repete execução enquanto editarOutroUsuario não receber um valor que não seja nulo, vazio, sem letras ou diferente de "s"
+    do {
 
         println("Digite 's' para voltar ao menu de USUÁRIO")
         val voltarParaMenuUsuario = readlnOrNull() //Recebimento do valor pelo teclado
