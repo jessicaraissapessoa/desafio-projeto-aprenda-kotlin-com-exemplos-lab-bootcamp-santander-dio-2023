@@ -9,7 +9,7 @@ Trata-se de uma aplicação para a simulação de um sistema da DIO. O sistema c
 ## Como usar este repositório
 
 * Nessa tela inicial do repositório, faça um fork clicando na opção, conforme mostra a imagem a seguir. Isso criará uma cópia desse repositório em seus repositórios no GitHub
-  ![fork](img.png "fork")
+  ![fork](imagens/img.png "fork")
 * 
 
 ### Sistema
