@@ -1,5 +1,6 @@
 package usuario
 
+import aplicacao.menuUsuario
 import enums.TipoUsuario
 
 fun Usuario.equalsIgnoringID(other: Usuario) : Boolean { //Função para comparar qualquer usuário novo aos já cadastrados
@@ -74,4 +75,5 @@ fun cadastrarUsuario() { //Função para cadastrar usuário
 
     } while (desejaAdicionarOutroUsuario.isNullOrEmpty() || !desejaAdicionarOutroUsuario.any { it.isLetter() } || (!desejaAdicionarOutroUsuario.equals("s") && !desejaAdicionarOutroUsuario.equals("n")))
 
+    menuUsuario()
 }

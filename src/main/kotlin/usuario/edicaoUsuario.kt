@@ -1,5 +1,6 @@
 package usuario
 
+import aplicacao.menuUsuario
 import enums.TipoUsuario
 
 fun editarUsuario() { //Função para editar usuário
@@ -120,5 +121,7 @@ fun editarUsuario() { //Função para editar usuário
         } while (editarOutroUsuario.isNullOrEmpty() || !editarOutroUsuario.any { it.isLetter() } || (!editarOutroUsuario.equals("s") && !editarOutroUsuario.equals("n")))
 
     }
+
+    menuUsuario()
 
 }

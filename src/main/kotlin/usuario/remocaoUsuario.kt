@@ -1,5 +1,7 @@
 package usuario
 
+import aplicacao.menuUsuario
+
 fun excluirUsuario() { //Função para remover usuário
 
     if (listaUsuarios.isEmpty()) exibirListaUsuariosVazia() //Caso a lista de usuários esteja vazia, executar função exibirListaUsuariosVazia()
@@ -51,5 +53,7 @@ fun excluirUsuario() { //Função para remover usuário
         } while (excluirOutroUsuario.isNullOrEmpty() || !excluirOutroUsuario.any { it.isLetter() } || (!excluirOutroUsuario.equals("s") && !excluirOutroUsuario.equals("n")))
 
     }
+
+    menuUsuario()
 
 }
