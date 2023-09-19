@@ -203,6 +203,7 @@ fun excluirUsuarioFormacao() {
     excluirUsuarioFormacaoSelecionada(formacaoSelecionada)
 }
 
+
 fun excluirUsuarioFormacaoSelecionada(formacaoSelecionada: Formacao) {
 
     if (formacaoSelecionada.inscritosFormacao.isEmpty()) {
