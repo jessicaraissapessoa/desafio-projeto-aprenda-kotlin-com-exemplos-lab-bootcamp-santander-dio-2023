@@ -7,7 +7,7 @@ import conteudoEducacional.exibirConteudosEducacionais
 
 fun menuConteudoEducacional() {
 
-    do { //Repete execução enquanto não receber 1, 2 ou 3
+    do { //Repete execução enquanto não receber 1, 2, 3, 4 ou 5
 
         println("----------------------------------------------------------------------------------------" +
                 "\nSelecione o que deseja acessar em CONTEÚDO EDUCACIONAL informando número correspondente:" +
