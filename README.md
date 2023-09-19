@@ -6,6 +6,12 @@ Repositório destinado à minha abstração para o desafio de projeto "Abstraind
 
 Trata-se de uma aplicação para a simulação de um sistema da DIO. O sistema construído apresenta usuários, formações, conteúdos educacionais, tipos de usúario e tipos de conteúdo educacional e níveis de dificuldade (aplicáveis à formações e conteúdos educacionais).
 
+## Como usar este repositório
+
+* Nessa tela inicial do repositório, faça um fork clicando na opção, conforme mostra a imagem a seguir. Isso criará uma cópia desse repositório em seus repositórios no GitHub
+  ![fork](img.png "fork")
+* 
+
 ### Sistema
 
 Segue o esquema dos arquivos (com suas classes e métodos):
