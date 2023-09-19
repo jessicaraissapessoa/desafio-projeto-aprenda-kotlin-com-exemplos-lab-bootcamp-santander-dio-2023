@@ -80,6 +80,12 @@ fun adicionarUsuarioFormacao() {
     val indexFormacao = selecaoFormacao!!.toInt() - 1 //índice da formação na mutableList listaFormacoes
     val formacaoSelecionada = listaFormacoes[indexFormacao] //formaçãoSelecionada recebe a Formacao equivalente de listaFormações
 
+    adicionarUsuarioFormacaoSelecionada(formacaoSelecionada)
+}
+
+
+fun adicionarUsuarioFormacaoSelecionada(formacaoSelecionada: Formacao) {
+
     println("ID: ${formacaoSelecionada.idFormacao} | NOME: ${formacaoSelecionada.nomeFormacao}\n\t↳ NÍVEL: ${formacaoSelecionada.nivelDificuldadeFormacao}\n")
 
     println("----- Lista de usuários cadastrados na formação -----\n".uppercase())
@@ -136,7 +142,7 @@ fun adicionarUsuarioFormacao() {
         }
 
         when(adicionarOutroUsuarioFormacao) {
-            "s" -> adicionarUsuarioFormacao() //"Loop" de adicionarUsuariosFormacao() -> Segue cadastrando usuários na mesma formação
+            "s" -> adicionarUsuarioFormacaoSelecionada(formacaoSelecionada) //"Loop" de adicionarUsuariosFormacao() -> Segue cadastrando usuários na mesma formação
             "n" -> {
                 println("Inscrição de usuários em formação de ID ${formacaoSelecionada.idFormacao} concluída\n")
                 println(formacaoSelecionada)
@@ -146,6 +152,7 @@ fun adicionarUsuarioFormacao() {
     } while (adicionarOutroUsuarioFormacao.isNullOrEmpty() || !adicionarOutroUsuarioFormacao.any { it.isLetter() } || (!adicionarOutroUsuarioFormacao.equals("s") && !adicionarOutroUsuarioFormacao.equals("n")))
 
     editarFormacao()
+
 }
 
 fun excluirUsuarioFormacao() {
@@ -192,6 +199,11 @@ fun excluirUsuarioFormacao() {
 
     val indexFormacao = selecaoFormacao!!.toInt() - 1 //índice da formação na mutableList listaFormacoes
     val formacaoSelecionada = listaFormacoes[indexFormacao] //formaçãoSelecionada recebe a Formacao equivalente de listaFormações
+
+    excluirUsuarioFormacaoSelecionada(formacaoSelecionada)
+}
+
+fun excluirUsuarioFormacaoSelecionada(formacaoSelecionada: Formacao) {
 
     if (formacaoSelecionada.inscritosFormacao.isEmpty()) {
         println("Não há usuários para excluir da formação.")
@@ -244,7 +256,7 @@ fun excluirUsuarioFormacao() {
             }
 
             when(excluirOutroUsuarioFormacao) {
-                "s" -> excluirUsuarioFormacao() //"Loop" de excluirUsuarioFormacao() -> Segue removendo usuários na mesma formação
+                "s" -> excluirUsuarioFormacaoSelecionada(formacaoSelecionada) //"Loop" de excluirUsuarioFormacao() -> Segue removendo usuários na mesma formação
                 "n" -> {
                     println("Remoção de usuários em formação de ID ${formacaoSelecionada.idFormacao} concluída\n")
                     println(formacaoSelecionada)
@@ -255,4 +267,5 @@ fun excluirUsuarioFormacao() {
 
         editarFormacao()
     }
+
 }
