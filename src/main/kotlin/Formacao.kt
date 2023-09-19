@@ -872,6 +872,7 @@ fun editarConteudosFormacao(formacaoSelecionada: Formacao) {
 
 }
 
+
 fun excluirConteudosFormacao(formacaoSelecionada: Formacao) {
 
     if (listaConteudosEducacionais.isEmpty()) exibirListaConteudosEducacionaisVazia() //Caso a lista de conteúdos educacionais esteja vazia, executar função exibirListaConteudosEducacionaisVazia()
@@ -901,7 +902,7 @@ fun excluirConteudosFormacao(formacaoSelecionada: Formacao) {
     val indexConteudo = selecaoRemocaoConteudoFormacao!!.toInt() - 1 //índice de Conteudo na mutableList listaConteudosEducacionais
     val conteudoSelecionado = listaConteudosEducacionais[indexConteudo] //usuarioSelecionado recebe o Conteudo equivalente de listaConteudosEducacionais
 
-    if (formacaoSelecionada.inscritosFormacao.remove(conteudoSelecionado)) {
+    if (formacaoSelecionada.conteudosFormacao.remove(conteudoSelecionado)) {
         println("Remoção bem sucedida de:\n$conteudoSelecionado!\n")
         println("ID: ${formacaoSelecionada.idFormacao} | NOME: ${formacaoSelecionada.nomeFormacao}\n\t↳ NÍVEL: ${formacaoSelecionada.nivelDificuldadeFormacao}\n")
         exibirConteudosFormacao(formacaoSelecionada)
