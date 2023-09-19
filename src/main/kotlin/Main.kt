@@ -7,6 +7,15 @@
 fun main() {
 
 
+    println("----------------------")
+    cadastrarFormacao()
+    println("PASSANDO PARA USUARIO!!!")
+    cadastrarUsuarioFormacao()
+    println("PASSANDO PARA EDITARFORMACAO!!!")
+    editarFormacao()
+
+    println("----------------------")
+
 
 
 
