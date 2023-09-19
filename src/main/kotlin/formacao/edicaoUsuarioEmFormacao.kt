@@ -256,4 +256,3 @@ fun excluirUsuarioFormacao() {
         editarFormacao()
     }
 }
-
