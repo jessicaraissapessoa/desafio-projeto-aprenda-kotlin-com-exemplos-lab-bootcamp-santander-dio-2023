@@ -1,9 +1,6 @@
 package conteudoEducacional
 
 import aplicacao.menuConteudoEducacional
-import aplicacao.menuUsuario
-import usuario.exibirListaUsuariosVazia
-import usuario.listaUsuarios
 
 fun exibirListaConteudosEducacionaisVazia() {
 
