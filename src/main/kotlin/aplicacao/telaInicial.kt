@@ -11,7 +11,8 @@ fun telaInicial() {
                 "\n1 - Usuários".uppercase() +
                 "\n2 - Conteúdos educacionais".uppercase() +
                 "\n3 - Formações".uppercase() +
-                "\n4 - Sair da aplicação")
+                "\n4 - Sair da aplicação".uppercase() +
+                "\n----------------------------------------------------------------------------------------")
         val opcao = readlnOrNull()
 
         when (opcao) {
@@ -22,7 +23,7 @@ fun telaInicial() {
         }
 
         if (opcao.isNullOrEmpty() || (!opcao.equals("1") && !opcao.equals("2")  && !opcao.equals("3") && !opcao.equals("4"))) {
-            println("-----Seleção inválida!-----".uppercase()) //Imprime em caso de não passar na validação
+            println("Seleção inválida!".uppercase()) //Imprime em caso de não passar na validação
         }
 
     } while (opcao.isNullOrEmpty() || (!opcao.equals("1") && !opcao.equals("2") && !opcao.equals("3") && !opcao.equals("4")))
