@@ -8,10 +8,10 @@ fun telaInicial() {
 
         println("----------------------------------------------------------------------------------------" +
                 "\nSelecione o que deseja acessar informando número correspondente:" +
-                "\n1 - Usuários".uppercase() +
-                "\n2 - Conteúdos educacionais".uppercase() +
-                "\n3 - Formações".uppercase() +
-                "\n4 - Sair da aplicação".uppercase() +
+                "\n1 - Usuários" +
+                "\n2 - Conteúdos educacionais" +
+                "\n3 - Formações" +
+                "\n4 - Sair da aplicação" +
                 "\n----------------------------------------------------------------------------------------")
         val opcao = readlnOrNull()
 
