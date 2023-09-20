@@ -113,8 +113,6 @@ fun exibirInscritosFormacao(formacaoSelecionada: Formacao) { //Exibição da lis
 
     val builder = StringBuilder()
 
-    builder.append("ID: ${formacaoSelecionada.idFormacao} | NOME: ${formacaoSelecionada.nomeFormacao}\n" +
-            "\t↳ NÍVEL: ${formacaoSelecionada.nivelDificuldadeFormacao} | DURAÇÃO: ${formacaoSelecionada.duracaoFormacao}h")
     for (usuario in formacaoSelecionada.inscritosFormacao) {
         builder.append(usuario.toString())
         builder.append("\n") //Adicionar uma quebra de linha entre cada usuário inscrito na formação exibido
@@ -128,8 +126,6 @@ fun exibirConteudosFormacao(formacaoSelecionada: Formacao) {  //Exibição da li
 
     val builder = StringBuilder()
 
-    builder.append("ID: ${formacaoSelecionada.idFormacao} | NOME: ${formacaoSelecionada.nomeFormacao}\n" +
-            "\t↳ NÍVEL: ${formacaoSelecionada.nivelDificuldadeFormacao} | DURAÇÃO: ${formacaoSelecionada.duracaoFormacao}h")
     for (conteudo in formacaoSelecionada.conteudosFormacao) {
         builder.append(conteudo.toString())
         builder.append("\n") //Adicionar uma quebra de linha entre cada conteúdo cadastrado na formação exibido
