@@ -21,22 +21,16 @@ Repositório destinado à minha abstração para o desafio de projeto "Abstraind
 
 <br>
 
-## Como usar este repositório
+## Alguns detalhes sobre a aplicação
 ###
-* Nessa tela inicial do repositório, faça um fork clicando na opção, conforme mostra a imagem a seguir. Isso criará uma cópia (clone) desse repositório em seus repositórios no GitHub
-  ![fork](imagensREADME/fork.png "fork")
-* Preencha o formulário "Create a new fork" para customizar clone será criado em seu GitHub
-* No repositório, acima dos arquivos, sempre haverá aviso caso tenha sido feitas alterações no repositório original. Com "Sync fork" você puxa essas alterações para seu repositório, mantendo-o atualizado
-  ![syncfork](imagensREADME/syncfork.png "sync fork")
-* Para criar uma cópia local desse repositório clonado, selecione/crie a pasta para ele no computador
-* No seu repositório clonado, clique em Code e copie o link na aba HTTPS
-  ![linkhttps](imagensREADME/linkhttps.png "linkhttps")
-* Nessa pasta, inicialize o Git Bash
-* Comando `git clone linkDoSeuRepositorioClonado`
-* Comando `git remote add upstream https://github.com/jessicaraissapessoa/desafio-projeto-aprenda-kotlin-com-exemplos-lab-bootcamp-santander-dio-2023.git`
-* Comando `git remote -v`
-* Agora há conexão com os repositórios clone e original
-* Agora divirta-se com a aplicação na IDE de sua preferência
+
+* Não há banco de dados. Assim, ao encerrar a execução, todos os dados (usuários, conteúdos, formações cadastrados etc) são perdidos;
+- A simulação de uma espécie de interface executada no console somada à conexão construída entre todas as funções permite que haja navegação cíclica e contínua entre todas essas funções armazenando e utilizando os dados durante esse tempo de execução;
+* Os dados das classes e variáveis diversas não são inseridos previamente à execução. Todos os valores são recebidos por um sistema de leitura de entrada por teclado e, portanto, são informados pelo usuário;
+- Todas as recepções de valores por entrada possuem suas validações mediante cada caso e necessidade.<br>Ex: validações para não receber números, validações para não receber null, validações para receber valores dentre opções oferecidas etc;
+* Também há verificações que trazem feedback e opções ao usuário.<br>Ex: O usuário vai cadastrar um usuário em uma formação, mas não há funcionários cadastrados no sistema. Será avisado que não há usuários cadastrados no sistema e dada a opção de fazer esse cadastro de usuários no sistema.<br>Ex: O usuário está fazendo remoção de usuários em uma formação. Quando não houver mais usuários nessa, será dado um aviso sobre e a aplicação irá direcionar para o menu; 
+- É feito o uso de sobrecarga de construtor em classes para chamadas de construtor vazio e em alguns casos, são determinados valores padrões (que podem ser alterados) às variáveis;
+* Há loops que permitem ao usuário efetuar operações repetidamente de forma facilitada.<br>Ex: Remover mais de um usuário da mesma formação em sequência;
 
 <br>
 
@@ -56,9 +50,50 @@ Esses códigos estão divididos em packages (pastas/diretórios). Segue a descri
 
 <br>
 
-## Detalhamento do sistema
+## Screenshots de demonstração
 ###
 
+### Navegação entre menus e enceramento da execução:
+
+<br>
+
+![navegacaoEEncerramento.png](imagensREADME/navegacaoEEncerramento.png "navegação entre menus e encerramento da execução")
+
+<br>
+
+### Construção de uma formação (há saltos entre o momento de uma imagem e outra):
+
+<br>
+
+**Criação da formação:** <br>
+![criandoFormacao.png](imagensREADME/criandoFormacao.png "Criação de uma formação")
+
+
+
+<br>
+
+### Validação de valor de entrada:
+
+
+<br>
+
+## Como usar este repositório
+###
+
+* Nessa tela inicial do repositório, faça um fork clicando na opção, conforme mostra a imagem a seguir. Isso criará uma cópia (clone) desse repositório em seus repositórios no GitHub
+  ![fork](imagensREADME/fork.png "fork")
+- Preencha o formulário "Create a new fork" para customizar clone será criado em seu GitHub
+* No repositório, acima dos arquivos, sempre haverá aviso caso tenha sido feitas alterações no repositório original. Com "Sync fork" você puxa essas alterações para seu repositório, mantendo-o atualizado
+  ![syncfork](imagensREADME/syncfork.png "sync fork")
+- Para criar uma cópia local desse repositório clonado, selecione/crie a pasta para ele no computador
+* No seu repositório clonado, clique em Code e copie o link na aba HTTPS
+  ![linkhttps](imagensREADME/linkhttps.png "linkhttps")
+- Nessa pasta, inicialize o Git Bash
+* Comando `git clone linkDoSeuRepositorioClonado`
+- Comando `git remote add upstream https://github.com/jessicaraissapessoa/desafio-projeto-aprenda-kotlin-com-exemplos-lab-bootcamp-santander-dio-2023.git`
+* Comando `git remote -v`
+- Agora há conexão com os repositórios clone e original
+* Agora divirta-se com a aplicação na IDE de sua preferência
   
 
 
