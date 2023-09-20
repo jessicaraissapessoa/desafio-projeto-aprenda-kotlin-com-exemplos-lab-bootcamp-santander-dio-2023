@@ -157,7 +157,7 @@ fun adicionarConteudoFormacaoSelecionada(formacaoSelecionada: Formacao) {
 
     } while (adicionarOutroConteudoFormacao.isNullOrEmpty() || !adicionarOutroConteudoFormacao.any { it.isLetter() } || (!adicionarOutroConteudoFormacao.equals("s") && !adicionarOutroConteudoFormacao.equals("n")))
 
-    editarFormacao()
+    menuFormacao()
 }
 
 
@@ -214,7 +214,7 @@ fun excluirConteudoFormacaoSelecionada(formacaoSelecionada: Formacao) {
 
     if (formacaoSelecionada.conteudosFormacao.isEmpty()) {
         println("Não há conteúdos educacionais para excluir da formação.")
-        editarFormacao()
+        menuFormacao()
     } else {
 
         println("ID: ${formacaoSelecionada.idFormacao} | NOME: ${formacaoSelecionada.nomeFormacao}\n\t↳ NÍVEL: ${formacaoSelecionada.nivelDificuldadeFormacao}\n")
@@ -271,6 +271,6 @@ fun excluirConteudoFormacaoSelecionada(formacaoSelecionada: Formacao) {
 
         } while (excluirOutroConteudoFormacao.isNullOrEmpty() || !excluirOutroConteudoFormacao.any { it.isLetter() } || (!excluirOutroConteudoFormacao.equals("s") && !excluirOutroConteudoFormacao.equals("n")))
 
-        editarFormacao()
+        menuFormacao()
     }
 }

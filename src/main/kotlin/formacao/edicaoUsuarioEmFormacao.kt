@@ -151,7 +151,7 @@ fun adicionarUsuarioFormacaoSelecionada(formacaoSelecionada: Formacao) {
 
     } while (adicionarOutroUsuarioFormacao.isNullOrEmpty() || !adicionarOutroUsuarioFormacao.any { it.isLetter() } || (!adicionarOutroUsuarioFormacao.equals("s") && !adicionarOutroUsuarioFormacao.equals("n")))
 
-    editarFormacao()
+    menuFormacao()
 
 }
 
@@ -208,7 +208,7 @@ fun excluirUsuarioFormacaoSelecionada(formacaoSelecionada: Formacao) {
 
     if (formacaoSelecionada.inscritosFormacao.isEmpty()) {
         println("Não há usuários para excluir da formação.")
-        editarFormacao()
+        menuFormacao()
     } else {
 
         println("ID: ${formacaoSelecionada.idFormacao} | NOME: ${formacaoSelecionada.nomeFormacao}\n\t↳ NÍVEL: ${formacaoSelecionada.nivelDificuldadeFormacao}\n")
@@ -235,8 +235,8 @@ fun excluirUsuarioFormacaoSelecionada(formacaoSelecionada: Formacao) {
 
         } while (!opcoesUsuario.contains(selecaoUsuario))
 
-        val indexUsuario = selecaoUsuario!!.toInt() //índice de Usuário na mutableList listaUsuarios
-        val usuarioSelecionado = listaFormacoes.find { it.idFormacao == indexUsuario } //usuarioSelecionado recebe o Usuário equivalente de listaUsuarios
+        val idUsuario = selecaoUsuario!!.toInt() //índice de Usuário na mutableList listaUsuarios
+        val usuarioSelecionado = listaFormacoes.find { it.idFormacao == idUsuario } //usuarioSelecionado recebe o Usuário equivalente de listaUsuarios
 
         if (usuarioSelecionado != null) { //Remoção com feedback
             val removido = listaFormacoes.remove(usuarioSelecionado)
@@ -267,7 +267,7 @@ fun excluirUsuarioFormacaoSelecionada(formacaoSelecionada: Formacao) {
 
         } while (excluirOutroUsuarioFormacao.isNullOrEmpty() || !excluirOutroUsuarioFormacao.any { it.isLetter() } || (!excluirOutroUsuarioFormacao.equals("s") && !excluirOutroUsuarioFormacao.equals("n")))
 
-        editarFormacao()
+        menuFormacao()
     }
 
 }
