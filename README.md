@@ -3,7 +3,7 @@
 <br>
 Repositório destinado à minha abstração para o desafio de projeto "Abstraindo Formações da DIO Usando Orientação a Objetos com Kotlin", do bootcamp Santander 2023, na trilha "Mobile Android com Kotlin"
 
-----------
+<br>
 
 ## Tecnologias utilizadas
 ###
@@ -11,7 +11,7 @@ Repositório destinado à minha abstração para o desafio de projeto "Abstraind
 * **Versionamento:** Git/GitHub
 * **IDE:** Intellij IDEA Ultimate
 
-----------
+<br>
 
 ## O projeto
 ###
@@ -38,7 +38,7 @@ Repositório destinado à minha abstração para o desafio de projeto "Abstraind
 * Agora há conexão com os repositórios clone e original
 * Agora divirta-se com a aplicação na IDE de sua preferência
 
-###
+<br>
 
 ## Organização
 ###
@@ -54,7 +54,7 @@ Esses códigos estão divididos em packages (pastas/diretórios). Segue a descri
 | [src/main/kotlin/conteudoEducacional](https://github.com/jessicaraissapessoa/desafio-projeto-aprenda-kotlin-com-exemplos-lab-bootcamp-santander-dio-2023/tree/main/src/main/kotlin/conteudoEducacional) | Pasta contém classe e funções relativas ao conteúdo educacional. Adição, edição e remoção de conteúdos educacionais no sistema                                           | [ConteudoEducacional.kt](https://github.com/jessicaraissapessoa/desafio-projeto-aprenda-kotlin-com-exemplos-lab-bootcamp-santander-dio-2023/blob/main/src/main/kotlin/conteudoEducacional/ConteudoEducacional.kt)<br/>[listaConteudosEducacionais.kt](https://github.com/jessicaraissapessoa/desafio-projeto-aprenda-kotlin-com-exemplos-lab-bootcamp-santander-dio-2023/blob/main/src/main/kotlin/conteudoEducacional/listaConteudosEducacionais.kt)<br/>[exibicoesConteudoEducacional.kt]()<br/>[cadastroConteudoEducacional.kt](https://github.com/jessicaraissapessoa/desafio-projeto-aprenda-kotlin-com-exemplos-lab-bootcamp-santander-dio-2023/blob/main/src/main/kotlin/conteudoEducacional/cadastroConteudoEducacional.kt)<br/>[edicaoConteudoEducacional.kt](https://github.com/jessicaraissapessoa/desafio-projeto-aprenda-kotlin-com-exemplos-lab-bootcamp-santander-dio-2023/blob/main/src/main/kotlin/conteudoEducacional/edicaoConteudoEducacional.kt)<br/>[remocaoConteudoEducacional.kt](https://github.com/jessicaraissapessoa/desafio-projeto-aprenda-kotlin-com-exemplos-lab-bootcamp-santander-dio-2023/blob/main/src/main/kotlin/conteudoEducacional/remocaoConteudoEducacional.kt)                                                                                                                                                                                                                                                         |
 | [src/main/kotlin/formacao](https://github.com/jessicaraissapessoa/desafio-projeto-aprenda-kotlin-com-exemplos-lab-bootcamp-santander-dio-2023/tree/main/src/main/kotlin/formacao)                       | Pasta contém classe e funções relativas à formação educacional. Adição, edição e remoção de formações, de usuários em formações e de conteúdos educacionais em formações | [Formacao.kt](https://github.com/jessicaraissapessoa/desafio-projeto-aprenda-kotlin-com-exemplos-lab-bootcamp-santander-dio-2023/blob/main/src/main/kotlin/formacao/Formacao.kt)<br/>[listaFormacoes.kt](https://github.com/jessicaraissapessoa/desafio-projeto-aprenda-kotlin-com-exemplos-lab-bootcamp-santander-dio-2023/blob/main/src/main/kotlin/formacao/listaFormacoes.kt)<br/>[exibicoesFormacao.kt](https://github.com/jessicaraissapessoa/desafio-projeto-aprenda-kotlin-com-exemplos-lab-bootcamp-santander-dio-2023/blob/main/src/main/kotlin/formacao/exibicoesFormacao.kt)<br/>[cadastroFormacao.kt](https://github.com/jessicaraissapessoa/desafio-projeto-aprenda-kotlin-com-exemplos-lab-bootcamp-santander-dio-2023/blob/main/src/main/kotlin/formacao/cadastroFormacao.kt)<br/>[edicaoFormacao.kt](https://github.com/jessicaraissapessoa/desafio-projeto-aprenda-kotlin-com-exemplos-lab-bootcamp-santander-dio-2023/blob/main/src/main/kotlin/formacao/edicaoFormacao.kt)<br/>[remocaoFormacao.kt]()<br/>[edicaoUsuarioEmFormacao.kt](https://github.com/jessicaraissapessoa/desafio-projeto-aprenda-kotlin-com-exemplos-lab-bootcamp-santander-dio-2023/blob/main/src/main/kotlin/formacao/edicaoUsuarioEmFormacao.kt)<br/>[edicaoConteudoEmFormacao.kt](https://github.com/jessicaraissapessoa/desafio-projeto-aprenda-kotlin-com-exemplos-lab-bootcamp-santander-dio-2023/blob/main/src/main/kotlin/formacao/edicaoConteudoEmFormacao.kt) |
 
-----------
+<br>
 
 ## Detalhamento do sistema
 ###
