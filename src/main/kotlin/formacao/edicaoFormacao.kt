@@ -3,39 +3,9 @@ package formacao
 import aplicacao.menuFormacao
 import enums.NivelDificuldade
 
-fun editarFormacao() {
+fun editarDadosFormacao() {
 
     if (listaFormacoes.isEmpty()) exibirListaFormacoesVazia() //Caso a lista de formações esteja vazia, executar função exibirListaFormacoesVazia()
-
-    do { //Repete execução enquanto não receber 1, 2, 3, 4, 5 ou 6
-
-        println("----------------------------------------------------------------------------------------" +
-                "\nSelecione o que deseja editar em FORMAÇÃO informando número correspondente:" +
-                "\n1 - Editar nome e/ou nível de dificuldade de uma formação" +
-                "\n2 - Editar/Excluir usuário(s) de uma formação" +
-                "\n3 - Editar/Excluir conteúdo(s) educacional(is) de uma formação" +
-                "\n4 - Remover formação cadastrada" +
-                "\n5 - Voltar" +
-                "\n----------------------------------------------------------------------------------------")
-        val opcao = readlnOrNull()
-
-        when (opcao) {
-            "1" -> editarDadosFormacao()
-            "2" -> editarUsuariosFormacao()
-            "3" -> editarConteudosFormacao()
-            "4" -> excluirFormacao()
-            "5" -> menuFormacao()
-        }
-
-        if (opcao.isNullOrEmpty() || (!opcao.equals("1") && !opcao.equals("2")  && !opcao.equals("3") && !opcao.equals("4") && !opcao.equals("5"))) {
-            println("-----Seleção inválida!-----".uppercase()) //Imprime em caso de não passar na validação
-        }
-
-    } while (opcao.isNullOrEmpty() || (!opcao.equals("1") && !opcao.equals("2") && !opcao.equals("3") && !opcao.equals("4") && !opcao.equals("5")))
-
-}
-
-fun editarDadosFormacao() {
 
     exibirListaFormacoes()
 
@@ -148,5 +118,5 @@ fun editarDadosFormacao() {
         }
     } while (respostaEditarNivelDificuldadeFormacao.isNullOrEmpty() || ((respostaEditarNivelDificuldadeFormacao != "s") && (respostaEditarNivelDificuldadeFormacao != "n")))
 
-    editarFormacao()
+    menuFormacao()
 }
