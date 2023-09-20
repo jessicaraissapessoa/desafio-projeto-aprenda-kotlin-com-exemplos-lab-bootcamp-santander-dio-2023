@@ -238,7 +238,7 @@ fun excluirUsuarioFormacaoSelecionada(formacaoSelecionada: Formacao) {
         val indexUsuario = selecaoUsuario!!.toInt() //índice de Usuário na mutableList listaUsuarios
         val usuarioSelecionado = listaFormacoes.find { it.idFormacao == indexUsuario } //usuarioSelecionado recebe o Usuário equivalente de listaUsuarios
 
-        if (usuarioSelecionado != null) {
+        if (usuarioSelecionado != null) { //Remoção com feedback
             val removido = listaFormacoes.remove(usuarioSelecionado)
 
             if (removido) {
