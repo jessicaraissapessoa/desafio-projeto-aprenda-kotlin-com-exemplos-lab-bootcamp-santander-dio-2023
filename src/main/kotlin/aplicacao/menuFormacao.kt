@@ -30,10 +30,10 @@ fun menuFormacao() {
             "8" -> telaInicial()
         }
 
-        if (opcao.isNullOrEmpty() || (!opcao.equals("1") && !opcao.equals("2")  && !opcao.equals("3") && !opcao.equals("4") && !opcao.equals("5") && !opcao.equals("6"))) {
+        if (opcao.isNullOrEmpty() || (!opcao.equals("1") && !opcao.equals("2")  && !opcao.equals("3") && !opcao.equals("4") && !opcao.equals("5") && !opcao.equals("6") && !opcao.equals("7") && !opcao.equals("8"))) {
             println("-----Seleção inválida!-----".uppercase()) //Imprime em caso de não passar na validação
         }
 
-    } while (opcao.isNullOrEmpty() || (!opcao.equals("1") && !opcao.equals("2") && !opcao.equals("3") && !opcao.equals("4") && !opcao.equals("5") && !opcao.equals("6")))
+    } while (opcao.isNullOrEmpty() || (!opcao.equals("1") && !opcao.equals("2") && !opcao.equals("3") && !opcao.equals("4") && !opcao.equals("5") && !opcao.equals("6") && !opcao.equals("7") && !opcao.equals("6")))
 
 }
