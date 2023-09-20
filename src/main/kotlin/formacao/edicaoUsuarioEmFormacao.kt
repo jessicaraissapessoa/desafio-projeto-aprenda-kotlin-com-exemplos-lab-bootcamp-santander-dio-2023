@@ -91,7 +91,7 @@ fun adicionarUsuarioFormacaoSelecionada(formacaoSelecionada: Formacao) {
     println("----- Lista de usuários cadastrados na formação -----\n".uppercase())
     exibirInscritosFormacao(formacaoSelecionada)
 
-    println("----- Lista de usuários no sistema -----\n".uppercase())
+    println("\n----- Lista de usuários no sistema -----\n".uppercase())
     exibirUsuarios()
 
     //Se quiser inscrever usuário que não está ainda no sistema
@@ -235,14 +235,18 @@ fun excluirUsuarioFormacaoSelecionada(formacaoSelecionada: Formacao) {
 
         } while (!opcoesUsuario.contains(selecaoUsuario))
 
-        val indexUsuario = selecaoUsuario!!.toInt() - 1 //índice de Usuário na mutableList listaUsuarios
-        val usuarioSelecionado = listaUsuarios[indexUsuario] //usuarioSelecionado recebe o Usuário equivalente de listaUsuarios
+        val indexUsuario = selecaoUsuario!!.toInt() //índice de Usuário na mutableList listaUsuarios
+        val usuarioSelecionado = listaFormacoes.find { it.idFormacao == indexUsuario } //usuarioSelecionado recebe o Usuário equivalente de listaUsuarios
 
-        if (formacaoSelecionada.inscritosFormacao.remove(usuarioSelecionado)) {
-            println("Remoção bem sucedida de:\n$usuarioSelecionado!\n")
-            println("ID: ${formacaoSelecionada.idFormacao} | NOME: ${formacaoSelecionada.nomeFormacao}\n\t↳ NÍVEL: ${formacaoSelecionada.nivelDificuldadeFormacao}\n")
-            exibirInscritosFormacao(formacaoSelecionada)
-        } else println("Remoção falhou")
+        if (usuarioSelecionado != null) {
+            val removido = listaFormacoes.remove(usuarioSelecionado)
+
+            if (removido) {
+                println("Remoção bem sucedida de:\n$usuarioSelecionado!\n")
+                println("ID: ${formacaoSelecionada.idFormacao} | NOME: ${formacaoSelecionada.nomeFormacao}\n\t↳ NÍVEL: ${formacaoSelecionada.nivelDificuldadeFormacao}\n")
+                exibirInscritosFormacao(formacaoSelecionada)
+            }
+        }
 
         do { //Repete execução enquanto não receber valor válido: "s" ou "n"
 
