@@ -19,7 +19,7 @@ Repositório destinado à minha abstração para o desafio de projeto "Abstraind
 * O sistema construído apresenta usuários, formações, conteúdos educacionais, tipos de usuário, tipos de conteúdo educacional e níveis de dificuldade (aplicáveis a formações e conteúdos educacionais)
 * Formações podem conter conteúdos educacionais e usuários cadastrados
 
-----------
+<br>
 
 ## Como usar este repositório
 ###
@@ -38,7 +38,7 @@ Repositório destinado à minha abstração para o desafio de projeto "Abstraind
 * Agora há conexão com os repositórios clone e original
 * Agora divirta-se com a aplicação na IDE de sua preferência
 
-----------
+###
 
 ## Organização
 ###
