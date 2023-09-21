@@ -113,6 +113,8 @@ Validações ao cadastrar usuário:
 - Agora há conexão com os repositórios clone e original
 * Agora divirta-se com a aplicação na IDE de sua preferência
 
+<br>
+
 ## Repositório das aulas que antecederam Projeto
 ###
 
