@@ -65,15 +65,33 @@ Esses códigos estão divididos em packages (pastas/diretórios). Segue a descri
 
 <br>
 
-**Criação da formação:** <br>
+**Parte da criação da formação:**
+
 ![criandoFormacao.png](imagensREADME/criandoFormacao.png "Criação de uma formação")
 
+<br>
 
+**Parte do cadastro de usuários em uma formação:**
+
+![cadastrandoUsuariosFormacao.png](imagensREADME/cadastrandoUsuariosFormacao.png "Inserindo usuários em uma formação")
+
+<br>
+
+**Parte de loop de cadastro de conteúdos educacionais em uma mesma formação:**
+
+![cadastrandoConteudosFormacao.png](imagensREADME/cadastrandoConteudosFormacao.png "Inserindo conteúdos educacionais em uma formação")
 
 <br>
 
 ### Validação de valor de entrada:
 
+<br>
+
+Validações ao cadastrar usuário:
+* Tentativas barradas ao preencher o nome do usuário: dígito, vazio, caractere especial
+* Tentativa barrada ao cadastrar usuário: usuário com mesmo nome e tipo já havia sido previamente cadastrado no sistema
+
+![validacaoCadastroUsuario.png](imagensREADME/validacaoCadastroUsuario.png "Validações em cadastro de usuário")
 
 <br>
 
