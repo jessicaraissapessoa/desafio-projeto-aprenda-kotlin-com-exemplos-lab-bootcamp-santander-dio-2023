@@ -112,7 +112,14 @@ Validações ao cadastrar usuário:
 * Comando `git remote -v`
 - Agora há conexão com os repositórios clone e original
 * Agora divirta-se com a aplicação na IDE de sua preferência
-  
+
+## Repositório das aulas que antecederam Projeto
+###
+
+Esse desafio de projeto faz parte do módulo "Conhecendo a linguagem de Programação Kotlin". Eu também tenho um reposítorio para os códigos que desenvolvi no decorrer das aulas desse módulo, para quem tiver interesse. Inclusive já linkei o repositório do desafio de projeto no README do repositório dessas aulas.
+Acesse o repositório:
+
+[Conhecendo a linguagem de programação Kotlin - Bootcamp Santander/DIO 2023](https://github.com/jessicaraissapessoa/conhecendo-kotlin-bootcamp-santander-dio-2023/tree/main)
 
 
 
