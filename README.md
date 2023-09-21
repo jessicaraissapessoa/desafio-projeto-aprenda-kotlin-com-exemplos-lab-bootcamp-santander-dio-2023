@@ -53,7 +53,7 @@ Esses códigos estão divididos em packages (pastas/diretórios). Segue a descri
 ## Screenshots de demonstração
 ###
 
-### Navegação entre menus e enceramento da execução:
+### Navegação entre menus e encerramento da execução:
 
 <br>
 
