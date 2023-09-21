@@ -117,7 +117,7 @@ Validações ao cadastrar usuário:
 ###
 
 Esse desafio de projeto faz parte do módulo "Conhecendo a linguagem de Programação Kotlin". Eu também tenho um reposítorio para os códigos que desenvolvi no decorrer das aulas desse módulo, para quem tiver interesse. Inclusive já linkei o repositório do desafio de projeto no README do repositório dessas aulas.
-Acesse o repositório:
+**Acesse o repositório GitHub**:
 
 [Conhecendo a linguagem de programação Kotlin - Bootcamp Santander/DIO 2023](https://github.com/jessicaraissapessoa/conhecendo-kotlin-bootcamp-santander-dio-2023/tree/main)
 
