@@ -57,7 +57,6 @@ fun cadastrarFormacao() {
         println("Adição de formação bem sucedida:\n$novaFormacao\n") //Feedback da adição
 
         println("Em MENU FORMAÇÃO você poderá cadastrar usuários e conteúdos educacionais à nova formação\n")
-
     }
 
     //"Loop" de cadastrarFormacao()
