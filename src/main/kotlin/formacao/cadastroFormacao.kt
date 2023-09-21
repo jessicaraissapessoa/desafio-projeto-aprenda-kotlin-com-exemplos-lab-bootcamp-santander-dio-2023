@@ -56,37 +56,7 @@ fun cadastrarFormacao() {
         listaFormacoes.add(novaFormacao) //Cadastro/Adição de formação
         println("Adição de formação bem sucedida:\n$novaFormacao\n") //Feedback da adição
 
-        do { //Pode começar a adicionar usuários à formação
-
-            println("Gostaria de começar a cadastrar usuários à formação? Digite 's' para sim ou 'n' para não")
-            val desejaAdicionaUsuariosFormacao = readlnOrNull() //Recebimento do valor pelo teclado
-
-            when(desejaAdicionaUsuariosFormacao) {
-                "s" -> adicionarUsuarioFormacao() //Segue para função adicionarUsuarioFormacao()
-                "n" -> println()
-            }
-
-            if (desejaAdicionaUsuariosFormacao.isNullOrEmpty() || !desejaAdicionaUsuariosFormacao.any { it.isLetter() } || (!desejaAdicionaUsuariosFormacao.equals("s") && !desejaAdicionaUsuariosFormacao.equals("n"))) {
-                println("-----Seleção inválida!-----".uppercase())
-            }
-
-        } while (desejaAdicionaUsuariosFormacao.isNullOrEmpty() || !desejaAdicionaUsuariosFormacao.any { it.isLetter() } || (!desejaAdicionaUsuariosFormacao.equals("s") && !desejaAdicionaUsuariosFormacao.equals("n")))
-
-        do { //Pode começar a adicionar usuários à formação
-
-            println("Gostaria de começar a cadastrar conteúdos educacionais à formação? Digite 's' para sim ou 'n' para não")
-            val desejaAdicionaConteudosFormacao = readlnOrNull() //Recebimento do valor pelo teclado
-
-            when(desejaAdicionaConteudosFormacao) {
-                "s" -> adicionarConteudoFormacao() //Segue para função adicionarConteudoFormacao()
-                "n" -> println()
-            }
-
-            if (desejaAdicionaConteudosFormacao.isNullOrEmpty() || !desejaAdicionaConteudosFormacao.any { it.isLetter() } || (!desejaAdicionaConteudosFormacao.equals("s") && !desejaAdicionaConteudosFormacao.equals("n"))) {
-                println("-----Seleção inválida!-----".uppercase())
-            }
-
-        } while (desejaAdicionaConteudosFormacao.isNullOrEmpty() || !desejaAdicionaConteudosFormacao.any { it.isLetter() } || (!desejaAdicionaConteudosFormacao.equals("s") && !desejaAdicionaConteudosFormacao.equals("n")))
+        println("Em MENU FORMAÇÃO você poderá cadastrar usuários e conteúdos educacionais à nova formação\n")
 
     }
 
