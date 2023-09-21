@@ -18,10 +18,10 @@ fun cadastrarUsuario() { //Função para cadastrar usuário
         println("Insira nome completo do usuário:")
         tecladoNomeUsuario = readlnOrNull() //Recebimento do valor pelo teclado
 
-        if (tecladoNomeUsuario.isNullOrEmpty() || !tecladoNomeUsuario.any { it.isLetter() } || tecladoNomeUsuario.any { it.isDigit() }) {
+        if (tecladoNomeUsuario.isNullOrEmpty() || !tecladoNomeUsuario.any { it.isLetter() }) {
             println("-----Nome inválido!-----".uppercase())
         }
-    } while (tecladoNomeUsuario.isNullOrEmpty() || !tecladoNomeUsuario.any { it.isLetter() }|| tecladoNomeUsuario.any { it.isDigit() })
+    } while (tecladoNomeUsuario.isNullOrEmpty() || !tecladoNomeUsuario.any { it.isLetter() })
 
     do { //Repete execução enquanto não recebe 1 ou 2
         println("Selecione o tipo do usuário informando o número correspondente:" +
@@ -43,7 +43,7 @@ fun cadastrarUsuario() { //Função para cadastrar usuário
 
     var novoUsuario = Usuario() //Instância de Usuário
 
-    val id = listaUsuarios.count() + 1 //id = quantidade de usuários já inseridos em listaUsuarios + 1
+    val id = (listaUsuarios.maxByOrNull { it.idUsuario }?.idUsuario ?: 0) + 1  //Autoincremento de id soma +1 ao maior id da lista
 
     novoUsuario.idUsuario = id //idUsuario da instância de Usuario (novoUsuario) = id
     novoUsuario.nomeUsuario = tecladoNomeUsuario //nomeUsuario da instância de Usuario (novoUsuario) = tecladoNomeUsuario

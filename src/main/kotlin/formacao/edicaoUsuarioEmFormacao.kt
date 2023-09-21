@@ -77,10 +77,12 @@ fun adicionarUsuarioFormacao() {
 
     } while (!opcoesFormacao.contains(selecaoFormacao))
 
-    val indexFormacao = selecaoFormacao!!.toInt() - 1 //índice da formação na mutableList listaFormacoes
-    val formacaoSelecionada = listaFormacoes[indexFormacao] //formaçãoSelecionada recebe a Formacao equivalente de listaFormações
+    val idFormacao = selecaoFormacao!!.toInt() //índice de Formacao na mutableList listaFormacoes
+    val formacaoSelecionada = listaFormacoes.find { it.idFormacao == idFormacao } //formacaoSelecionada recebe a Formacao equivalente de listaFormacoes
 
-    adicionarUsuarioFormacaoSelecionada(formacaoSelecionada)
+    if (formacaoSelecionada != null) {
+        adicionarUsuarioFormacaoSelecionada(formacaoSelecionada)
+    }
 }
 
 
@@ -121,15 +123,19 @@ fun adicionarUsuarioFormacaoSelecionada(formacaoSelecionada: Formacao) {
 
     } while (!opcoesUsuario.contains(selecaoUsuario))
 
-    val indexUsuario = selecaoUsuario!!.toInt() - 1 //índice de Usuário na mutableList listaUsuarios
-    val usuarioSelecionado = listaUsuarios[indexUsuario] //usuarioSelecionado recebe o Usuário equivalente de listaUsuarios
+    val idUsuario = selecaoUsuario!!.toInt() //índice de Usuário na mutableList listaUsuarios
+    val usuarioSelecionado = listaUsuarios.find { it.idUsuario == idUsuario } //usuarioSelecionado recebe o Usuário equivalente de listaUsuarios
 
     //Verificação se o usuário já não está inscrito na formação. Se não estiver inscrito, é feita inscrição:
-    if (formacaoSelecionada.inscritosFormacao.any { it.idUsuario == usuarioSelecionado.idUsuario }) {
+    if (formacaoSelecionada.inscritosFormacao.any { it.idUsuario == usuarioSelecionado!!.idUsuario }) {
         println("Inscrição falhou: usuário já está inscrito na formação selecionada")
     } else {
-        formacaoSelecionada.inscritosFormacao.add(listaUsuarios[indexUsuario])
-        println("Adição bem sucedida: usuário de ID " + listaUsuarios[indexUsuario].idUsuario + " inscrito em formação de ID " + formacaoSelecionada.idFormacao)
+        formacaoSelecionada.inscritosFormacao.add(usuarioSelecionado!!)
+
+        println("Adição bem sucedida: usuário de ID " + usuarioSelecionado.idUsuario + " inscrito em formação de ID " + formacaoSelecionada.idFormacao)
+
+        println("----- Lista de usuários cadastrados na formação -----\n".uppercase())
+        exibirInscritosFormacao(formacaoSelecionada)
     }
 
     do { //Repete execução enquanto não receber valor válido: "s" ou "n"
@@ -197,10 +203,12 @@ fun excluirUsuarioFormacao() {
 
     } while (!opcoesFormacao.contains(selecaoFormacao))
 
-    val indexFormacao = selecaoFormacao!!.toInt() - 1 //índice da formação na mutableList listaFormacoes
-    val formacaoSelecionada = listaFormacoes[indexFormacao] //formaçãoSelecionada recebe a Formacao equivalente de listaFormações
+    val idFormacao = selecaoFormacao!!.toInt() //índice de Formacao na mutableList listaFormacoes
+    val formacaoSelecionada = listaFormacoes.find { it.idFormacao == idFormacao } //formacaoSelecionada recebe a Formacao equivalente de listaFormacoes
 
-    excluirUsuarioFormacaoSelecionada(formacaoSelecionada)
+    if (formacaoSelecionada != null) {
+        excluirUsuarioFormacaoSelecionada(formacaoSelecionada)
+    }
 }
 
 

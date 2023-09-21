@@ -10,6 +10,7 @@ fun menuUsuario() {
     do { //Repete execução enquanto não receber 1, 2 ou 3
 
         println("----------------------------------------------------------------------------------------" +
+                "\nMENU USUÁRIO" +
                 "\nSelecione o que deseja acessar em USUÁRIO informando número correspondente:" +
                 "\n1 - Lista de usuários cadastrados" +
                 "\n2 - Cadastrar usuário(s)" +

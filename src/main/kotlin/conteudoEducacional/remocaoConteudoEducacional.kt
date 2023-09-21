@@ -29,9 +29,16 @@ fun excluirConteudoEducacional() { //Função para remover conteúdo educacional
 
     } while (!opcoes.contains(selecaoRemocaoConteudoEducacional))
 
-    val conteudoEducacionalRemovido = listaConteudosEducacionais.removeAt(index = (selecaoRemocaoConteudoEducacional?.toInt()!! - 1)) //Remoção do conteúdo educacional
+    val idConteudoEducacional = selecaoRemocaoConteudoEducacional!!.toInt() //Recebe o valor do id selecionado
+    val conteudoSelecionado = listaConteudosEducacionais.find { it.idConteudoEducacional == idConteudoEducacional } //Recebe o conteúdo selecionado
 
-    println("Remoção de usuário bem sucedida:\n$conteudoEducacionalRemovido\n") //Mensagem de feedback da remoção
+    if (conteudoSelecionado != null) { //Remoção com feedback
+        val removido = listaConteudosEducacionais.remove(conteudoSelecionado)
+
+        if (removido) {
+            println("Remoção bem sucedida de:\n$conteudoSelecionado!\n")
+        } else println("Remoção falhou")
+    }
 
     if (listaConteudosEducacionais.isNotEmpty()) {
 
@@ -52,6 +59,8 @@ fun excluirConteudoEducacional() { //Função para remover conteúdo educacional
 
         } while (desejaExcluirOutroConteudoEducacional.isNullOrEmpty() || !desejaExcluirOutroConteudoEducacional.any { it.isLetter() } || (!desejaExcluirOutroConteudoEducacional.equals("s") && !desejaExcluirOutroConteudoEducacional.equals("n")))
 
+    } else {
+        println("Não há mais conteúdos educacionais para remover")
     }
 
     menuConteudoEducacional()

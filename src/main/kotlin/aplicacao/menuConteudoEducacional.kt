@@ -10,6 +10,7 @@ fun menuConteudoEducacional() {
     do { //Repete execução enquanto não receber 1, 2, 3, 4 ou 5
 
         println("----------------------------------------------------------------------------------------" +
+                "\nMENU CONTEÚDO EDUCACIONAL" +
                 "\nSelecione o que deseja acessar em CONTEÚDO EDUCACIONAL informando número correspondente:" +
                 "\n1 - Lista de conteúdos educacionais cadastrados" +
                 "\n2 - Cadastrar conteúdo(s) educacional(is)" +

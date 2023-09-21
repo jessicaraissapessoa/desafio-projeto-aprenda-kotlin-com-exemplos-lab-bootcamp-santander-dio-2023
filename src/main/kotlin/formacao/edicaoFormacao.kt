@@ -44,8 +44,8 @@ fun editarDadosFormacao() {
 
     } while (!opcoesFormacao.contains(selecaoFormacao))
 
-    val indexFormacao = selecaoFormacao!!.toInt() - 1 //índice da formação na mutableList listaFormacoes
-    val formacaoSelecionada = listaFormacoes[indexFormacao] //formaçãoSelecionada recebe a Formacao equivalente de listaFormações
+    val idFormacao = selecaoFormacao!!.toInt() //índice de Formacao na mutableList listaFormacoes
+    val formacaoSelecionada = listaFormacoes.find { it.idFormacao == idFormacao } //formacaoSelecionada recebe a Formacao equivalente de listaFormacoes
 
     //Edição do nome da formação
     do { //Repete execução enquanto não recebe um valor correspondente a "s" ou "n"
@@ -62,12 +62,12 @@ fun editarDadosFormacao() {
                     println("Insira novo nome completo da formação:")
                     tecladoNovoNomeFormacao = readlnOrNull() //Recebimento do valor pelo teclado
 
-                    if (tecladoNovoNomeFormacao.isNullOrEmpty() || !tecladoNovoNomeFormacao.any { it.isLetter() } || tecladoNovoNomeFormacao.any { it.isDigit() }) {
+                    if (tecladoNovoNomeFormacao.isNullOrEmpty() || !tecladoNovoNomeFormacao.any { it.isLetter() }) {
                         println("-----Nome inválido!-----".uppercase())
                     }
-                } while (tecladoNovoNomeFormacao.isNullOrEmpty() || !tecladoNovoNomeFormacao.any { it.isLetter() } || tecladoNovoNomeFormacao.any { it.isDigit() })
+                } while (tecladoNovoNomeFormacao.isNullOrEmpty() || !tecladoNovoNomeFormacao.any { it.isLetter() })
 
-                formacaoSelecionada.nomeFormacao = tecladoNovoNomeFormacao //Atribuição de novo nome à formação do ID informado
+                formacaoSelecionada!!.nomeFormacao = tecladoNovoNomeFormacao //Atribuição de novo nome à formação do ID informado
 
                 //Mensagem de feedback da edição do nome da formação
                 println("Alteração do nome da formação bem sucedida:\n" +
@@ -109,7 +109,7 @@ fun editarDadosFormacao() {
 
                 } while (tecladoNivelDificuldadeFormacao.isNullOrEmpty() || (!tecladoNivelDificuldadeFormacao.equals("1") && !tecladoNivelDificuldadeFormacao.equals("2") && !tecladoNivelDificuldadeFormacao.equals("3")))
 
-                formacaoSelecionada.nivelDificuldadeFormacao = selecaoNovoNivelDificuldadeFormacao //Alteração do nível de dificuldade da formação do ID informado
+                formacaoSelecionada!!.nivelDificuldadeFormacao = selecaoNovoNivelDificuldadeFormacao //Alteração do nível de dificuldade da formação do ID informado
 
                 //Mensagem de feedback da edição do nível de dificuldade da formação
                 println("Alteração do tipo do conteúdo educacional bem sucedida:\n" +

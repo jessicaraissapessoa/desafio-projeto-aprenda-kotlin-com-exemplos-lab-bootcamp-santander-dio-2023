@@ -78,10 +78,12 @@ fun adicionarConteudoFormacao() {
 
     } while (!opcoesFormacao.contains(selecaoFormacao))
 
-    val indexFormacao = selecaoFormacao!!.toInt() - 1 //índice da formação na mutableList listaFormacoes
-    val formacaoSelecionada = listaFormacoes[indexFormacao] //formaçãoSelecionada recebe a Formacao equivalente de listaFormações
+    val idFormacao = selecaoFormacao!!.toInt() //índice de Formacao na mutableList listaFormacoes
+    val formacaoSelecionada = listaFormacoes.find { it.idFormacao == idFormacao } //formacaoSelecionada recebe a Formacao equivalente de listaFormacoes
 
-    adicionarConteudoFormacaoSelecionada(formacaoSelecionada)
+    if (formacaoSelecionada != null) {
+        adicionarConteudoFormacaoSelecionada(formacaoSelecionada)
+    }
 }
 
 fun adicionarConteudoFormacaoSelecionada(formacaoSelecionada: Formacao) {
@@ -121,21 +123,22 @@ fun adicionarConteudoFormacaoSelecionada(formacaoSelecionada: Formacao) {
 
     } while (!opcoesConteudo.contains(selecaoConteudo))
 
-    val indexConteudo = selecaoConteudo!!.toInt() - 1 //índice de ConteudoEducacional na mutableList listaConteudosEducacionais
-    val conteudoSelecionado = listaConteudosEducacionais[indexConteudo] //conteudoSelecionado recebe o Usuário equivalente de listaConteudosEducacionais
+    val idConteudo = selecaoConteudo!!.toInt() //índice de Conteudo na mutableList listaConteudo
+    val conteudoSelecionado = listaConteudosEducacionais.find { it.idConteudoEducacional == idConteudo } //conteudoSelecionado recebe o Conteudo equivalente de listaConteudo
 
     //Verificação se o conteúdo já não está cadastrado na formação. Se não estiver cadastrado, é feito cadastro:
-    if (formacaoSelecionada.conteudosFormacao.any { it.idConteudoEducacional == conteudoSelecionado.idConteudoEducacional }) {
+    if (formacaoSelecionada.conteudosFormacao.any { it.idConteudoEducacional == conteudoSelecionado!!.idConteudoEducacional }) {
         println("Inscrição falhou: conteúdo educacional já está cadastrado na formação selecionada")
     } else {
 
         //Adição do conteúdo à formação:
-        formacaoSelecionada.conteudosFormacao.add(listaConteudosEducacionais[indexConteudo])
+        formacaoSelecionada.conteudosFormacao.add(conteudoSelecionado!!)
 
         //Acrescenta a duração do conteúdo educacional à duração da formação:
-        formacaoSelecionada.duracaoFormacao += listaConteudosEducacionais[indexConteudo].duracaoConteudoEducacional
+        formacaoSelecionada.duracaoFormacao += conteudoSelecionado.duracaoConteudoEducacional
 
-        println("Adição bem sucedida: conteúdo de ID " + listaConteudosEducacionais[indexConteudo].idConteudoEducacional + " cadastrada em formação de ID " + formacaoSelecionada.idFormacao)
+        println("Adição bem sucedida: conteúdo de ID " + conteudoSelecionado.idConteudoEducacional + " cadastrada em formação de ID " + formacaoSelecionada.idFormacao)
+        println(formacaoSelecionada)
     }
 
     do { //Repete execução enquanto não receber valor válido: "s" ou "n"
@@ -203,10 +206,12 @@ fun excluirConteudoFormacao() {
 
     } while (!opcoesFormacao.contains(selecaoFormacao))
 
-    val indexFormacao = selecaoFormacao!!.toInt() - 1 //índice da formação na mutableList listaFormacoes
-    val formacaoSelecionada = listaFormacoes[indexFormacao] //formaçãoSelecionada recebe a Formacao equivalente de listaFormações
+    val idFormacao = selecaoFormacao!!.toInt() //índice de Formacao na mutableList listaFormacoes
+    val formacaoSelecionada = listaFormacoes.find { it.idFormacao == idFormacao } //formacaoSelecionada recebe a Formacao equivalente de listaFormacoes
 
-    excluirConteudoFormacaoSelecionada(formacaoSelecionada)
+    if (formacaoSelecionada != null) {
+        excluirConteudoFormacaoSelecionada(formacaoSelecionada)
+    }
 }
 
 
@@ -241,16 +246,17 @@ fun excluirConteudoFormacaoSelecionada(formacaoSelecionada: Formacao) {
 
         } while (!opcoesConteudo.contains(selecaoConteudo))
 
-        val indexConteudo = selecaoConteudo!!.toInt() - 1 //índice de ConteudoEducacional na mutableList listaConteudosEducacionais
-        val conteudoSelecionado = listaConteudosEducacionais[indexConteudo] //conteudoSelecionado recebe o Usuário equivalente de listaConteudosEducacionais
+        val idConteudo = selecaoConteudo!!.toInt() //índice de Conteudo na mutableList listaConteudo
+        val conteudoSelecionado = listaConteudosEducacionais.find { it.idConteudoEducacional == idConteudo } //conteudoSelecionado recebe o Conteudo equivalente de listaConteudo
 
         //Remoção do conteúdo da formação:
-        formacaoSelecionada.conteudosFormacao.remove(conteudoSelecionado)
+        formacaoSelecionada.conteudosFormacao.remove(conteudoSelecionado!!)
 
         //Decrementa tempo do conteúdo educacional removido da duração da formação:
-        formacaoSelecionada.duracaoFormacao -= listaConteudosEducacionais[indexConteudo].duracaoConteudoEducacional
+        formacaoSelecionada.duracaoFormacao -= conteudoSelecionado.duracaoConteudoEducacional
 
-        println("Remoção bem sucedida: conteúdo de ID " + listaConteudosEducacionais[indexConteudo].idConteudoEducacional + " da formação de ID " + formacaoSelecionada.idFormacao)
+        println("Remoção bem sucedida: conteúdo de ID " + conteudoSelecionado.idConteudoEducacional + " da formação de ID " + formacaoSelecionada.idFormacao)
+        println(formacaoSelecionada)
 
         do { //Repete execução enquanto não receber valor válido: "s" ou "n"
 

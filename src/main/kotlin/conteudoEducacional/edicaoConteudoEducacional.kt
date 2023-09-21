@@ -32,8 +32,8 @@ fun editarConteudoEducacional() {
 
     } while (!opcoes.contains(selecaoEdicaoConteudoEducacional))
 
-    val index = selecaoEdicaoConteudoEducacional?.toInt()!! - 1 //Variável que recebe valor do que será o índice do elemento de listaConteudosEducacionais
-    conteudoEducacionalParaEdicao = listaConteudosEducacionais[index] //ConteudoEducacional a ser editado é o elemento listaConteudosEducacionais[<índice do elemento dentro do array>]
+    val idConteudo = selecaoEdicaoConteudoEducacional!!.toInt() //Variável que recebe valor do que será o id do elemento de listaConteudosEducacionais
+    conteudoEducacionalParaEdicao = listaConteudosEducacionais.find { it.idConteudoEducacional == idConteudo } //ConteudoEducacional a ser editado é o elemento que possui o id informado
 
     //Edição do nome do conteúdo educacional
     do { //Repete execução enquanto não recebe um valor correspondente a "s" ou "n"
@@ -46,16 +46,16 @@ fun editarConteudoEducacional() {
             var tecladoNovoNomeConteudoEducacional : String? //Variável de novoNomeConteudoEducacional que preencherá nomeConteudoEducacional após edição
 
             if (respostaEditarNomeConteudoEducacional == "s") { //Se recebeu "s", segue para alteração do nome do conteúdo educacional
-                do { //Repete execução enquanto tecladoNovoNomeConteudoEducacional não receber um valor que não seja nulo, vazio, sem letras ou com números
+                do { //Repete execução enquanto tecladoNovoNomeConteudoEducacional não receber um valor que não seja nulo, vazio, sem letras
                     println("Insira novo título do conteúdo educacional:")
                     tecladoNovoNomeConteudoEducacional = readlnOrNull() //Recebimento do valor pelo teclado
 
-                    if (tecladoNovoNomeConteudoEducacional.isNullOrEmpty() || !tecladoNovoNomeConteudoEducacional.any { it.isLetter() } || tecladoNovoNomeConteudoEducacional.any { it.isDigit() }) {
+                    if (tecladoNovoNomeConteudoEducacional.isNullOrEmpty() || !tecladoNovoNomeConteudoEducacional.any { it.isLetter() }) {
                         println("-----Título inválido!-----".uppercase())
                     }
-                } while (tecladoNovoNomeConteudoEducacional.isNullOrEmpty() || !tecladoNovoNomeConteudoEducacional.any { it.isLetter() } || tecladoNovoNomeConteudoEducacional.any { it.isDigit() })
+                } while (tecladoNovoNomeConteudoEducacional.isNullOrEmpty() || !tecladoNovoNomeConteudoEducacional.any { it.isLetter() })
 
-                conteudoEducacionalParaEdicao.nomeConteudoEducacional = tecladoNovoNomeConteudoEducacional //Atribuição de novo nome ao conteúdo educacional do ID informado
+                conteudoEducacionalParaEdicao!!.nomeConteudoEducacional = tecladoNovoNomeConteudoEducacional //Atribuição de novo nome ao conteúdo educacional do ID informado
 
                 println("Alteração do nome do conteúdo educacional bem sucedida:\n$conteudoEducacionalParaEdicao\n") //Mensagem de feedback da edição do nome do conteúdo educacional
             }
@@ -78,7 +78,7 @@ fun editarConteudoEducacional() {
                 do { //Repete execução enquanto não recebe 1, 2 ou 3
                     println("Selecione o novo tipo do conteúdo educacional informando o número correspondente:" +
                             "\n1 - Curso\n2 - Desafio de código\n3 - Desafio de projeto")
-                    var tecladoNovoTipoConteudoEducacional = readlnOrNull() //Recebe escolha do usuário entre as opções
+                    val tecladoNovoTipoConteudoEducacional = readlnOrNull() //Recebe escolha do usuário entre as opções
                     selecaoNovoTipoConteudoEducacional = tecladoNovoTipoConteudoEducacional.toString() //recebe o valor de tecladoNovoTipoConteudoEducacional
 
 
@@ -95,7 +95,7 @@ fun editarConteudoEducacional() {
 
                 } while (tecladoNovoTipoConteudoEducacional.isNullOrEmpty() || (!tecladoNovoTipoConteudoEducacional.equals("1") && !tecladoNovoTipoConteudoEducacional.equals("2") && !tecladoNovoTipoConteudoEducacional.equals("3")))
 
-                conteudoEducacionalParaEdicao.tipoConteudoEducacional = selecaoNovoTipoConteudoEducacional //Alteração do tipo do conteúdo educacional do ID informado
+                conteudoEducacionalParaEdicao!!.tipoConteudoEducacional = selecaoNovoTipoConteudoEducacional //Alteração do tipo do conteúdo educacional do ID informado
 
                 println("Alteração do tipo do conteúdo educacional bem sucedida:\n$conteudoEducacionalParaEdicao\n") //Mensagem de feedback da edição do tipo do conteúdo educacional
             }
@@ -135,7 +135,7 @@ fun editarConteudoEducacional() {
 
                 } while (tecladoNivelDificuldadeEducacional.isNullOrEmpty() || (!tecladoNivelDificuldadeEducacional.equals("1") && !tecladoNivelDificuldadeEducacional.equals("2") && !tecladoNivelDificuldadeEducacional.equals("3")))
 
-                conteudoEducacionalParaEdicao.nivelDificuldadeConteudoEducacional = selecaoNovoNivelDificuldadeConteudoEducacional //Alteração do nível de dificuldade do conteúdo educacional do ID informado
+                conteudoEducacionalParaEdicao!!.nivelDificuldadeConteudoEducacional = selecaoNovoNivelDificuldadeConteudoEducacional //Alteração do nível de dificuldade do conteúdo educacional do ID informado
 
                 println("Alteração do tipo do conteúdo educacional bem sucedida:\n$conteudoEducacionalParaEdicao\n") //Mensagem de feedback da edição do nível de dificuldade do conteúdo educacional
             }
@@ -162,7 +162,7 @@ fun editarConteudoEducacional() {
                     }
                 } while (tecladoNovaDuracaoConteudoEducacional.isNullOrEmpty() || !tecladoNovaDuracaoConteudoEducacional.all { it.isDigit() })
 
-                conteudoEducacionalParaEdicao.duracaoConteudoEducacional = tecladoNovaDuracaoConteudoEducacional.toInt() //Atribuição de nova duração ao conteúdo educacional do ID informado
+                conteudoEducacionalParaEdicao!!.duracaoConteudoEducacional = tecladoNovaDuracaoConteudoEducacional.toInt() //Atribuição de nova duração ao conteúdo educacional do ID informado
 
                 println("Alteração da duração em horas do conteúdo educacional bem sucedida:\n$conteudoEducacionalParaEdicao\n") //Mensagem de feedback da edição da duração do conteúdo educacional
             }

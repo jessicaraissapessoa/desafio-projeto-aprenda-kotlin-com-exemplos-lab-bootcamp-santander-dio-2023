@@ -19,10 +19,10 @@ fun cadastrarFormacao() {
         println("Insira título da formação:")
         tecladoNomeFormacao = readlnOrNull() //Recebimento do valor pelo teclado
 
-        if (tecladoNomeFormacao.isNullOrEmpty() || !tecladoNomeFormacao.any { it.isLetter() } || tecladoNomeFormacao.any { it.isDigit() }) {
+        if (tecladoNomeFormacao.isNullOrEmpty() || !tecladoNomeFormacao.any { it.isLetter() }) {
             println("-----Nome inválido!-----".uppercase())
         }
-    } while (tecladoNomeFormacao.isNullOrEmpty() || !tecladoNomeFormacao.any { it.isLetter() }|| tecladoNomeFormacao.any { it.isDigit() })
+    } while (tecladoNomeFormacao.isNullOrEmpty() || !tecladoNomeFormacao.any { it.isLetter() })
 
     do { //Repete execução enquanto não recebe 1 ou 2 ou 3
         println("Selecione o nível de dificuldade da formação informando o número correspondente:" +
@@ -42,8 +42,7 @@ fun cadastrarFormacao() {
 
     } while (tecladoNivelDificuldadeFormacao.isNullOrEmpty() || (!tecladoNivelDificuldadeFormacao.equals("1") && !tecladoNivelDificuldadeFormacao.equals("2") && !tecladoNivelDificuldadeFormacao.equals("3")))
 
-    val id = listaFormacoes.count() + 1
-
+    val id = (listaFormacoes.maxByOrNull { it.idFormacao }?.idFormacao ?: 0) + 1 //Autoincremento de id soma +1 ao maior id da lista
     val novaFormacao = Formacao()
 
     novaFormacao.idFormacao = id
@@ -55,7 +54,40 @@ fun cadastrarFormacao() {
         println("Cadastro de formação falhou: formação já está cadastrada no sistema")
     } else {
         listaFormacoes.add(novaFormacao) //Cadastro/Adição de formação
-        println("Adição de formação bem sucedida:\n" + listaFormacoes[id - 1]) //Feedback da adição
+        println("Adição de formação bem sucedida:\n$novaFormacao\n") //Feedback da adição
+
+        do { //Pode começar a adicionar usuários à formação
+
+            println("Gostaria de começar a cadastrar usuários à formação? Digite 's' para sim ou 'n' para não")
+            val desejaAdicionaUsuariosFormacao = readlnOrNull() //Recebimento do valor pelo teclado
+
+            when(desejaAdicionaUsuariosFormacao) {
+                "s" -> adicionarUsuarioFormacao() //Segue para função adicionarUsuarioFormacao()
+                "n" -> println()
+            }
+
+            if (desejaAdicionaUsuariosFormacao.isNullOrEmpty() || !desejaAdicionaUsuariosFormacao.any { it.isLetter() } || (!desejaAdicionaUsuariosFormacao.equals("s") && !desejaAdicionaUsuariosFormacao.equals("n"))) {
+                println("-----Seleção inválida!-----".uppercase())
+            }
+
+        } while (desejaAdicionaUsuariosFormacao.isNullOrEmpty() || !desejaAdicionaUsuariosFormacao.any { it.isLetter() } || (!desejaAdicionaUsuariosFormacao.equals("s") && !desejaAdicionaUsuariosFormacao.equals("n")))
+
+        do { //Pode começar a adicionar usuários à formação
+
+            println("Gostaria de começar a cadastrar conteúdos educacionais à formação? Digite 's' para sim ou 'n' para não")
+            val desejaAdicionaConteudosFormacao = readlnOrNull() //Recebimento do valor pelo teclado
+
+            when(desejaAdicionaConteudosFormacao) {
+                "s" -> adicionarConteudoFormacao() //Segue para função adicionarConteudoFormacao()
+                "n" -> println()
+            }
+
+            if (desejaAdicionaConteudosFormacao.isNullOrEmpty() || !desejaAdicionaConteudosFormacao.any { it.isLetter() } || (!desejaAdicionaConteudosFormacao.equals("s") && !desejaAdicionaConteudosFormacao.equals("n"))) {
+                println("-----Seleção inválida!-----".uppercase())
+            }
+
+        } while (desejaAdicionaConteudosFormacao.isNullOrEmpty() || !desejaAdicionaConteudosFormacao.any { it.isLetter() } || (!desejaAdicionaConteudosFormacao.equals("s") && !desejaAdicionaConteudosFormacao.equals("n")))
+
     }
 
     //"Loop" de cadastrarFormacao()

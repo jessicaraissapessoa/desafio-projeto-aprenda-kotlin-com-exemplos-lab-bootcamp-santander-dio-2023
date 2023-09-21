@@ -5,6 +5,7 @@ fun telaInicial() {
     do { //Repete execução enquanto não receber 1, 2, 3 ou 5
 
         println("----------------------------------------------------------------------------------------" +
+                "\nTELA INICIAL" +
                 "\nSelecione o que deseja acessar informando número correspondente:" +
                 "\n1 - Usuários" +
                 "\n2 - Conteúdos educacionais" +

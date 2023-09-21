@@ -86,8 +86,10 @@ fun exibirFormacaoDetalhada() { //Exibe detalhadamente uma formação, incluindo
 
     } while (!opcoes.contains(selecaoExibirFormacao))
 
-    val index = selecaoExibirFormacao!!.toInt() - 1
-    println(listaFormacoes[index])
+    val idFormacao = selecaoExibirFormacao!!.toInt() //índice de Formacao na mutableList listaFormacoes
+    val formacaoSelecionada = listaFormacoes.find { it.idFormacao == idFormacao } //formacaoSelecionada recebe a Formacao equivalente de listaFormacoes
+
+    println(formacaoSelecionada)
 
     //"Loop" de exibirFormacaoDetalhada()
     do { //Repete execução enquanto excluirOutroUsuario não receber um valor que não seja nulo, vazio, sem letras ou diferente de "s" e "n"

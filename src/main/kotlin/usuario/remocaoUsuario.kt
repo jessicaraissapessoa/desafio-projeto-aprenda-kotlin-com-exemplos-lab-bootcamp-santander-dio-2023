@@ -29,9 +29,16 @@ fun excluirUsuario() { //Função para remover usuário
 
     } while (!opcoes.contains(selecaoRemocaoUsuario))
 
-    val usuarioRemovido = listaUsuarios.removeAt(index = (selecaoRemocaoUsuario?.toInt()!! - 1)) //Remoção do usuário
+    val idUsuario = selecaoRemocaoUsuario!!.toInt() //índice de Usuário na mutableList listaUsuarios
+    val usuarioSelecionado = listaUsuarios.find { it.idUsuario == idUsuario } //usuarioSelecionado recebe o Usuário equivalente de listaUsuarios
 
-    println("Remoção de usuário bem sucedida:\n$usuarioRemovido\n") //Mensagem de feedback da remoção
+    if (usuarioSelecionado != null) { //Remoção com feedback
+        val removido = listaUsuarios.remove(usuarioSelecionado)
+
+        if (removido) {
+            println("Remoção bem sucedida de:\n$usuarioSelecionado!\n")  //Mensagem de feedback da remoção
+        } else println("Remoção falhou")
+    }
 
     if (listaUsuarios.isNotEmpty()) {
 

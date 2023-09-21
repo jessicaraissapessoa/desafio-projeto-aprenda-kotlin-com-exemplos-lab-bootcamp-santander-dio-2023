@@ -17,7 +17,7 @@ data class Formacao(var idFormacao: Int, var nomeFormacao: String, var nivelDifi
 
 
         builder.append("--------------------------------------------------\n")
-        builder.append("ID: $idFormacao | NOME: $nomeFormacao\n↳ NÍVEL: $nivelDificuldadeFormacao | DURAÇÃO: $duracaoFormacao")
+        builder.append("ID: $idFormacao | NOME: $nomeFormacao\n↳ NÍVEL: $nivelDificuldadeFormacao | DURAÇÃO: ${duracaoFormacao}h")
         builder.append("\n")
         builder.append("\nLISTA DE CONTEÚDOS:\n")
         conteudosFormacao.forEach { conteudoEducacional -> builder.append("\t$conteudoEducacional\n") }

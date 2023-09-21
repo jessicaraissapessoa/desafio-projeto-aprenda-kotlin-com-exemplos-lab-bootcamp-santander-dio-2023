@@ -1,6 +1,7 @@
 package formacao
 
 import aplicacao.menuFormacao
+import conteudoEducacional.listaConteudosEducacionais
 
 fun excluirFormacao() { //Função para remover formação
 
@@ -29,9 +30,16 @@ fun excluirFormacao() { //Função para remover formação
 
     } while (!opcoes.contains(selecaoRemocaoFormacao))
 
-    val formacaoRemovida = listaFormacoes.removeAt(index = (selecaoRemocaoFormacao?.toInt()!! - 1)) //Remoção da formação
+    val idFormacao = selecaoRemocaoFormacao!!.toInt() //índice de Formacao na mutableList listaFormacoes
+    val formacaoSelecionada = listaFormacoes.find { it.idFormacao == idFormacao } //formacaoSelecionada recebe a Formacao equivalente de listaFormacoes
 
-    println("Remoção de formação bem sucedida:\n$formacaoRemovida\n") //Mensagem de feedback da remoção
+    if (formacaoSelecionada != null) { //Remoção com feedback
+        val removido = listaFormacoes.remove(formacaoSelecionada)  //Remoção da formação
+
+        if (removido) {  //Mensagem de feedback da remoção
+            println("Remoção bem sucedida de:\n$formacaoSelecionada\n")
+        } else println("Remoção falhou")
+    }
 
     if (listaFormacoes.isNotEmpty()) {
 
@@ -53,5 +61,7 @@ fun excluirFormacao() { //Função para remover formação
         } while (desejaExcluirOutraFormacao.isNullOrEmpty() || !desejaExcluirOutraFormacao.any { it.isLetter() } || (!desejaExcluirOutraFormacao.equals("s") && !desejaExcluirOutraFormacao.equals("n")))
 
     }
+
+    menuFormacao()
 
 }

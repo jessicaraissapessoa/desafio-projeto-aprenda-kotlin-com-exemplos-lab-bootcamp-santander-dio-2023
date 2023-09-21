@@ -7,6 +7,7 @@ fun menuFormacao() {
     do { //Repete execução enquanto não receber 1, 2, 3, 4, 5, 6, 7 ou 8
 
         println("----------------------------------------------------------------------------------------" +
+                "\nMENU FORMAÇÃO" +
                 "\nSelecione o que deseja acessar em FORMAÇÃO informando número correspondente:" +
                 "\n1 - Lista de formações cadastradas" +
                 "\n2 - Exibir detalhes de uma formação" +

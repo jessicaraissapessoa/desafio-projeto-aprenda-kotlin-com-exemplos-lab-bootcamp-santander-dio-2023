@@ -31,8 +31,8 @@ fun editarUsuario() { //Função para editar usuário
 
     } while (!opcoes.contains(selecaoEdicaoUsuario))
 
-    val index = selecaoEdicaoUsuario?.toInt()!! - 1 //Variável que recebe valor do que será o índice do elemento de listaUsuarios
-    usuarioParaEdicao = listaUsuarios[index] //Usuário a ser editado é o elemento listaUsuarios[<índice do elemento dentro do array>]
+    val idUsuario = selecaoEdicaoUsuario!!.toInt() //índice de Usuário na mutableList listaUsuarios
+    usuarioParaEdicao = listaUsuarios.find { it.idUsuario == idUsuario } //usuarioSelecionado recebe o Usuário equivalente de listaUsuarios
 
     //Edição do nome do usuário
     do { //Repete execução enquanto não recebe um valor correspondente a "s" ou "n"
@@ -49,12 +49,12 @@ fun editarUsuario() { //Função para editar usuário
                     println("Insira novo nome completo do usuário:")
                     tecladoNovoNomeUsuario = readlnOrNull() //Recebimento do valor pelo teclado
 
-                    if (tecladoNovoNomeUsuario.isNullOrEmpty() || !tecladoNovoNomeUsuario.any { it.isLetter() } || tecladoNovoNomeUsuario.any { it.isDigit() }) {
+                    if (tecladoNovoNomeUsuario.isNullOrEmpty() || !tecladoNovoNomeUsuario.any { it.isLetter() }) {
                         println("-----Nome inválido!-----".uppercase())
                     }
-                } while (tecladoNovoNomeUsuario.isNullOrEmpty() || !tecladoNovoNomeUsuario.any { it.isLetter() } || tecladoNovoNomeUsuario.any { it.isDigit() })
+                } while (tecladoNovoNomeUsuario.isNullOrEmpty() || !tecladoNovoNomeUsuario.any { it.isLetter() })
 
-                usuarioParaEdicao.nomeUsuario = tecladoNovoNomeUsuario //Atribuição de novo nome ao usuário do ID informado
+                usuarioParaEdicao!!.nomeUsuario = tecladoNovoNomeUsuario //Atribuição de novo nome ao usuário do ID informado
 
                 println("Alteração do nome do usuário bem sucedida:\n$usuarioParaEdicao\n") //Mensagem de feedback da edição do nome do usuário
             }
@@ -92,7 +92,7 @@ fun editarUsuario() { //Função para editar usuário
 
                 } while (tecladoNovoTipoUsuario.isNullOrEmpty() || (!tecladoNovoTipoUsuario.equals("1") && !tecladoNovoTipoUsuario.equals("2")))
 
-                usuarioParaEdicao.tipoUsuario = selecaoNovoTipoUsuario //Alteração do tipo do usuário do ID informado
+                usuarioParaEdicao!!.tipoUsuario = selecaoNovoTipoUsuario //Alteração do tipo do usuário do ID informado
 
                 println("Alteração do tipo do usuário bem sucedida:\n$usuarioParaEdicao\n") //Mensagem de feedback da edição do tipo do usuário
             }
@@ -123,5 +123,4 @@ fun editarUsuario() { //Função para editar usuário
     }
 
     menuUsuario()
-
 }

@@ -27,10 +27,10 @@ fun cadastrarConteudoEducacional() {
         println("Insira título do conteúdo educacional:")
         tecladoNomeConteudoEducacional = readlnOrNull() //Recebimento do valor pelo teclado
 
-        if (tecladoNomeConteudoEducacional.isNullOrEmpty() || !tecladoNomeConteudoEducacional.any { it.isLetter() } || tecladoNomeConteudoEducacional.any { it.isDigit() }) {
+        if (tecladoNomeConteudoEducacional.isNullOrEmpty() || !tecladoNomeConteudoEducacional.any { it.isLetter() }) {
             println("-----Nome inválido!-----".uppercase())
         }
-    } while (tecladoNomeConteudoEducacional.isNullOrEmpty() || !tecladoNomeConteudoEducacional.any { it.isLetter() }|| tecladoNomeConteudoEducacional.any { it.isDigit() })
+    } while (tecladoNomeConteudoEducacional.isNullOrEmpty() || !tecladoNomeConteudoEducacional.any { it.isLetter() })
 
     do { //Repete execução enquanto não recebe 1 ou 2 ou 3
         println("Selecione o tipo do conteúdo educacional informando o número correspondente:" +
@@ -81,9 +81,11 @@ fun cadastrarConteudoEducacional() {
 
     } while (tecladoDuracaoConteudoEducacional.isNullOrEmpty() || !tecladoDuracaoConteudoEducacional.all { it.isDigit() })
 
-    var novoConteudoEducacional = ConteudoEducacional() //Instância de ConteudoEducacional
+    val novoConteudoEducacional = ConteudoEducacional() //Instância de ConteudoEducacional
 
-    val id = listaConteudosEducacionais.count() + 1  //id = quantidade de conteúdos educacionais já inseridos em listaConteudosEducacionais + 1
+    val id = (listaConteudosEducacionais.maxByOrNull { it.idConteudoEducacional }?.idConteudoEducacional ?: 0) + 1 //Autoincremento de id soma +1 ao maior id da lista
+
+    //val id = listaConteudosEducacionais.count() + 1  //id = quantidade de conteúdos educacionais já inseridos em listaConteudosEducacionais + 1
 
     novoConteudoEducacional.idConteudoEducacional = id //idConteudoEducacional da instância de ConteudoEducacional (novoConteudoEducacional) = id
     novoConteudoEducacional.nomeConteudoEducacional = tecladoNomeConteudoEducacional //nomeConteudoEducacional da instância de ConteudoEducacional (novoConteudoEducacional) = tecladoNomeConteudoEducacional
