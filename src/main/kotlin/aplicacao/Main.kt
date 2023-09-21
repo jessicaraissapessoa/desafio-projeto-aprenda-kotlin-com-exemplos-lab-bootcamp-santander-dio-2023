@@ -8,7 +8,7 @@ package aplicacao
 
 fun main() {
 
-    println("Bem-vindo ao gerenciamento do sistema DIO\n")
+    println("\nBem-vindo ao gerenciamento do sistema DIO\n")
     telaInicial()
 
 }
