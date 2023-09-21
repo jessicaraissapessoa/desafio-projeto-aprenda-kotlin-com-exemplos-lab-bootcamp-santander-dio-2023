@@ -49,10 +49,10 @@ fun editarUsuario() { //Função para editar usuário
                     println("Insira novo nome completo do usuário:")
                     tecladoNovoNomeUsuario = readlnOrNull() //Recebimento do valor pelo teclado
 
-                    if (tecladoNovoNomeUsuario.isNullOrEmpty() || !tecladoNovoNomeUsuario.any { it.isLetter() }) {
+                    if (tecladoNovoNomeUsuario.isNullOrEmpty() || !tecladoNovoNomeUsuario.any { it.isLetter() } || tecladoNovoNomeUsuario.any { it.isDigit() }) {
                         println("-----Nome inválido!-----".uppercase())
                     }
-                } while (tecladoNovoNomeUsuario.isNullOrEmpty() || !tecladoNovoNomeUsuario.any { it.isLetter() })
+                } while (tecladoNovoNomeUsuario.isNullOrEmpty() || !tecladoNovoNomeUsuario.any { it.isLetter() } || tecladoNovoNomeUsuario.any { it.isDigit() })
 
                 usuarioParaEdicao!!.nomeUsuario = tecladoNovoNomeUsuario //Atribuição de novo nome ao usuário do ID informado
 

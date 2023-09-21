@@ -18,10 +18,10 @@ fun cadastrarUsuario() { //Função para cadastrar usuário
         println("Insira nome completo do usuário:")
         tecladoNomeUsuario = readlnOrNull() //Recebimento do valor pelo teclado
 
-        if (tecladoNomeUsuario.isNullOrEmpty() || !tecladoNomeUsuario.any { it.isLetter() }) {
+        if (tecladoNomeUsuario.isNullOrEmpty() || !tecladoNomeUsuario.any { it.isLetter() } || tecladoNomeUsuario.any { it.isDigit() }) {
             println("-----Nome inválido!-----".uppercase())
         }
-    } while (tecladoNomeUsuario.isNullOrEmpty() || !tecladoNomeUsuario.any { it.isLetter() })
+    } while (tecladoNomeUsuario.isNullOrEmpty() || !tecladoNomeUsuario.any { it.isLetter() } || tecladoNomeUsuario.any { it.isDigit() })
 
     do { //Repete execução enquanto não recebe 1 ou 2
         println("Selecione o tipo do usuário informando o número correspondente:" +
